@@ -1,0 +1,261 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\WpfApp\\WpfApp.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\MiniEditor\\MiniEditorData.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\MiniEditor\\MiniEditorData.csproj",
+        "projectName": "MiniEditorData",
+        "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\MiniEditor\\MiniEditorData.csproj",
+        "packagesPath": "C:\\Users\\Doctor Lalov\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\MiniEditor\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Doctor Lalov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "System.Composition": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\ViewModel\\ViewModel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\ViewModel\\ViewModel.csproj",
+        "projectName": "ViewModel",
+        "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\ViewModel\\ViewModel.csproj",
+        "packagesPath": "C:\\Users\\Doctor Lalov\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\ViewModel\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Doctor Lalov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\MiniEditor\\MiniEditorData.csproj": {
+                "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\MiniEditor\\MiniEditorData.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "DynamicData.ReactiveUI": {
+              "target": "Package",
+              "version": "[6.11.0.2613, )"
+            },
+            "ReactiveUI": {
+              "target": "Package",
+              "version": "[11.1.23, )"
+            },
+            "System.Composition": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\WpfApp\\WpfApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\WpfApp\\WpfApp.csproj",
+        "projectName": "WpfApp",
+        "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\WpfApp\\WpfApp.csproj",
+        "packagesPath": "C:\\Users\\Doctor Lalov\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\WpfApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Doctor Lalov\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.0": {
+            "projectReferences": {
+              "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\MiniEditor\\MiniEditorData.csproj": {
+                "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\MiniEditor\\MiniEditorData.csproj"
+              },
+              "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\ViewModel\\ViewModel.csproj": {
+                "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\ViewModel\\ViewModel.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.0": {
+          "dependencies": {
+            "ReactiveUI": {
+              "target": "Package",
+              "version": "[11.1.23, )"
+            },
+            "ReactiveUI.Events.WPF": {
+              "target": "Package",
+              "version": "[11.1.23, )"
+            },
+            "ReactiveUI.WPF": {
+              "target": "Package",
+              "version": "[11.1.23, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.0.2, 3.0.2]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
