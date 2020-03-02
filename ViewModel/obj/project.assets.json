@@ -1181,11 +1181,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\ViewModel\\ViewModel.csproj",
+      "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\ViewModel.csproj",
       "projectName": "ViewModel",
-      "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\ViewModel\\ViewModel.csproj",
+      "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\ViewModel.csproj",
       "packagesPath": "C:\\Users\\Doctor Lalov\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\ViewModel\\obj\\",
+      "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Doctor Lalov\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1201,8 +1201,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\MiniEditor\\MiniEditorData.csproj": {
-              "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\paint 2.0\\MiniEditor\\MiniEditorData.csproj"
+            "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {
+              "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj"
             }
           }
         }
