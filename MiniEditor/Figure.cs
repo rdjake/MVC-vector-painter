@@ -155,12 +155,11 @@ namespace MiniEditor
     {
         public string Name => "Rectangle";
         public int NumberOfPoints => 4;
-
         public IFigure Create(IEnumerable<Point> vertex)
         {
             var points = vertex.ToArray();
-            if (points.Length != 4) throw new ArgumentOutOfRangeException($"Bad number of parameters {points.Length}");
-            return new Rectangle(points[0], points[1], points[2], points[3]);
+            if (points.Length != 2) throw new ArgumentOutOfRangeException($"Bad number of parameters {points.Length}");
+            return new Rectangle(points[0], points[1]);
         }
     }
 
