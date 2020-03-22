@@ -96,4 +96,82 @@ namespace MiniEditor
             return new Line(points[0], points[1]);
         }
     }
+
+
+
+    public class Rectangle : IFigure
+    {
+        public Rectangle(Point a, Point c)
+        {
+            A = a; C = c;
+        }
+        Point A;
+        Point C;
+        Point B = new Point { X = A.X, Y = C.Y };
+        Point D = new Point { X = C.X, Y = A.Y };
+        public IEnumerable<string> Parameters { get; } = new[] { "A", "B","C","D" };
+
+        public object this[string name]
+        {
+            get
+            {
+                switch (name)
+                {
+                    case "A": return A;
+                    case "B": return B;
+                    case "C": return A;
+                    case "D": return B;
+                    default: throw new ArgumentOutOfRangeException($"Unknown parameter {name}");
+                }
+
+            }
+            set
+            {
+                if (value is Point p)
+                {
+                    switch (name)
+                    {
+                        case "A": A = p; break;
+                        case "B": B = p; break;
+                        case "C": A = p; break;
+                        case "D": B = p; break;
+                        default: throw new ArgumentOutOfRangeException($"Unknown parameter {name}");
+                    }
+                }
+                else throw new ArgumentOutOfRangeException($"Unknown parameter type {value.GetType().Name}");
+            }
+        }
+
+        public void Draw(IGraphic graphic)
+        {
+            graphic.Polygon(new[] { A, B,C,D }, new Color { R = 255, G = 0, B = 0, A = 128 });           
+        }
+
+        public string Name => "Rectangle";
+    }
+    [Export(typeof(IFigureDescriptor))]
+    [ExportMetadata("Name", "Rectangle")]
+    public class RectangleDescriptor : IFigureDescriptor
+    {
+        public string Name => "Rectangle";
+        public int NumberOfPoints => 4;
+
+        public IFigure Create(IEnumerable<Point> vertex)
+        {
+            var points = vertex.ToArray();
+            if (points.Length != 4) throw new ArgumentOutOfRangeException($"Bad number of parameters {points.Length}");
+            return new Rectangle(points[0], points[1], points[2], points[3]);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
 }
