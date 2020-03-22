@@ -19,8 +19,9 @@
         <Button Content="Add" Command="{Binding Add}" Width="39" />
         <Button Content="Delete" Command="{Binding Delete}" Width="36"/>
         <Button Content="SaveAll" Command="{Binding SaveAll}" Width="52"/>
+        <Button Content="LoadAll" Command="{Binding LoadAll}" Width="52"/>
         <ListView ItemsSource="{Binding ViewModel.AllFigures}"/>
-        
+
 
 
     </StackPanel>
