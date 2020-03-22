@@ -79,7 +79,13 @@ namespace MiniEditor
         {
             graphic.Polygon(new[] { A, B }, new Color { R = 255, G = 0, B = 0, A = 128 });
         }
-
+        public void Move(Point vector)
+        {
+            this.A.X += vector.X;
+            this.A.Y += vector.Y;
+            this.B.X += vector.X;
+            this.B.Y += vector.Y;
+        }
         public string Name => "Line";
     }
     [Export(typeof(IFigureDescriptor))]
@@ -146,6 +152,18 @@ namespace MiniEditor
         {
             graphic.Polygon(new[] { A, B,C,D }, new Color { R = 255, G = 0, B = 0, A = 128 });           
         }
+        public void Move(Point vector)
+        {
+            this.A.X += vector.X;
+            this.A.Y += vector.Y;
+            this.B.X += vector.X;
+            this.B.Y += vector.Y;
+            this.C.X += vector.X;
+            this.C.Y += vector.Y;
+            this.D.X += vector.X;
+            this.D.Y += vector.Y;
+            
+        }
 
         public string Name => "Rectangle";
     }
@@ -205,7 +223,11 @@ namespace MiniEditor
         {
             graphic.Circle(C, R,new Color { R = 255, G = 0, B = 0, A = 128 });
         }
-
+        public void Move(Point vector)
+        {
+            this.C.X += vector.X;
+            this.C.Y += vector.Y;        
+        }
         public string Name => "Circle";
     }
     [Export(typeof(IFigureDescriptor))]
