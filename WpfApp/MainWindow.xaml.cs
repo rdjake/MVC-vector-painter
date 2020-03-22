@@ -1,4 +1,5 @@
-﻿using ReactiveUI;
+using MiniEditor;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +27,8 @@ namespace WpfApp
     {
         public ReactiveCommand<Unit,Unit> Add { get; set; }
         public ReactiveCommand<Unit, Unit> Delete { get; set; }
+        public ReactiveCommand<Unit, Unit> Draw { get; set; }
+        public ReactiveCommand<Unit, Unit> SaveAll { get; set; }
 
         public MainWindow()
         {
@@ -33,19 +36,29 @@ namespace WpfApp
             InitializeComponent();
             this.WhenActivated(disposer => 
             {
+
                 Add = ReactiveCommand.Create<Unit,Unit>(_ => {
                     ViewModel.Add.Execute(new MiniEditor.Line(
                     new MiniEditor.Point { X = 0, Y = 0 },
                     new MiniEditor.Point { X = 10, Y = 10 })).Subscribe();
+                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     return default;
                 }).DisposeWith(disposer);
                 Delete= ReactiveCommand.Create<Unit, Unit>(_ => {
                     ViewModel.Delete.Execute(ViewModel.AllFigures.FirstOrDefault()).Subscribe();
+                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     return default;
                 }, ViewModel.Delete.CanExecute).DisposeWith(disposer);
+
+                SaveAll = ReactiveCommand.Create<Unit, Unit>(_ => {
+                    ViewModel.SaveAll.Execute().Subscribe();
+                    return default;
+                }).DisposeWith(disposer);
                 this.RaisePropertyChanged("Add");
                 this.RaisePropertyChanged("Delete");
+                this.RaisePropertyChanged("SaveAll");
             });
+            
         }
         ViewModel.ViewModel viewModel=new ViewModel.ViewModel();
         public ViewModel.ViewModel ViewModel { get=>viewModel; set { } }
