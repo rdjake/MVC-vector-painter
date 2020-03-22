@@ -53,7 +53,7 @@ namespace WpfApp
                 SaveAll = ReactiveCommand.Create<Unit, Unit>(_ => {
                     ViewModel.SaveAll.Execute().Subscribe();
                     return default;
-                }).DisposeWith(disposer);
+                }, ViewModel.SaveAll.CanExecute).DisposeWith(disposer);
                 this.RaisePropertyChanged("Add");
                 this.RaisePropertyChanged("Delete");
                 this.RaisePropertyChanged("SaveAll");
