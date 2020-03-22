@@ -78,25 +78,34 @@ namespace ViewModel
                     figure.Draw(graphic);
                 return default;
             });
-
+            //кол-во фигур
+            // тип | количество параметров | тип параметра | значение | значение | ... | тип параметра | | значение | значение | ... 
             SaveAll = ReactiveCommand.Create<IGraphic, Unit>(_ =>
             {
                 int i = 0;
+                //подбор имени файла
                 string path = Directory.GetCurrentDirectory() + @"\AllFigures_" + i + ".txt"; ;
                 while (File.Exists(path)) {
                     i++;
                     path = Directory.GetCurrentDirectory() + @"\AllFigures_" + i + ".txt"; 
                 } 
+
                 using (StreamWriter sw = File.CreateText(path))
                 {
+                    sw.WriteLine(Figures.Count); //количество фигур
                     foreach (var figure in Figures.Items)
                     {
-                        sw.WriteLine(figure.Name); //type
-                        sw.WriteLine(figure.Parameters.Count()); //number of parameters
+                        sw.Write(figure.Name + "\t"); //тип фигуры
+                        sw.Write(figure.Parameters.Count()+ "\t"); //количество параметров
                         foreach (var p in figure.Parameters) {
-                            sw.WriteLine(p);
+                            if (figure[p].GetType().ToString() == "MiniEditor.Point") //если параметр - точка
+                            {
+                                sw.Write("MiniEditor.Point\t"); 
+                                sw.Write(((MiniEditor.Point)figure[p]).X + "\t");
+                                sw.Write(((MiniEditor.Point)figure[p]).Y + "\t");
+                            }
                         }
-
+                        sw.Write("\n");
                     }
                     sw.Close();
                 }
