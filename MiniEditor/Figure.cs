@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Composition;
 using System.Linq;
+using System.Math;
 
 namespace MiniEditor
 {
@@ -164,7 +165,7 @@ namespace MiniEditor
             this.D.Y += vector.Y;
             
         }
-
+      
         public string Name => "Rectangle";
     }
     [Export(typeof(IFigureDescriptor))]
@@ -227,6 +228,10 @@ namespace MiniEditor
         {
             this.C.X += vector.X;
             this.C.Y += vector.Y;        
+        }
+        public bool Contain(Point p)
+        {
+            return r>sqrt((p.X - this.C.X) * (p.X - this.C.X) + (p.Y - this.C.Y) * (p.Y - this.C.Y));
         }
         public string Name => "Circle";
     }
