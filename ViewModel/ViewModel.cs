@@ -10,6 +10,7 @@ using System.Linq;
 using System.Composition.Hosting;
 using System.Reactive.Linq;
 using System.IO;
+using System.Diagnostics;
 
 namespace ViewModel
 {
@@ -39,6 +40,7 @@ namespace ViewModel
         public ReactiveCommand<IFigure, Unit> Delete { get; }
         public ReactiveCommand<IGraphic, Unit> Draw { get; }
         public ReactiveCommand<IGraphic, Unit> SaveAll { get; }
+        public ReactiveCommand<IGraphic, Unit> LoadAll { get; }
         static ViewModel()
         {
          System.Reflection.Assembly[] assemblies = { typeof(Point).Assembly};
@@ -112,6 +114,12 @@ namespace ViewModel
                 
                 return default;
             },Figures.CountChanged.Select(i => i > 0));
+
+            LoadAll = ReactiveCommand.Create<IGraphic, Unit>(_ =>
+            {
+                var file = Process.Start("explorer.exe", @"/n,/select," + Directory.GetCurrentDirectory());   
+                return default;
+            });
         }
     }
 }
