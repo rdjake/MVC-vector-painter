@@ -119,8 +119,8 @@ namespace MiniEditor
                 {
                     case "A": return A;
                     case "B": return B;
-                    case "C": return A;
-                    case "D": return B;
+                    case "C": return C;
+                    case "D": return D;
                     default: throw new ArgumentOutOfRangeException($"Unknown parameter {name}");
                 }
 
@@ -133,8 +133,8 @@ namespace MiniEditor
                     {
                         case "A": A = p; break;
                         case "B": B = p; break;
-                        case "C": A = p; break;
-                        case "D": B = p; break;
+                        case "C": C = p; break;
+                        case "D": D = p; break;
                         default: throw new ArgumentOutOfRangeException($"Unknown parameter {name}");
                     }
                 }
@@ -165,7 +165,62 @@ namespace MiniEditor
 
 
 
+    public class Circle : IFigure
+    {
+        public Circle(Point c, double r)
+        {
+           C = c; R = r;
+        }
+      
+        Point C;
+        double R;
+        public IEnumerable<string> Parameters { get; } = new[] {"C"};
 
+        public object this[string name]
+        {
+            get
+            {
+                switch (name)
+                {                  
+                    case "C": return c;                  
+                    default: throw new ArgumentOutOfRangeException($"Unknown parameter {name}");
+                }
+
+            }
+            set
+            {
+                if (value is Point p)
+                {
+                    switch (name)
+                    {                      
+                        case "C": C = p; break;                    
+                        default: throw new ArgumentOutOfRangeException($"Unknown parameter {name}");
+                    }
+                }
+                else throw new ArgumentOutOfRangeException($"Unknown parameter type {value.GetType().Name}");
+            }
+        }
+
+        public void Draw(IGraphic graphic)
+        {
+            graphic.Circle(C, R,new Color { R = 255, G = 0, B = 0, A = 128 });
+        }
+
+        public string Name => "Circle";
+    }
+    [Export(typeof(IFigureDescriptor))]
+    [ExportMetadata("Name", "Circle")]
+    public class CircleDescriptor : IFigureDescriptor
+    {
+        public string Name => "Circle";
+        public int NumberOfPoints => 1; 
+        public IFigure Create(IEnumerable<Point> vertex)
+        {
+            var points = vertex.ToArray();
+            if (points.Length != 1) throw new ArgumentOutOfRangeException($"Bad number of parameters {points.Length}");
+            return new Circle(points[0]);
+        }
+    }
 
 
 
