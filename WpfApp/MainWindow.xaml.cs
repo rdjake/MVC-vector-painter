@@ -29,6 +29,7 @@ namespace WpfApp
         public ReactiveCommand<Unit, Unit> Delete { get; set; }
         public ReactiveCommand<Unit, Unit> Draw { get; set; }
         public ReactiveCommand<Unit, Unit> SaveAll { get; set; }
+        public ReactiveCommand<Unit, Unit> LoadAll { get; set; }
 
         public MainWindow()
         {
@@ -38,12 +39,14 @@ namespace WpfApp
             {
 
                 Add = ReactiveCommand.Create<Unit,Unit>(_ => {
+                    Random random = new Random();
                     ViewModel.Add.Execute(new MiniEditor.Line(
-                    new MiniEditor.Point { X = 0, Y = 0 },
-                    new MiniEditor.Point { X = 10, Y = 10 })).Subscribe();
+                    new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) },
+                    new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) })).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     return default;
                 }).DisposeWith(disposer);
+
                 Delete= ReactiveCommand.Create<Unit, Unit>(_ => {
                     ViewModel.Delete.Execute(ViewModel.AllFigures.FirstOrDefault()).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
@@ -54,9 +57,16 @@ namespace WpfApp
                     ViewModel.SaveAll.Execute().Subscribe();
                     return default;
                 }, ViewModel.SaveAll.CanExecute).DisposeWith(disposer);
+
+                LoadAll = ReactiveCommand.Create<Unit, Unit>(_ => {
+                    ViewModel.LoadAll.Execute().Subscribe();
+                    return default;
+                }).DisposeWith(disposer);
+
                 this.RaisePropertyChanged("Add");
                 this.RaisePropertyChanged("Delete");
                 this.RaisePropertyChanged("SaveAll");
+                this.RaisePropertyChanged("LoadAll");
             });
             
         }
