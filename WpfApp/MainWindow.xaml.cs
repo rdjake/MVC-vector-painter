@@ -40,16 +40,53 @@ namespace WpfApp
 
                 Add = ReactiveCommand.Create<Unit,Unit>(_ => {
                     Random random = new Random();
-                    ViewModel.Add.Execute(new MiniEditor.Circle(
-                    new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) },
-                    new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) })).Subscribe();
+                    var C = new MiniEditor.Point { X = random.Next(100,600), Y = random.Next(100,600) };
+                    var C2 = new MiniEditor.Point { X = C.X + random.Next(-100,100), Y = C.Y + random.Next(-100, 100) };
+                    var fig = new MiniEditor.Circle(C,C2);
+                    ViewModel.Add.Execute(fig).Subscribe();
+
+                    if (fig.Name == "Circle")
+                    {
+                        Ellipse el = new Ellipse();
+                        var par = fig.Parameters.ToList();
+                        MiniEditor.Point point1 = (MiniEditor.Point)(fig[par[0]]);
+                        MiniEditor.Point point2 = (MiniEditor.Point)(fig[par[1]]);
+                        el.Width = 2 * Math.Abs(point1.X - point2.X);
+                        el.Height = 2 * Math.Abs(point1.Y - point2.Y);
+                        el.Margin = new Thickness(point1.X/2, point1.Y/2, 0, 0);
+                        el.Fill = Brushes.Green;
+                        el.Stroke = Brushes.Red;
+                        el.StrokeThickness = 3;
+                        Holst.Children.Add(el);
+                    }
+                   
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     return default;
                 }).DisposeWith(disposer);
 
                 Delete= ReactiveCommand.Create<Unit, Unit>(_ => {
-                    ViewModel.Delete.Execute(ViewModel.AllFigures.FirstOrDefault()).Subscribe();
+                    Random random = new Random();
+                    var fig = ViewModel.AllFigures.Last();
+                    ViewModel.Delete.Execute(fig).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                    Holst.Children.Clear();
+                    foreach (var p in ViewModel.AllFigures)
+                    {
+                        if (p.Name == "Circle")
+                        {
+                            Ellipse el = new Ellipse();
+                            var par = p.Parameters.ToList();
+                            MiniEditor.Point point1 = (MiniEditor.Point)(p[par[0]]);
+                            MiniEditor.Point point2 = (MiniEditor.Point)(p[par[1]]);
+                            el.Width = 2 * Math.Abs(point1.X - point2.X);
+                            el.Height = 2 * Math.Abs(point1.Y - point2.Y);
+                            el.Margin = new Thickness(point1.X/2, point1.Y/2, 0, 0);
+                            el.Fill = Brushes.Green;
+                            el.Stroke = Brushes.Red;
+                            el.StrokeThickness = 3;
+                            Holst.Children.Add(el);
+                        }
+                    }
                     return default;
                 }, ViewModel.Delete.CanExecute).DisposeWith(disposer);
 
@@ -59,8 +96,27 @@ namespace WpfApp
                 }, ViewModel.SaveAll.CanExecute).DisposeWith(disposer);
 
                 LoadAll = ReactiveCommand.Create<Unit, Unit>(_ => {
+                    Random random = new Random();
                     ViewModel.LoadAll.Execute().Subscribe();
                     this.Error.Content = ViewModel.error;
+                    foreach (var p in ViewModel.AllFigures)
+                    {
+                        if (p.Name == "Circle")
+                        {
+                            Ellipse el = new Ellipse();
+                            var par = p.Parameters.ToList();
+                            MiniEditor.Point point1 = (MiniEditor.Point)(p[par[0]]);
+                            MiniEditor.Point point2 = (MiniEditor.Point)(p[par[1]]);
+                            el.Width = 2 * Math.Abs(point1.X - point2.X);
+                            el.Height = 2 * Math.Abs(point1.Y - point2.Y);
+                            el.Margin = new Thickness(point1.X/2, point1.Y/2, 0, 0);
+                            el.Fill = Brushes.Green;
+                            el.Stroke = Brushes.Red;
+                            el.StrokeThickness = 3;
+                            Holst.Children.Add(el);
+                        }
+
+                    }
                     return default;
                 }).DisposeWith(disposer);
 
