@@ -1,4 +1,4 @@
-using ReactiveUI;
+﻿using ReactiveUI;
 using System;
 using DynamicData;
 using MiniEditor;
