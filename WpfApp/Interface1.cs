@@ -42,7 +42,7 @@ namespace Wpffirst
 
 
         void Draw(IGraphic graphic);
-        void Rotate(double angle, Point center);
+        void Rotate(double angle);
         void Move(Point vector);
         void Scale(double scale);
         IBrush Fill { get;set;}

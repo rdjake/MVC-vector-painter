@@ -181,7 +181,7 @@ namespace MiniEditor
             D.Y += vector.Y;
 
         }
-        public void Rotate(double angle, Point center)
+        public void Rotate(double angle)
         {
             if(angle>0)
             {
