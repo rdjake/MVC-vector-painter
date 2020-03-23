@@ -11,7 +11,7 @@ using System.Composition.Hosting;
 using System.Reactive.Linq;
 using System.IO;
 using System.Diagnostics;
-using System.Windows.Forms;
+using Prism.Commands;
 
 namespace ViewModel
 {
@@ -23,7 +23,8 @@ namespace ViewModel
             public IEnumerable<Lazy<IFigureDescriptor, FigureDescriptorMetadata>> AvailableFigures { get; set; }
         }
         static ImportClass importClass;
-        SourceList<IFigure> Figures=new SourceList<IFigure>(); 
+        SourceList<IFigure> Figures=new SourceList<IFigure>();
+        public string error;
         ReadOnlyObservableCollection<IFigure> allFigures;
         public ReadOnlyObservableCollection<IFigure> AllFigures => allFigures;
         public IEnumerable<string> FigureTypes => importClass.AvailableFigures.Select(fig => fig.Metadata.Name);
@@ -59,12 +60,13 @@ namespace ViewModel
 
         public ViewModel()
         {
-            Figures.Connect().Bind(out allFigures).Subscribe();
 
+ 
+            Figures.Connect().Bind(out allFigures).Subscribe();
             Add = ReactiveCommand.Create<IFigure, Unit>(
-            fig => 
+            fig =>
             {
-                Figures.Add(fig);                 
+                Figures.Add(fig);
                 return default;
             });
 
@@ -73,25 +75,42 @@ namespace ViewModel
             {
                 Figures.Remove(fig);
                 return default;
-            },Figures.CountChanged.Select(i=>i>0));
+            }, Figures.CountChanged.Select(i => i > 0));
 
-            Draw = ReactiveCommand.Create<IGraphic, Unit>(graphic =>
+            Draw = ReactiveCommand.Create<IGraphic, Unit>(
+            graphic =>
             {
                 foreach (var figure in Figures.Items)
                     figure.Draw(graphic);
                 return default;
             });
+
             //кол-во фигур
             // тип | количество параметров | тип параметра | значение | значение | ... | тип параметра | | значение | значение | ... 
             SaveAll = ReactiveCommand.Create<IGraphic, Unit>(_ =>
             {
-                int i = 0;
-                //подбор имени файла
-                string path = Directory.GetCurrentDirectory() + @"\AllFigures_" + i + ".txt"; ;
-                while (File.Exists(path)) {
-                    i++;
-                    path = Directory.GetCurrentDirectory() + @"\AllFigures_" + i + ".txt"; 
-                } 
+                string path, pathList = Directory.GetCurrentDirectory() + @"\SaveList.txt";
+                if (!File.Exists(pathList))
+                    using (StreamWriter st = File.CreateText(pathList))
+                    {
+                        st.WriteLine("AllFigures_0.txt");
+                        st.Close();
+                        path = Directory.GetCurrentDirectory() + @"\AllFigures_0.txt";
+                    }
+                else
+                {
+                    string LastSave = File.ReadLines(pathList).Last();
+                    using (StreamWriter st = File.AppendText(pathList))
+                    {
+                        //было бы проще узнать количество строк в файле, чтобы получить номер следующего файла
+                        //если какое-то сохранение удалялось, то можно затереть существующее
+                        int i = Int32.Parse(LastSave.Substring(11, (LastSave.Length - 15)));//11 - индекс числа, 15 - длинна без числа
+                        path = "AllFigures_" + (i + 1) + ".txt";
+                        st.WriteLine(path);
+                        st.Close();
+                        path = Directory.GetCurrentDirectory() + @"\" + path;
+                    }
+                }
 
                 using (StreamWriter sw = File.CreateText(path))
                 {
@@ -99,11 +118,11 @@ namespace ViewModel
                     foreach (var figure in Figures.Items)
                     {
                         sw.Write(figure.Name + "\t"); //тип фигуры
-                        sw.Write(figure.Parameters.Count()+ "\t"); //количество параметров
-                        foreach (var p in figure.Parameters) {
-                            if (figure[p].GetType().ToString() == "MiniEditor.Point") //если параметр - точка
+                        foreach (var p in figure.Parameters)
+                        {
+                            //если параметр - точка, вдруг еще какие то другие будут параметры 
+                            if (figure[p].GetType().ToString() == "MiniEditor.Point") 
                             {
-                                sw.Write("MiniEditor.Point\t"); 
                                 sw.Write(((MiniEditor.Point)figure[p]).X + "\t");
                                 sw.Write(((MiniEditor.Point)figure[p]).Y + "\t");
                             }
@@ -112,39 +131,42 @@ namespace ViewModel
                     }
                     sw.Close();
                 }
-                
                 return default;
-            },Figures.CountChanged.Select(i => i > 0));
+            }, Figures.CountChanged.Select(i => i > 0));
 
+            //пока что загружает последнее сохранение
             LoadAll = ReactiveCommand.Create<IGraphic, Unit>(_ =>
             {
-                var fileContent = string.Empty;
-                var filePath = string.Empty;
-
-                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                string path, pathList = Directory.GetCurrentDirectory() + @"\SaveList.txt";
+                if (!File.Exists(pathList)) error = "Нет сохранений";
+                else
                 {
-                    openFileDialog.InitialDirectory = "c:\\";
-                    openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                    openFileDialog.FilterIndex = 2;
-                    openFileDialog.RestoreDirectory = true;
-
-                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    string LastSave = File.ReadLines(pathList).Last();
+                    path = Directory.GetCurrentDirectory() + @"\" + LastSave;
+                    using (StreamReader sw = new StreamReader(path))
                     {
-                        //Get the path of specified file
-                        filePath = openFileDialog.FileName;
-
-                        //Read the contents of the file into a stream
-                        var fileStream = openFileDialog.OpenFile();
-
-                        using (StreamReader reader = new StreamReader(fileStream))
+                        int count = Int32.Parse(sw.ReadLine()); //количество фигур
+                        for (int i = 0; i < count; i++)
                         {
-                            fileContent = reader.ReadToEnd();
+                            string[] figure = sw.ReadLine().Split("\t");
+                            figure = figure.Take(figure.Count() - 1).ToArray();
+                            string type = figure[0];
+                            int param = NumberOfParameters(type); //количетсво параметров (встроеное)
+                            int index = 1;
+                            List<Point> Points = new List<Point>(); //считаем, что параметры только точки
+                            for (int j = 0; j < param; j++) {
+                                Points.Add(new Point { X = Int32.Parse(figure[index]), Y = Int32.Parse(figure[index + 1]) });
+                                index += 2;
+                            }
+                            IFigure NewFigure = Create(type, Points);
+                            Figures.Add(NewFigure);
+                            }
+                        sw.Close();
+
                         }
                     }
-                }
-                //var file = Process.Start("explorer.exe", @"/n,/select," + Directory.GetCurrentDirectory());   
                 return default;
-            });
+            }) ;
         }
     }
 }
