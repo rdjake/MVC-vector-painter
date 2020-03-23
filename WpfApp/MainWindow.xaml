@@ -25,8 +25,9 @@
             <Grid Name="Holst">
             </Grid>
         </Canvas>
-        
-        <ListView ItemsSource="{Binding ViewModel.AllFigures}"/>
+
+
+        <ListView ItemsSource="{Binding ViewModel.AllFigures}" MouseDoubleClick="DeteleFromList"/>
 
 
 
