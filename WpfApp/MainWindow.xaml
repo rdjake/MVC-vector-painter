@@ -22,7 +22,8 @@
             <Label x:Name="Error" Content="" Canvas.Left="250" Canvas.Top="-4" Height="27" Width="540"/>
         </Canvas>
         <Canvas Width="800" Height="449">
-
+            <Grid Name="Holst">
+            </Grid>
         </Canvas>
         
         <ListView ItemsSource="{Binding ViewModel.AllFigures}"/>

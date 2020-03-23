@@ -41,8 +41,19 @@ namespace WpfApp
                 Add = ReactiveCommand.Create<Unit,Unit>(_ => {
                     Random random = new Random();
                     ViewModel.Add.Execute(new MiniEditor.Circle(
-                    new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) },
+                    new MiniEditor.Point { X = random.Next(100), Y = random.Next(100) },
                     new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) })).Subscribe();
+
+                    // Пример отрисовки эллипса
+                    Ellipse el = new Ellipse();
+                    el.Width = 50 + ViewModel.AllFigures.Count();
+                    el.Height = 50 + ViewModel.AllFigures.Count();
+                    el.VerticalAlignment = VerticalAlignment.Top;
+                    el.Fill = Brushes.Green;
+                    el.Stroke = Brushes.Red;
+                    el.StrokeThickness = 3;
+                    Holst.Children.Add(el);
+
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     return default;
                 }).DisposeWith(disposer);
