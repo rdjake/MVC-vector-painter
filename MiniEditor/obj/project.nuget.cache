@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "e9UJkwaO/X2ohRWqQLZ1AT7zHPJkXzN/C+2loakW9eTIfo3lhD/jVglGy7w52zuwl+NaSjPvt/L9jSsdGe5lCg==",
+  "success": true,
+  "projectFilePath": "I:\\STP\\Glclonev2\\MiniEditor\\MiniEditorData.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\XTreme.ws\\.nuget\\packages\\system.composition\\1.4.0\\system.composition.1.4.0.nupkg.sha512",
+    "C:\\Users\\XTreme.ws\\.nuget\\packages\\system.composition.attributedmodel\\1.4.0\\system.composition.attributedmodel.1.4.0.nupkg.sha512",
+    "C:\\Users\\XTreme.ws\\.nuget\\packages\\system.composition.convention\\1.4.0\\system.composition.convention.1.4.0.nupkg.sha512",
+    "C:\\Users\\XTreme.ws\\.nuget\\packages\\system.composition.hosting\\1.4.0\\system.composition.hosting.1.4.0.nupkg.sha512",
+    "C:\\Users\\XTreme.ws\\.nuget\\packages\\system.composition.runtime\\1.4.0\\system.composition.runtime.1.4.0.nupkg.sha512",
+    "C:\\Users\\XTreme.ws\\.nuget\\packages\\system.composition.typedparts\\1.4.0\\system.composition.typedparts.1.4.0.nupkg.sha512",
+    "C:\\Users\\XTreme.ws\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.0.1\\microsoft.aspnetcore.app.ref.3.0.1.nupkg.sha512",
+    "C:\\Users\\XTreme.ws\\.nuget\\packages\\microsoft.netcore.app.ref\\3.0.0\\microsoft.netcore.app.ref.3.0.0.nupkg.sha512",
+    "C:\\Users\\XTreme.ws\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.0.0\\microsoft.windowsdesktop.app.ref.3.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

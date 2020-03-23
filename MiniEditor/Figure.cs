@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Composition;
 using System.Linq;
-using System.Math;
 
 namespace MiniEditor
 {
@@ -168,25 +167,25 @@ namespace MiniEditor
         {
             if(angle>0)
             {
-                A.X = A.X * cos(angle) - A.Y * sin(angle);
-                A.Y = A.X * sin(angle) + A.Y * cos(angle);
-                B.X = B.X * cos(angle) - B.Y * sin(angle);
-                B.Y = B.X * sin(angle) + B.Y * cos(angle);
-                C.X = C.X * cos(angle) - C.Y * sin(angle);
-                C.Y = C.X * sin(angle) + C.Y * cos(angle);
-                D.X = D.X * cos(angle) - D.Y * sin(angle);
-                D.Y = D.X * sin(angle) + D.Y * cos(angle);
+                A.X = A.X * Math.Cos(angle) - A.Y * Math.Sin(angle);
+                A.Y = A.X * Math.Sin(angle) + A.Y * Math.Cos(angle);
+                B.X = B.X * Math.Cos(angle) - B.Y * Math.Sin(angle);
+                B.Y = B.X * Math.Sin(angle) + B.Y * Math.Cos(angle);
+                C.X = C.X * Math.Cos(angle) - C.Y * Math.Sin(angle);
+                C.Y = C.X * Math.Sin(angle) + C.Y * Math.Cos(angle);
+                D.X = D.X * Math.Cos(angle) - D.Y * Math.Sin(angle);
+                D.Y = D.X * Math.Sin(angle) + D.Y * Math.Cos(angle);
             }
             else
             {
-                A.X = A.X * cos(angle) + A.Y * sin(angle);
-                A.Y = -A.X * sin(angle) + A.Y * cos(angle);
-                B.X = B.X * cos(angle) + B.Y * sin(angle);
-                B.Y = -B.X * sin(angle) + B.Y * cos(angle);
-                C.X = C.X * cos(angle) + C.Y * sin(angle);
-                C.Y = -C.X * sin(angle) + C.Y * cos(angle);
-                D.X = D.X * cos(angle) + D.Y * sin(angle);
-                D.Y = -D.X * sin(angle) + D.Y * cos(angle);
+                A.X = A.X * Math.Cos(angle) + A.Y * Math.Sin(angle);
+                A.Y = -A.X * Math.Sin(angle) + A.Y * Math.Cos(angle);
+                B.X = B.X * Math.Cos(angle) + B.Y * Math.Sin(angle);
+                B.Y = -B.X * Math.Sin(angle) + B.Y * Math.Cos(angle);
+                C.X = C.X * Math.Cos(angle) + C.Y * Math.Sin(angle);
+                C.Y = -C.X * Math.Sin(angle) + C.Y * Math.Cos(angle);
+                D.X = D.X * Math.Cos(angle) + D.Y * Math.Sin(angle);
+                D.Y = -D.X * Math.Sin(angle) + D.Y * Math.Cos(angle);
             }
         }
         
