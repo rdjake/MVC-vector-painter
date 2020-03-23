@@ -45,6 +45,15 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Prism.Core/7.2.0.1422": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/Prism.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Prism.dll": {}
+        }
+      },
       "ReactiveUI/11.1.23": {
         "type": "package",
         "dependencies": {
@@ -334,6 +343,26 @@
         "microsoft.netcore.targets.1.1.0.nupkg.sha512",
         "microsoft.netcore.targets.nuspec",
         "runtime.json"
+      ]
+    },
+    "Prism.Core/7.2.0.1422": {
+      "sha512": "U6tZ4Iq+ELyK5PedRC6E20caZXXTmTYiw5evpv0M3WcfKgih9H5G5LDBlDl+65eC5Vb4lnOaUCAtckdEl2MRxA==",
+      "type": "package",
+      "path": "prism.core/7.2.0.1422",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Prism.dll",
+        "lib/net45/Prism.pdb",
+        "lib/net45/Prism.xml",
+        "lib/netcoreapp3.0/Prism.dll",
+        "lib/netcoreapp3.0/Prism.pdb",
+        "lib/netcoreapp3.0/Prism.xml",
+        "lib/netstandard2.0/Prism.dll",
+        "lib/netstandard2.0/Prism.pdb",
+        "lib/netstandard2.0/Prism.xml",
+        "prism.core.7.2.0.1422.nupkg.sha512",
+        "prism.core.nuspec"
       ]
     },
     "ReactiveUI/11.1.23": {
@@ -1171,6 +1200,7 @@
     ".NETCoreApp,Version=v3.0": [
       "DynamicData.ReactiveUI >= 6.11.0.2613",
       "MiniEditorData >= 1.0.0",
+      "Prism.Core >= 7.2.0.1422",
       "ReactiveUI >= 11.1.23",
       "System.Composition >= 1.4.0"
     ]
@@ -1181,11 +1211,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\ViewModel.csproj",
+      "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\ViewModel\\ViewModel.csproj",
       "projectName": "ViewModel",
-      "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\ViewModel.csproj",
+      "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\ViewModel\\ViewModel.csproj",
       "packagesPath": "C:\\Users\\Doctor Lalov\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\obj\\",
+      "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\ViewModel\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Doctor Lalov\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1201,8 +1231,8 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {
-              "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj"
+            "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {
+              "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj"
             }
           }
         }
@@ -1219,6 +1249,10 @@
           "DynamicData.ReactiveUI": {
             "target": "Package",
             "version": "[6.11.0.2613, )"
+          },
+          "Prism.Core": {
+            "target": "Package",
+            "version": "[7.2.0.1422, )"
           },
           "ReactiveUI": {
             "target": "Package",
@@ -1258,7 +1292,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
       }
     }
   }

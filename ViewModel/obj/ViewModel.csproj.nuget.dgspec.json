@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\ViewModel.csproj": {}
+    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\ViewModel\\ViewModel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {
+    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj",
+        "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj",
         "projectName": "MiniEditorData",
-        "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj",
+        "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj",
         "packagesPath": "C:\\Users\\Doctor Lalov\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\obj\\",
+        "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Doctor Lalov\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -72,18 +72,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\ViewModel.csproj": {
+    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\ViewModel\\ViewModel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\ViewModel.csproj",
+        "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\ViewModel\\ViewModel.csproj",
         "projectName": "ViewModel",
-        "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\ViewModel.csproj",
+        "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\ViewModel\\ViewModel.csproj",
         "packagesPath": "C:\\Users\\Doctor Lalov\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\obj\\",
+        "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\ViewModel\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Doctor Lalov\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -99,8 +99,8 @@
         "frameworks": {
           "netcoreapp3.0": {
             "projectReferences": {
-              "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {
-                "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj"
+              "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {
+                "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj"
               }
             }
           }
@@ -117,6 +117,10 @@
             "DynamicData.ReactiveUI": {
               "target": "Package",
               "version": "[6.11.0.2613, )"
+            },
+            "Prism.Core": {
+              "target": "Package",
+              "version": "[7.2.0.1422, )"
             },
             "ReactiveUI": {
               "target": "Package",
@@ -156,7 +160,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

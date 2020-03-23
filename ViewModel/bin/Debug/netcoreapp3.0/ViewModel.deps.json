@@ -10,9 +10,12 @@
         "dependencies": {
           "DynamicData.ReactiveUI": "6.11.0.2613",
           "MiniEditorData": "1.0.0",
+          "Prism.Core": "7.2.0.1422",
           "ReactiveUI": "11.1.23",
           "System.Composition": "1.4.0",
-          "System.Reactive.Reference": "4.3.0.0"
+          "System.Reactive.Reference": "4.3.0.0",
+          "Interop.DXTRANSLib": "1.1.0.0",
+          "Interop.DXTMSFTLib": "1.1.0.0"
         },
         "runtime": {
           "ViewModel.dll": {}
@@ -43,6 +46,14 @@
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
+      "Prism.Core/7.2.0.1422": {
+        "runtime": {
+          "lib/netcoreapp3.0/Prism.dll": {
+            "assemblyVersion": "7.2.0.1422",
+            "fileVersion": "7.2.0.1422"
+          }
+        }
+      },
       "ReactiveUI/11.1.23": {
         "dependencies": {
           "DynamicData": "6.14.3",
@@ -208,6 +219,22 @@
             "fileVersion": "4.3.2.55399"
           }
         }
+      },
+      "Interop.DXTRANSLib/1.1.0.0": {
+        "runtime": {
+          "Interop.DXTRANSLib.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        }
+      },
+      "Interop.DXTMSFTLib/1.1.0.0": {
+        "runtime": {
+          "Interop.DXTMSFTLib.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        }
       }
     }
   },
@@ -244,6 +271,13 @@
       "sha512": "sha512-aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
+    },
+    "Prism.Core/7.2.0.1422": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-U6tZ4Iq+ELyK5PedRC6E20caZXXTmTYiw5evpv0M3WcfKgih9H5G5LDBlDl+65eC5Vb4lnOaUCAtckdEl2MRxA==",
+      "path": "prism.core/7.2.0.1422",
+      "hashPath": "prism.core.7.2.0.1422.nupkg.sha512"
     },
     "ReactiveUI/11.1.23": {
       "type": "package",
@@ -377,6 +411,16 @@
       "sha512": ""
     },
     "System.Reactive.Reference/4.3.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interop.DXTRANSLib/1.1.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Interop.DXTMSFTLib/1.1.0.0": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

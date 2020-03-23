@@ -1,4 +1,4 @@
-using MiniEditor;
+﻿using MiniEditor;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;

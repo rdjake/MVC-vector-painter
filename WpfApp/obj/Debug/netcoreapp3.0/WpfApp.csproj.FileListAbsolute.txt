@@ -35,40 +35,121 @@ C:\Users\vaxrameev.2016\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.
 C:\Users\vaxrameev.2016\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.csproj.CopyComplete
 C:\Users\vaxrameev.2016\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.dll
 C:\Users\vaxrameev.2016\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.pdb
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.exe
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.deps.json
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.runtimeconfig.json
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.runtimeconfig.dev.json
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.pdb
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\DynamicData.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\DynamicData.ReactiveUI.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\Pharmacist.Common.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ReactiveUI.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ReactiveUI.Events.WPF.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ReactiveUI.WPF.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\Splat.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\Splat.Drawing.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.AttributedModel.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.Convention.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.Hosting.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.Runtime.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.TypedParts.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\MiniEditorData.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Reactive.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ViewModel.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\MiniEditorData.pdb
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ViewModel.pdb
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Reactive.xml
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.csprojAssemblyReference.cache
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\MainWindow.g.cs
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\App.g.cs
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp_MarkupCompile.cache
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp_MarkupCompile.lref
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\MainWindow.baml
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.g.resources
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.AssemblyInfoInputs.cache
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.AssemblyInfo.cs
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.csproj.CopyComplete
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.pdb
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.exe
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.deps.json
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.runtimeconfig.json
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.runtimeconfig.dev.json
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.pdb
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\DynamicData.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\DynamicData.ReactiveUI.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\Pharmacist.Common.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\Prism.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ReactiveUI.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ReactiveUI.Events.WPF.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ReactiveUI.WPF.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\Splat.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\Splat.Drawing.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.AttributedModel.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.Convention.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.Hosting.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.Runtime.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.TypedParts.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\MiniEditorData.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Reactive.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ViewModel.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\MiniEditorData.pdb
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ViewModel.pdb
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Reactive.xml
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.csprojAssemblyReference.cache
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\MainWindow.g.cs
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\App.g.cs
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp_MarkupCompile.cache
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp_MarkupCompile.lref
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\MainWindow.baml
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.g.resources
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.AssemblyInfoInputs.cache
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.AssemblyInfo.cs
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.csproj.CopyComplete
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.dll
+C:\Users\vlad\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.pdb
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.exe
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.deps.json
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.runtimeconfig.json
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.runtimeconfig.dev.json
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.pdb
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\DynamicData.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\DynamicData.ReactiveUI.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\Pharmacist.Common.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\Prism.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ReactiveUI.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ReactiveUI.Events.WPF.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ReactiveUI.WPF.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\Splat.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\Splat.Drawing.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.AttributedModel.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.Convention.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.Hosting.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.Runtime.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.TypedParts.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\MiniEditorData.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Reactive.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ViewModel.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\MiniEditorData.pdb
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\ViewModel.pdb
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\bin\Debug\netcoreapp3.0\System.Reactive.xml
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.csprojAssemblyReference.cache
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\MainWindow.g.cs
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\App.g.cs
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp_MarkupCompile.cache
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp_MarkupCompile.lref
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\MainWindow.baml
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.g.resources
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.csproj.CoreCompileInputs.cache
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.AssemblyInfoInputs.cache
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.AssemblyInfo.cs
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.csproj.CopyComplete
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.pdb
+C:\Users\Doctor Lalov\Desktop\paint 2.0\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.genruntimeconfig.cache
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.exe
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.deps.json
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.runtimeconfig.json
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.runtimeconfig.dev.json
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\WpfApp.pdb
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\DynamicData.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\DynamicData.ReactiveUI.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\Pharmacist.Common.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\Prism.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\ReactiveUI.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\ReactiveUI.Events.WPF.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\ReactiveUI.WPF.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\Splat.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\Splat.Drawing.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.AttributedModel.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.Convention.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.Hosting.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.Runtime.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\System.Composition.TypedParts.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\MiniEditorData.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\System.Reactive.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\ViewModel.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\MiniEditorData.pdb
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\ViewModel.pdb
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\bin\Debug\netcoreapp3.0\System.Reactive.xml
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.csprojAssemblyReference.cache
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\MainWindow.g.cs
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\App.g.cs
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\WpfApp_MarkupCompile.cache
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\WpfApp_MarkupCompile.lref
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\MainWindow.baml
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.g.resources
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.csproj.CoreCompileInputs.cache
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.AssemblyInfoInputs.cache
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.AssemblyInfo.cs
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.csproj.CopyComplete
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.pdb
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\WpfApp\obj\Debug\netcoreapp3.0\WpfApp.genruntimeconfig.cache

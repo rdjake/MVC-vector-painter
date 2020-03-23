@@ -11,16 +11,59 @@ C:\Users\vaxrameev.2016\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\View
 C:\Users\vaxrameev.2016\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csproj.CopyComplete
 C:\Users\vaxrameev.2016\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.dll
 C:\Users\vaxrameev.2016\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.pdb
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\ViewModel.deps.json
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\ViewModel.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\ViewModel.pdb
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\MiniEditorData.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\System.Reactive.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\MiniEditorData.pdb
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\System.Reactive.xml
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csprojAssemblyReference.cache
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.AssemblyInfoInputs.cache
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.AssemblyInfo.cs
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csproj.CopyComplete
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.dll
-C:\Users\Doctor Lalov\Desktop\Рояк\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.pdb
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\ViewModel.deps.json
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\ViewModel.dll
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\ViewModel.pdb
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\MiniEditorData.dll
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\System.Reactive.dll
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\MiniEditorData.pdb
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\System.Reactive.xml
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\Interop.DXTRANSLib.dll
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\Interop.DXTMSFTLib.dll
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csprojAssemblyReference.cache
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\Interop.DXTRANSLib.dll
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\Interop.DXTMSFTLib.dll
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csproj.ResolveComReference.cache
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.AssemblyInfoInputs.cache
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.AssemblyInfo.cs
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csproj.CopyComplete
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.dll
+C:\Users\vlad\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.pdb
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\ViewModel.deps.json
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\ViewModel.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\ViewModel.pdb
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\MiniEditorData.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\System.Reactive.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\MiniEditorData.pdb
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\System.Reactive.xml
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\Interop.DXTRANSLib.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\bin\Debug\netcoreapp3.0\Interop.DXTMSFTLib.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csprojAssemblyReference.cache
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\Interop.DXTRANSLib.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\Interop.DXTMSFTLib.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csproj.ResolveComReference.cache
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csproj.CoreCompileInputs.cache
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.AssemblyInfoInputs.cache
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.AssemblyInfo.cs
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csproj.CopyComplete
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.dll
+C:\Users\Doctor Lalov\Desktop\paint 2.0\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.pdb
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\bin\Debug\netcoreapp3.0\ViewModel.deps.json
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\bin\Debug\netcoreapp3.0\ViewModel.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\bin\Debug\netcoreapp3.0\ViewModel.pdb
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\bin\Debug\netcoreapp3.0\MiniEditorData.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\bin\Debug\netcoreapp3.0\System.Reactive.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\bin\Debug\netcoreapp3.0\MiniEditorData.pdb
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\bin\Debug\netcoreapp3.0\System.Reactive.xml
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\bin\Debug\netcoreapp3.0\Interop.DXTRANSLib.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\bin\Debug\netcoreapp3.0\Interop.DXTMSFTLib.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csprojAssemblyReference.cache
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\obj\Debug\netcoreapp3.0\Interop.DXTRANSLib.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\obj\Debug\netcoreapp3.0\Interop.DXTMSFTLib.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csproj.ResolveComReference.cache
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csproj.CoreCompileInputs.cache
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.AssemblyInfoInputs.cache
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.AssemblyInfo.cs
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.csproj.CopyComplete
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.dll
+C:\Users\Doctor Lalov\Desktop\Рояк\Проект\vpainterwpf\vpainterwpf\ViewModel\obj\Debug\netcoreapp3.0\ViewModel.pdb

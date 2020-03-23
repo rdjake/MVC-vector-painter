@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {}
+    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {
+    "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj",
+        "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj",
         "projectName": "MiniEditorData",
-        "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj",
+        "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj",
         "packagesPath": "C:\\Users\\Doctor Lalov\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\obj\\",
+        "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Doctor Lalov\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -72,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }

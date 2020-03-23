@@ -57,6 +57,15 @@
           "lib/netstandard2.0/Pharmacist.Common.dll": {}
         }
       },
+      "Prism.Core/7.2.0.1422": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.0/Prism.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/Prism.dll": {}
+        }
+      },
       "ReactiveUI/11.1.23": {
         "type": "package",
         "dependencies": {
@@ -371,6 +380,7 @@
         "dependencies": {
           "DynamicData.ReactiveUI": "6.11.0.2613",
           "MiniEditorData": "1.0.0",
+          "Prism.Core": "7.2.0.1422",
           "ReactiveUI": "11.1.23",
           "System.Composition": "1.4.0"
         },
@@ -463,6 +473,26 @@
         "lib/netstandard2.0/Pharmacist.Common.xml",
         "pharmacist.common.1.5.3.nupkg.sha512",
         "pharmacist.common.nuspec"
+      ]
+    },
+    "Prism.Core/7.2.0.1422": {
+      "sha512": "U6tZ4Iq+ELyK5PedRC6E20caZXXTmTYiw5evpv0M3WcfKgih9H5G5LDBlDl+65eC5Vb4lnOaUCAtckdEl2MRxA==",
+      "type": "package",
+      "path": "prism.core/7.2.0.1422",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/Prism.dll",
+        "lib/net45/Prism.pdb",
+        "lib/net45/Prism.xml",
+        "lib/netcoreapp3.0/Prism.dll",
+        "lib/netcoreapp3.0/Prism.pdb",
+        "lib/netcoreapp3.0/Prism.xml",
+        "lib/netstandard2.0/Prism.dll",
+        "lib/netstandard2.0/Prism.pdb",
+        "lib/netstandard2.0/Prism.xml",
+        "prism.core.7.2.0.1422.nupkg.sha512",
+        "prism.core.nuspec"
       ]
     },
     "ReactiveUI/11.1.23": {
@@ -1550,11 +1580,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\WpfApp\\WpfApp.csproj",
+      "projectUniqueName": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\WpfApp\\WpfApp.csproj",
       "projectName": "WpfApp",
-      "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\WpfApp\\WpfApp.csproj",
+      "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\WpfApp\\WpfApp.csproj",
       "packagesPath": "C:\\Users\\Doctor Lalov\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\WpfApp\\obj\\",
+      "outputPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\WpfApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Doctor Lalov\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -1570,11 +1600,11 @@
       "frameworks": {
         "netcoreapp3.0": {
           "projectReferences": {
-            "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {
-              "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj"
+            "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj": {
+              "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\MiniEditor\\MiniEditorData.csproj"
             },
-            "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\ViewModel.csproj": {
-              "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\ViewModel\\ViewModel.csproj"
+            "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\ViewModel\\ViewModel.csproj": {
+              "projectPath": "C:\\Users\\Doctor Lalov\\Desktop\\Рояк\\Проект\\vpainterwpf\\vpainterwpf\\ViewModel\\ViewModel.csproj"
             }
           }
         }
@@ -1618,7 +1648,7 @@
           },
           {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.0.2, 3.0.2]"
+            "version": "[3.0.3, 3.0.3]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
@@ -1640,7 +1670,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
       }
     }
   }
