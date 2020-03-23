@@ -34,6 +34,11 @@ namespace WpfApp
         public ReactiveCommand<Unit, Unit> SaveAll { get; set; }
         public ReactiveCommand<Unit, Unit> LoadAll { get; set; }
 
+        //Обработчик мышки
+        public MiniEditor.Point pos1,pos2;
+        public int right = 0, left = 0;
+        
+        
 
         private int CurrentFigure = 0;
         private List<Button> Buttons = new List<Button>();
@@ -42,7 +47,7 @@ namespace WpfApp
             DataContext = this;
             InitializeComponent();
             IGraphic graphic; //Задел под нашу графику
-            Graphics gra;
+            
 
             Buttons.Add(LineButton);
             Buttons.Add(CircleButton);
@@ -54,10 +59,11 @@ namespace WpfApp
 
                 Add = ReactiveCommand.Create<Unit,Unit>(_ => {
                     Random random = new Random();
-                    ViewModel.Add.Execute(new MiniEditor.Circle(
-                    new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) },
-                    new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) })).Subscribe();
-                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                    if (left == 1)
+                    {
+                        ViewModel.Add.Execute(new MiniEditor.Circle(pos1, pos2)).Subscribe();
+                        this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                    }
                     return default;
                 }).DisposeWith(disposer);
 
@@ -102,6 +108,16 @@ namespace WpfApp
         public void RaisePropertyChanged(PropertyChangedEventArgs args)
         {
             PropertyChanged.Invoke(this, args);
+        }
+
+        //Функция для передачи координат ModelView
+        private void DrawFigure() {
+            switch (CurrentFigure) {
+                case 0: { break; }
+                case 1: { break; }
+                case 2: { break; }
+                   
+            }
         }
 
         //Обработчик нажатия на кнопку линии
@@ -150,6 +166,9 @@ namespace WpfApp
                "X: " + position.X +
                "\n" +
                "Y: " + position.Y;
+            pos1.X = position.X;
+            pos1.Y = position.Y;
+            left = 1;
         }
 
         //Нажатие правую кнопку мыши
@@ -165,19 +184,29 @@ namespace WpfApp
         //Перемещение мыши
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
+            System.Windows.Point position = Mouse.GetPosition(MainCanvas);
             //LeftDrag
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+               
                 Errorbox.Text = "LeftMouseDrag" + "\n" +
                "X: " + position.X +
                "\n" +
                "Y: " + position.Y;
+                //Переделать
+                if (left == 1)
+                {
+                    pos2.X = position.X;
+                    pos2.Y = position.Y;
+                }
+            }
+            else
+            {
+                left = 0;
             }
             //RightDrag
             if (e.RightButton == MouseButtonState.Pressed)
-            {
-                System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+            { 
                 Errorbox.Text = "RightMouseDrag" + "\n" +
                "X: " + position.X +
                "\n" +
