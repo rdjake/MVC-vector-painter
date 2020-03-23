@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
+using System.Drawing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -35,6 +36,8 @@ namespace WpfApp
         {
             DataContext = this;
             InitializeComponent();
+            IGraphic graphic; //Задел под нашу графику
+            Graphics gra;
             this.WhenActivated(disposer => 
             {
 
@@ -64,10 +67,21 @@ namespace WpfApp
                     return default;
                 }).DisposeWith(disposer);
 
+                
+
+             //< Button Content = "Circle" Command = "{Binding LoadAll}" Width = "55" Canvas.Left = "250" />
+             //< Button Content = "Line" Command = "{Binding LoadAll}" Width = "55" Canvas.Left = "300" />
+             //< Button Content = "Triangle" Command = "{Binding LoadAll}" Width = "55" Canvas.Left = "350" />
+             //< Button Content = "Polygon" Command = "{Binding LoadAll}" Width = "55" Canvas.Left = "400" />
+
                 this.RaisePropertyChanged("Add");
                 this.RaisePropertyChanged("Delete");
                 this.RaisePropertyChanged("SaveAll");
                 this.RaisePropertyChanged("LoadAll");
+                this.RaisePropertyChanged("Circle");
+                this.RaisePropertyChanged("Line");
+                this.RaisePropertyChanged("Triangle");
+                this.RaisePropertyChanged("Polygon");
             });
             
         }
@@ -84,6 +98,50 @@ namespace WpfApp
         {
             PropertyChanged.Invoke(this, args);
         }
+        
+        //Нажатие на левую кнопку мыши
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+            Errorbox.Text = "LeftMousePressed" + "\n" +
+               "X: " + position.X +
+               "\n" +
+               "Y: " + position.Y;
+        }
+
+        //Нажатие правую кнопку мыши
+        private void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+            Errorbox.Text = "RightMousePressed" + "\n" +
+                "X: " + position.X +
+                "\n" +
+                "Y: " + position.Y;
+        }
+
+        //Перемещение мыши
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            //LeftDrag
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+                Errorbox.Text = "LeftMouseDrag" + "\n" +
+               "X: " + position.X +
+               "\n" +
+               "Y: " + position.Y;
+            }
+            //RightDrag
+            if (e.RightButton == MouseButtonState.Pressed)
+            {
+                System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+                Errorbox.Text = "RightMouseDrag" + "\n" +
+               "X: " + position.X +
+               "\n" +
+               "Y: " + position.Y;
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangingEventHandler PropertyChanging;
