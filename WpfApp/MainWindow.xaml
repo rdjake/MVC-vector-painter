@@ -17,14 +17,14 @@
   <StackPanel  Height="580" >
     <Canvas  Width="800" Height="22" RenderTransformOrigin="0.598,0.537" >
       <Rectangle Fill="LightBlue" Canvas.Left="0" Canvas.Top="0" Width="800" Height="22" />
-      <Button Content="Add" Command="{Binding Add}" Width="55"  />
-      <Button Content="Delete" Command="{Binding Delete}" Width="55" Canvas.Left="55"/>
-      <Button Content="SaveAll" Command="{Binding SaveAll}" Width="55" Canvas.Left="110"/>
-      <Button Content="LoadAll" Command="{Binding LoadAll}" Width="55" Canvas.Left="165"/>
-      <Button Content="Circle" Command="{Binding LoadAll}" Width="55" Canvas.Left="250"/>
-      <Button Content="Line" Command="{Binding LoadAll}" Width="55" Canvas.Left="300"/>
-      <Button Content="Triangle" Command="{Binding LoadAll}" Width="55" Canvas.Left="350"/>
-      <Button Content="Polygon" Command="{Binding LoadAll}" Width="55" Canvas.Left="400"/>
+      <Button x:Name="AddButton" Content="Add" Command="{Binding Add}" Width="55"  />
+      <Button x:Name="DeleteButton" Content="Delete" Command="{Binding Delete}" Width="55" Canvas.Left="55"/>
+      <Button x:Name="SaveAllButton" Content="SaveAll" Command="{Binding SaveAll}" Width="55" Canvas.Left="110"/>
+      <Button x:Name="LoadAllButton" Content="LoadAll" Command="{Binding LoadAll}" Width="55" Canvas.Left="165"/>
+      <Button x:Name="LineButton" Content="Line" Command="{Binding Line}" Width="55" Canvas.Left="250" Click="Line_Button_Click" />
+      <Button x:Name="CircleButton" Content="Circle" Command="{Binding Circle}" Width="55" Canvas.Left="300" Click="Circle_Button_Click" />
+      <Button x:Name="TriangleButton" Content="Triangle" Command="{Binding Triangle}" Width="55" Canvas.Left="350" Click="Triangle_Button_Click" />
+      <Button x:Name="PolygonButton" Content="Polygon" Command="{Binding Polygon}" Width="55" Canvas.Left="400" Click="Polygon_Button_Click" />
       <TextBox x:Name="Errorbox" Text="Hello, world!" MaxLength ="100" Canvas.Left="490" Canvas.Top="1" Width="300" />
       <Label x:Name="NumberOfFigures" Content="0" Canvas.Left="230" Canvas.Top="-4" Height="27" Width="29"/>
       <Label x:Name="Error" Content="" Canvas.Left="479" Canvas.Top="-4" Height="27" Width="311"/>

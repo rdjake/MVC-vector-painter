@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Drawing;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,6 +25,7 @@ namespace WpfApp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    ///
     public partial class MainWindow : Window,IViewFor<ViewModel.ViewModel>,IReactiveObject
     {
         public ReactiveCommand<Unit,Unit> Add { get; set; }
@@ -32,12 +34,21 @@ namespace WpfApp
         public ReactiveCommand<Unit, Unit> SaveAll { get; set; }
         public ReactiveCommand<Unit, Unit> LoadAll { get; set; }
 
+
+        private int CurrentFigure = 0;
+        private List<Button> Buttons = new List<Button>();
         public MainWindow()
         {
             DataContext = this;
             InitializeComponent();
             IGraphic graphic; //Задел под нашу графику
             Graphics gra;
+
+            Buttons.Add(LineButton);
+            Buttons.Add(CircleButton);
+            Buttons.Add(TriangleButton);
+            Buttons.Add(PolygonButton);
+
             this.WhenActivated(disposer => 
             {
 
@@ -67,13 +78,6 @@ namespace WpfApp
                     return default;
                 }).DisposeWith(disposer);
 
-                
-
-             //< Button Content = "Circle" Command = "{Binding LoadAll}" Width = "55" Canvas.Left = "250" />
-             //< Button Content = "Line" Command = "{Binding LoadAll}" Width = "55" Canvas.Left = "300" />
-             //< Button Content = "Triangle" Command = "{Binding LoadAll}" Width = "55" Canvas.Left = "350" />
-             //< Button Content = "Polygon" Command = "{Binding LoadAll}" Width = "55" Canvas.Left = "400" />
-
                 this.RaisePropertyChanged("Add");
                 this.RaisePropertyChanged("Delete");
                 this.RaisePropertyChanged("SaveAll");
@@ -85,6 +89,7 @@ namespace WpfApp
             });
             
         }
+
         ViewModel.ViewModel viewModel=new ViewModel.ViewModel();
         public ViewModel.ViewModel ViewModel { get=>viewModel; set { } }
         object IViewFor.ViewModel { get=> ViewModel; set=> ViewModel=(ViewModel.ViewModel)value; }
@@ -98,7 +103,45 @@ namespace WpfApp
         {
             PropertyChanged.Invoke(this, args);
         }
-        
+
+        //Обработчик нажатия на кнопку линии
+        private void Line_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LineButton.Background = System.Windows.Media.Brushes.DarkRed;
+            CircleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            TriangleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CurrentFigure = 1;
+        }
+        //Обработчик нажатия на кнопку круга
+        private void Circle_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CircleButton.Background = System.Windows.Media.Brushes.DarkRed;
+            TriangleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CurrentFigure = 2;
+        }
+        //Обработчик нажатия на кнопку треугольника
+        private void Triangle_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CircleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            TriangleButton.Background = System.Windows.Media.Brushes.DarkRed;
+            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CurrentFigure = 3;
+        }
+        //Обработчик нажатия на кнопку полигона
+        private void Polygon_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CircleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            TriangleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            PolygonButton.Background = System.Windows.Media.Brushes.DarkRed;
+            CurrentFigure = 4;
+        }
+
+
         //Нажатие на левую кнопку мыши
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -142,6 +185,7 @@ namespace WpfApp
             }
         }
 
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangingEventHandler PropertyChanging;
