@@ -40,7 +40,7 @@ namespace WpfApp
 
                 Add = ReactiveCommand.Create<Unit,Unit>(_ => {
                     Random random = new Random();
-                    ViewModel.Add.Execute(new MiniEditor.Line(
+                    ViewModel.Add.Execute(new MiniEditor.Circle(
                     new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) },
                     new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) })).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
@@ -60,6 +60,7 @@ namespace WpfApp
 
                 LoadAll = ReactiveCommand.Create<Unit, Unit>(_ => {
                     ViewModel.LoadAll.Execute().Subscribe();
+                    this.Error.Content = ViewModel.error;
                     return default;
                 }).DisposeWith(disposer);
 
@@ -86,5 +87,6 @@ namespace WpfApp
 
         public event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangingEventHandler PropertyChanging;
+
     }
 }
