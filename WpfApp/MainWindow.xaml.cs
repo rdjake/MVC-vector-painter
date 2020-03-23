@@ -113,7 +113,8 @@ namespace WpfApp
 
         public void DrawAll()
         {
-            foreach (var p in ViewModel.AllFigures)
+            var Figures = ViewModel.AllFigures.Reverse().ToArray();
+            foreach (var p in Figures)
             {
                 if (p.Name == "Circle")
                 {
