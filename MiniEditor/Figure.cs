@@ -86,6 +86,24 @@ namespace MiniEditor
             this.B.X += vector.X;
             this.B.Y += vector.Y;
         }
+
+        public void Rotate(double angle, Point center)
+        {
+            if (angle > 0)
+            {
+                A.X = A.X * Math.Cos(angle) - A.Y * Math.Sin(angle);
+                A.Y = A.X * Math.Sin(angle) + A.Y * Math.Cos(angle);
+                B.X = B.X * Math.Cos(angle) - B.Y * Math.Sin(angle);
+                B.Y = B.X * Math.Sin(angle) + B.Y * Math.Cos(angle);              
+            }
+            else
+            {
+                A.X = A.X * Math.Cos(angle) + A.Y * Math.Sin(angle);
+                A.Y = -A.X * Math.Sin(angle) + A.Y * Math.Cos(angle);
+                B.X = B.X * Math.Cos(angle) + B.Y * Math.Sin(angle);
+                B.Y = -B.X * Math.Sin(angle) + B.Y * Math.Cos(angle);
+            }
+        }
         public string Name => "Line";
     }
     [Export(typeof(IFigureDescriptor))]
@@ -261,6 +279,10 @@ namespace MiniEditor
         public bool Contain(Point p)
         {
             return R > Math.Sqrt((p.X - this.C.X) * (p.X - this.C.X) + (p.Y - this.C.Y) * (p.Y - this.C.Y));
+        }
+        public void Scale(double scale)
+        {
+            R *= scale;
         }
         public string Name => "Circle";
     }
