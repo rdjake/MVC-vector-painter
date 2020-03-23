@@ -81,13 +81,13 @@ namespace MiniEditor
         }
         public void Move(Point vector)
         {
-            this.A.X += vector.X;
-            this.A.Y += vector.Y;
-            this.B.X += vector.X;
-            this.B.Y += vector.Y;
+            A.X += vector.X;
+            A.Y += vector.Y;
+            B.X += vector.X;
+            B.Y += vector.Y;
         }
 
-        public void Rotate(double angle, Point center)
+        public void Rotate(double angle)
         {
             if (angle > 0)
             {
@@ -269,16 +269,16 @@ namespace MiniEditor
 
         public void Draw(IGraphic graphic)
         {
-           // graphic.Circle(C, R, new Color { R = 255, G = 0, B = 0, A = 128 });
+           //graphic.Circle(C, R, new Color { R = 255, G = 0, B = 0, A = 128 });
         }
         public void Move(Point vector)
         {
-            this.C.X += vector.X;
-            this.C.Y += vector.Y;
+            C.X += vector.X;
+            C.Y += vector.Y;
         }
         public bool Contain(Point p)
         {
-            return R > Math.Sqrt((p.X - this.C.X) * (p.X - this.C.X) + (p.Y - this.C.Y) * (p.Y - this.C.Y));
+            return R > Math.Sqrt((p.X - C.X) * (p.X - C.X) + (p.Y - C.Y) * (p.Y - C.Y));
         }
         public void Scale(double scale)
         {
