@@ -18,6 +18,7 @@
             <Button Content="Delete" Command="{Binding Delete}" Width="55" Canvas.Left="55"/>
             <Button Content="SaveAll" Command="{Binding SaveAll}" Width="55" Canvas.Left="110"/>
             <Button Content="LoadAll" Command="{Binding LoadAll}" Width="55" Canvas.Left="165"/>
+            <Button Content="Cirlce" Command="{Binding LoadAll}" Width="55" Canvas.Left="250"/>
             <Label x:Name="NumberOfFigures" Content="0" Canvas.Left="230" Canvas.Top="-4" Height="27" Width="29"/>
             <Label x:Name="Error" Content="" Canvas.Left="250" Canvas.Top="-4" Height="27" Width="540"/>
         </Canvas>
