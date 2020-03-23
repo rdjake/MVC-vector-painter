@@ -55,7 +55,7 @@ namespace WpfApp
 
                 Delete = ReactiveCommand.Create<Unit, Unit>(_ => {
                     Random random = new Random();
-                    var fig = ViewModel.AllFigures.Last();
+                    var fig = ViewModel.AllFigures.FirstOrDefault();
                     ViewModel.Delete.Execute(fig).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     Holst.Children.Clear();
