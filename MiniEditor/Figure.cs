@@ -154,16 +154,42 @@ namespace MiniEditor
         }
         public void Move(Point vector)
         {
-            this.A.X += vector.X;
-            this.A.Y += vector.Y;
-            this.B.X += vector.X;
-            this.B.Y += vector.Y;
-            this.C.X += vector.X;
-            this.C.Y += vector.Y;
-            this.D.X += vector.X;
-            this.D.Y += vector.Y;
+            A.X += vector.X;
+            A.Y += vector.Y;
+            B.X += vector.X;
+            B.Y += vector.Y;
+            C.X += vector.X;
+            C.Y += vector.Y;
+            D.X += vector.X;
+            D.Y += vector.Y;
 
         }
+        public void Rotate(double angle, Point center)
+        {
+            if(angle>0)
+            {
+                A.X = A.X * cos(angle) - A.Y * sin(angle);
+                A.Y = A.X * sin(angle) + A.Y * cos(angle);
+                B.X = B.X * cos(angle) - B.Y * sin(angle);
+                B.Y = B.X * sin(angle) + B.Y * cos(angle);
+                C.X = C.X * cos(angle) - C.Y * sin(angle);
+                C.Y = C.X * sin(angle) + C.Y * cos(angle);
+                D.X = D.X * cos(angle) - D.Y * sin(angle);
+                D.Y = D.X * sin(angle) + D.Y * cos(angle);
+            }
+            else
+            {
+                A.X = A.X * cos(angle) + A.Y * sin(angle);
+                A.Y = -A.X * sin(angle) + A.Y * cos(angle);
+                B.X = B.X * cos(angle) + B.Y * sin(angle);
+                B.Y = -B.X * sin(angle) + B.Y * cos(angle);
+                C.X = C.X * cos(angle) + C.Y * sin(angle);
+                C.Y = -C.X * sin(angle) + C.Y * cos(angle);
+                D.X = D.X * cos(angle) + D.Y * sin(angle);
+                D.Y = -D.X * sin(angle) + D.Y * cos(angle);
+            }
+        }
+        
 
         public string Name => "Rectangle";
     }
