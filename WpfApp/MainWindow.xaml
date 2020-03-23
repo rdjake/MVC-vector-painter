@@ -6,17 +6,27 @@
         xmlns:local="clr-namespace:WpfApp"
         xmlns:mini="clr-namespace:MiniEditor;assembly=MiniEditorData"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Window.Resources>
         <DataTemplate DataType="mini:IFigure">
             <Label Content="{Binding Name}"/>
         </DataTemplate>
     </Window.Resources>
-    <StackPanel>
-        <Canvas Width="300" Height="300"/>
-        <Button Content="Add" Command="{Binding Add}" />
-        <Button Content="Delete" Command="{Binding Delete}" />   
+    <StackPanel Height="600">
+        <Canvas Width="800" Height="18">
+            <Button Content="Add" Command="{Binding Add}" Width="55"  />
+            <Button Content="Delete" Command="{Binding Delete}" Width="55" Canvas.Left="55"/>
+            <Button Content="SaveAll" Command="{Binding SaveAll}" Width="55" Canvas.Left="110"/>
+            <Button Content="LoadAll" Command="{Binding LoadAll}" Width="55" Canvas.Left="165"/>
+            <Label x:Name="NumberOfFigures" Content="0" Canvas.Left="230" Canvas.Top="-4" Height="27" Width="29"/>
+            <Label x:Name="Error" Content="" Canvas.Left="250" Canvas.Top="-4" Height="27" Width="540"/>
+        </Canvas>
+        <Canvas Width="800" Height="449">
+
+        </Canvas>
+        
         <ListView ItemsSource="{Binding ViewModel.AllFigures}"/>
+
 
 
     </StackPanel>
