@@ -1,0 +1,6 @@
+[submodule "reactive"]
+	path = reactive-master
+	url = https://github.com/dotnet/reactive
+[submodule "ReactiveUI"]
+	path = ReactiveUI-master
+	url = https://github.com/reactiveui/ReactiveUI
