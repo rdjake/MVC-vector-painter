@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Composition;
 using System.Linq;
@@ -81,10 +81,28 @@ namespace MiniEditor
         }
         public void Move(Point vector)
         {
-            this.A.X += vector.X;
-            this.A.Y += vector.Y;
-            this.B.X += vector.X;
-            this.B.Y += vector.Y;
+            A.X += vector.X;
+            A.Y += vector.Y;
+            B.X += vector.X;
+            B.Y += vector.Y;
+        }
+
+        public void Rotate(double angle)
+        {
+            if (angle > 0)
+            {
+                A.X = A.X * Math.Cos(angle) - A.Y * Math.Sin(angle);
+                A.Y = A.X * Math.Sin(angle) + A.Y * Math.Cos(angle);
+                B.X = B.X * Math.Cos(angle) - B.Y * Math.Sin(angle);
+                B.Y = B.X * Math.Sin(angle) + B.Y * Math.Cos(angle);              
+            }
+            else
+            {
+                A.X = A.X * Math.Cos(angle) + A.Y * Math.Sin(angle);
+                A.Y = -A.X * Math.Sin(angle) + A.Y * Math.Cos(angle);
+                B.X = B.X * Math.Cos(angle) + B.Y * Math.Sin(angle);
+                B.Y = -B.X * Math.Sin(angle) + B.Y * Math.Cos(angle);
+            }
         }
         public string Name => "Line";
     }
@@ -153,16 +171,42 @@ namespace MiniEditor
         }
         public void Move(Point vector)
         {
-            this.A.X += vector.X;
-            this.A.Y += vector.Y;
-            this.B.X += vector.X;
-            this.B.Y += vector.Y;
-            this.C.X += vector.X;
-            this.C.Y += vector.Y;
-            this.D.X += vector.X;
-            this.D.Y += vector.Y;
+            A.X += vector.X;
+            A.Y += vector.Y;
+            B.X += vector.X;
+            B.Y += vector.Y;
+            C.X += vector.X;
+            C.Y += vector.Y;
+            D.X += vector.X;
+            D.Y += vector.Y;
 
         }
+        public void Rotate(double angle)
+        {
+            if(angle>0)
+            {
+                A.X = A.X * Math.Cos(angle) - A.Y * Math.Sin(angle);
+                A.Y = A.X * Math.Sin(angle) + A.Y * Math.Cos(angle);
+                B.X = B.X * Math.Cos(angle) - B.Y * Math.Sin(angle);
+                B.Y = B.X * Math.Sin(angle) + B.Y * Math.Cos(angle);
+                C.X = C.X * Math.Cos(angle) - C.Y * Math.Sin(angle);
+                C.Y = C.X * Math.Sin(angle) + C.Y * Math.Cos(angle);
+                D.X = D.X * Math.Cos(angle) - D.Y * Math.Sin(angle);
+                D.Y = D.X * Math.Sin(angle) + D.Y * Math.Cos(angle);
+            }
+            else
+            {
+                A.X = A.X * Math.Cos(angle) + A.Y * Math.Sin(angle);
+                A.Y = -A.X * Math.Sin(angle) + A.Y * Math.Cos(angle);
+                B.X = B.X * Math.Cos(angle) + B.Y * Math.Sin(angle);
+                B.Y = -B.X * Math.Sin(angle) + B.Y * Math.Cos(angle);
+                C.X = C.X * Math.Cos(angle) + C.Y * Math.Sin(angle);
+                C.Y = -C.X * Math.Sin(angle) + C.Y * Math.Cos(angle);
+                D.X = D.X * Math.Cos(angle) + D.Y * Math.Sin(angle);
+                D.Y = -D.X * Math.Sin(angle) + D.Y * Math.Cos(angle);
+            }
+        }
+        
 
         public string Name => "Rectangle";
     }
@@ -225,16 +269,20 @@ namespace MiniEditor
 
         public void Draw(IGraphic graphic)
         {
-          //// graphic.Circle(C, R, new Color { R = 255, G = 0, B = 0, A = 128 });
+           //graphic.Circle(C, R, new Color { R = 255, G = 0, B = 0, A = 128 });
         }
         public void Move(Point vector)
         {
-            this.C.X += vector.X;
-            this.C.Y += vector.Y;
+            C.X += vector.X;
+            C.Y += vector.Y;
         }
         public bool Contain(Point p)
         {
-            return R > Math.Sqrt((p.X - this.C.X) * (p.X - this.C.X) + (p.Y - this.C.Y) * (p.Y - this.C.Y));
+            return R > Math.Sqrt((p.X - C.X) * (p.X - C.X) + (p.Y - C.Y) * (p.Y - C.Y));
+        }
+        public void Scale(double scale)
+        {
+            R *= scale;
         }
         public string Name => "Circle";
     }

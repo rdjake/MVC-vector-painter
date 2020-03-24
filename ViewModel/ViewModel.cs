@@ -15,7 +15,7 @@ using Prism.Commands;
 
 namespace ViewModel
 {
-    public class ViewModel:ReactiveObject
+    public class ViewModel : ReactiveObject
     {
         class ImportClass
         {
@@ -23,7 +23,7 @@ namespace ViewModel
             public IEnumerable<Lazy<IFigureDescriptor, FigureDescriptorMetadata>> AvailableFigures { get; set; }
         }
         static ImportClass importClass;
-        SourceList<IFigure> Figures=new SourceList<IFigure>();
+        SourceList<IFigure> Figures = new SourceList<IFigure>();
         public string error;
         ReadOnlyObservableCollection<IFigure> allFigures;
         public ReadOnlyObservableCollection<IFigure> AllFigures => allFigures;
@@ -31,37 +31,37 @@ namespace ViewModel
 
         public int NumberOfParameters(string type)
         {
-           return importClass.AvailableFigures.First(f => f.Metadata.Name == type).Value.NumberOfPoints;
+            return importClass.AvailableFigures.First(f => f.Metadata.Name == type).Value.NumberOfPoints;
         }
-        public IFigure Create(string type,IEnumerable<Point> points)
+        public IFigure Create(string type, IEnumerable<Point> points)
         {
             return importClass.AvailableFigures.First(f => f.Metadata.Name == type).Value.Create(points);
         }
-        
-        public ReactiveCommand<IFigure,Unit> Add { get; }
+
+        public ReactiveCommand<IFigure, Unit> Add { get; }
         public ReactiveCommand<IFigure, Unit> Delete { get; }
         public ReactiveCommand<IGraphic, Unit> Draw { get; }
         public ReactiveCommand<IGraphic, Unit> SaveAll { get; }
         public ReactiveCommand<IGraphic, Unit> LoadAll { get; }
         static ViewModel()
         {
-         System.Reflection.Assembly[] assemblies = { typeof(Point).Assembly};
-                var conf = new ContainerConfiguration();
-                try
-                {
-                    conf = conf.WithAssemblies(assemblies);
-                }
-                catch (Exception) { }
+            System.Reflection.Assembly[] assemblies = { typeof(Point).Assembly };
+            var conf = new ContainerConfiguration();
+            try
+            {
+                conf = conf.WithAssemblies(assemblies);
+            }
+            catch (Exception) { }
 
-                var cont = conf.CreateContainer();
+            var cont = conf.CreateContainer();
             importClass = new ImportClass();
-                cont.SatisfyImports(importClass);
+            cont.SatisfyImports(importClass);
         }
 
         public ViewModel()
         {
 
- 
+
             Figures.Connect().Bind(out allFigures).Subscribe();
             Add = ReactiveCommand.Create<IFigure, Unit>(
             fig =>
@@ -121,7 +121,7 @@ namespace ViewModel
                         foreach (var p in figure.Parameters)
                         {
                             //если параметр - точка, вдруг еще какие то другие будут параметры 
-                            if (figure[p].GetType().ToString() == "MiniEditor.Point") 
+                            if (figure[p].GetType().ToString() == "MiniEditor.Point")
                             {
                                 sw.Write(((MiniEditor.Point)figure[p]).X + "\t");
                                 sw.Write(((MiniEditor.Point)figure[p]).Y + "\t");
@@ -154,19 +154,20 @@ namespace ViewModel
                             int param = NumberOfParameters(type); //количетсво параметров (встроеное)
                             int index = 1;
                             List<Point> Points = new List<Point>(); //считаем, что параметры только точки
-                            for (int j = 0; j < param; j++) {
+                            for (int j = 0; j < param; j++)
+                            {
                                 Points.Add(new Point { X = Int32.Parse(figure[index]), Y = Int32.Parse(figure[index + 1]) });
                                 index += 2;
                             }
                             IFigure NewFigure = Create(type, Points);
                             Figures.Add(NewFigure);
-                            }
+                        }
                         sw.Close();
 
-                        }
                     }
+                }
                 return default;
-            }) ;
+            });
         }
     }
 }
