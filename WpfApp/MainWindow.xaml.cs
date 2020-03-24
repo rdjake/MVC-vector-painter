@@ -40,7 +40,7 @@ namespace WpfApp
 
                 Add = ReactiveCommand.Create<Unit,Unit>(_ => {
                     Random random = new Random();
-                    ViewModel.Add.Execute(new MiniEditor.Circle(
+                    ViewModel.Add.Execute(new MiniEditor.Ellipse(
                     new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) },
                     new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) })).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
