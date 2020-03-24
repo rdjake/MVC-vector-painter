@@ -33,6 +33,13 @@ namespace WpfApp
         public ReactiveCommand<Unit, Unit> SaveAll { get; set; }
         public ReactiveCommand<Unit, Unit> LoadAll { get; set; }
 
+        //Обработчик мышки
+        public MiniEditor.Point pos1, pos2;
+        public int right = 0, left = 0;
+
+        private int CurrentFigure = 0;
+        private List<Button> Buttons = new List<Button>();
+
         public MainWindow()
         {
             DataContext = this;
@@ -81,6 +88,10 @@ namespace WpfApp
                 this.RaisePropertyChanged("Delete");
                 this.RaisePropertyChanged("SaveAll");
                 this.RaisePropertyChanged("LoadAll");
+                this.RaisePropertyChanged("Circle");
+                this.RaisePropertyChanged("Line");
+                this.RaisePropertyChanged("Triangle");
+                this.RaisePropertyChanged("Polygon");
             });
 
         }
@@ -97,6 +108,113 @@ namespace WpfApp
         {
             PropertyChanged.Invoke(this, args);
         }
+
+        //Функция для передачи координат ModelView
+        private void DrawFigure()
+        {
+            switch (CurrentFigure)
+            {
+                case 0: { break; }
+                case 1: { break; }
+                case 2: { break; }
+
+            }
+        }
+
+        //Обработчик нажатия на кнопку линии
+        private void Line_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LineButton.Background = System.Windows.Media.Brushes.DarkRed;
+            CircleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            TriangleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CurrentFigure = 1;
+        }
+        //Обработчик нажатия на кнопку круга
+        private void Circle_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CircleButton.Background = System.Windows.Media.Brushes.DarkRed;
+            TriangleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CurrentFigure = 2;
+        }
+        //Обработчик нажатия на кнопку треугольника
+        private void Triangle_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CircleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            TriangleButton.Background = System.Windows.Media.Brushes.DarkRed;
+            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CurrentFigure = 3;
+        }
+        //Обработчик нажатия на кнопку полигона
+        private void Polygon_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CircleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            TriangleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            PolygonButton.Background = System.Windows.Media.Brushes.DarkRed;
+            CurrentFigure = 4;
+        }
+
+
+        //Нажатие на левую кнопку мыши
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+            Errorbox.Text = "LeftMousePressed" + "\n" +
+               "X: " + position.X +
+               "\n" +
+               "Y: " + position.Y;
+            pos1.X = position.X;
+            pos1.Y = position.Y;
+            left = 1;
+        }
+
+        //Нажатие правую кнопку мыши
+        private void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+            Errorbox.Text = "RightMousePressed" + "\n" +
+                "X: " + position.X +
+                "\n" +
+                "Y: " + position.Y;
+        }
+
+        //Перемещение мыши
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+            //LeftDrag
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+
+                Errorbox.Text = "LeftMouseDrag" + "\n" +
+               "X: " + position.X +
+               "\n" +
+               "Y: " + position.Y;
+                //Переделать
+                if (left == 1)
+                {
+                    pos2.X = position.X;
+                    pos2.Y = position.Y;
+                }
+            }
+            else
+            {
+                left = 0;
+            }
+            //RightDrag
+            if (e.RightButton == MouseButtonState.Pressed)
+            {
+                Errorbox.Text = "RightMouseDrag" + "\n" +
+               "X: " + position.X +
+               "\n" +
+               "Y: " + position.Y;
+            }
+        }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangingEventHandler PropertyChanging;
