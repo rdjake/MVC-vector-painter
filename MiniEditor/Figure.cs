@@ -8,7 +8,6 @@ namespace MiniEditor
     public interface IGraphic
     {
         void Polygon(IEnumerable<Point> points, Color color);
-        void Ellipse(IEnumerable<Point> points);
     }
     public struct Point
     {
@@ -18,7 +17,8 @@ namespace MiniEditor
     public struct Color
     {
         public byte R, G, B, A;
-    }  
+    }
+
     public interface IFigure
     {
         string Name { get; }
@@ -47,7 +47,7 @@ namespace MiniEditor
         Point A;
         Point B;
         public IEnumerable<string> Parameters { get; } = new[] { "A", "B" };
-       
+
         public object this[string name]
         {
             get
@@ -230,92 +230,77 @@ namespace MiniEditor
 
 
 
-    public class Ellipse : IFigure
+    public class Circle : IFigure
     {
-        public Ellipse(Point p1, Point p2)
+        public Circle(Point c1, Point c2)
         {
-            if(p1.X<p2.X&&p1.Y>p2.Y)
-            {
-                P1 = p1; P2 = p2;
-            }
-            else
-            {
-                P1 = p2;P2 = p1;
-            }
-            height = P1.Y - P2.Y;
-            width = P2.X - P1.X;
-            RX = width / 2.0;
-            RY= height / 2.0; //Есть центр и два радиуса на всякий
-            C.X = P1.X + RX;  //можно будет убрать при желании
-            C.Y = P2.Y + RY;
+            C = c1; 
+            C2 = c2;
+            R = Math.Sqrt((c2.X - c1.X)* (c2.X - c1.X) + (c2.Y - c1.Y) * (c2.Y - c1.Y));
         }
 
-        Point P1,P2,C;
-        double height, width,RX,RY;
-
-        public IEnumerable<string> Parameters { get; } = new[] { "C", "RX", "RY" };
+        Point C;
+        Point C2;
+        double R;
+        public IEnumerable<string> Parameters { get; } = new[] { "C", "C2" };
 
         public object this[string name]
         {
             get
             {
-                return name switch
+                switch (name)
                 {
-                    "C" => C,
-                    "RX" => RX,
-                    "RY" => RX,
-                    _ => throw new ArgumentOutOfRangeException($"Unknown parameter {name}"),
-                };
+                    case "C": return C;
+                    case "C2": return C2;
+                    default: throw new ArgumentOutOfRangeException($"Unknown parameter {name}");
+                }
+
             }
             set
             {
                 if (value is Point p)
                 {
-                    C = p;                    
-                }
-                else if(value is double r)
                     switch (name)
                     {
-                        case "RX": RX = r; break;
-                        case "RY": RY = r; break;
+                        case "C": C = p; break;
+                        case "C2": C2 = p; break;
                         default: throw new ArgumentOutOfRangeException($"Unknown parameter {name}");
                     }
-                else
-                throw new ArgumentOutOfRangeException($"Unknown parameter type {value.GetType().Name}");
+                }
+                else throw new ArgumentOutOfRangeException($"Unknown parameter type {value.GetType().Name}");
             }
         }
 
         public void Draw(IGraphic graphic)
         {
-           graphic.Ellipse(new[] { P1,P2 });
+           //graphic.Circle(C, R, new Color { R = 255, G = 0, B = 0, A = 128 });
         }
-        //public void Move(Point vector)
-        //{
-        //    C.X += vector.X;
-        //    C.Y += vector.Y;
-        //}
-        //public bool Contain(Point p)
-        //{
-        //    return R > Math.Sqrt((p.X - C.X) * (p.X - C.X) + (p.Y - C.Y) * (p.Y - C.Y));
-        //}
+        public void Move(Point vector)
+        {
+            C.X += vector.X;
+            C.Y += vector.Y;
+        }
+        public bool Contain(Point p)
+        {
+            return R > Math.Sqrt((p.X - C.X) * (p.X - C.X) + (p.Y - C.Y) * (p.Y - C.Y));
+        }
         public void Scale(double scale)
         {
-            RX *= scale;
-            RY *= scale;
+            R *= scale;
         }
-        public string Name => "Ellipse";
+        public string Name => "Circle";
     }
     [Export(typeof(IFigureDescriptor))]
-    [ExportMetadata("Name", "Ellipse")]
+    [ExportMetadata("Name", "Circle")]
     public class CircleDescriptor : IFigureDescriptor
     {
-        public string Name => "Ellipse";
+        public string Name => "Circle";
         public int NumberOfPoints => 2;
         public IFigure Create(IEnumerable<Point> vertex)
         {
             var points = vertex.ToArray();
             if (points.Length != 2) throw new ArgumentOutOfRangeException($"Bad number of parameters {points.Length}");
-            return new Ellipse(points[0], points[1]);
+            return new Circle(points[0], points[1]);
         }
     }
 }

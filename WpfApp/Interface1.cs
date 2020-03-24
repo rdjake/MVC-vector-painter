@@ -12,7 +12,7 @@ namespace Wpffirst
         void PolyLine(IEnumerable<Point> points, Color color);
         void Polygon(IEnumerable<Point> points, Color color, IBrush fill);
         void Circle(Point center, double rad, Color color,IBrush fill);
-        void Ellipse(Point center, double rx, double ry, Color color, IBrush fill);
+        void Ellipse(Point center, Point rad, double ry, Color color, IBrush fill);
     }
     public struct Point
     {
