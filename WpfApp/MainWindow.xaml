@@ -1,4 +1,7 @@
-﻿<Window x:Class="WpfApp.MainWindow"
+﻿<Window MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MouseRightButtonDown="Window_MouseRightButtonDown"
+        MouseMove="Window_MouseMove"
+        x:Class="WpfApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,26 +9,35 @@
         xmlns:local="clr-namespace:WpfApp"
         xmlns:mini="clr-namespace:MiniEditor;assembly=MiniEditorData"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="825" Width="700">
     <Window.Resources>
         <DataTemplate DataType="mini:IFigure">
             <Label Content="{Binding Name}"/>
         </DataTemplate>
     </Window.Resources>
-    <StackPanel Height="600">
-        <Canvas Width="800" Height="18">
-            <Button Content="Add" Command="{Binding Add}" Width="55"  />
-            <Button Content="Delete" Command="{Binding Delete}" Width="55" Canvas.Left="55"/>
-            <Button Content="SaveAll" Command="{Binding SaveAll}" Width="55" Canvas.Left="110"/>
-            <Button Content="LoadAll" Command="{Binding LoadAll}" Width="55" Canvas.Left="165"/>
+    <StackPanel Height="815">
+        <Canvas Width="698" Height="18">
+            <Rectangle Fill="LightBlue" Canvas.Left="0" Canvas.Top="0" Width="800" Height="22" />
+            <Button x:Name="AddButton" Content="Add" Command="{Binding Add}" Width="55"  />
+            <Button x:Name="DeleteButton" Content="Delete" Command="{Binding Delete}" Width="55" Canvas.Left="55"/>
+            <Button x:Name="SaveAllButton" Content="SaveAll" Command="{Binding SaveAll}" Width="55" Canvas.Left="110"/>
+            <Button x:Name="LoadAllButton" Content="LoadAll" Command="{Binding LoadAll}" Width="55" Canvas.Left="165"/>
+            <Button x:Name="LineButton" Content="Line" Command="{Binding Line}" Width="55" Canvas.Left="250" Click="Line_Button_Click" />
+            <Button x:Name="CircleButton" Content="Circle" Command="{Binding Circle}" Width="55" Canvas.Left="300" Click="Circle_Button_Click" />
+            <Button x:Name="TriangleButton" Content="Triangle" Command="{Binding Triangle}" Width="55" Canvas.Left="350" Click="Triangle_Button_Click" />
+            <Button x:Name="PolygonButton" Content="Polygon" Command="{Binding Polygon}" Width="55" Canvas.Left="400" Click="Polygon_Button_Click" />
+            <TextBox x:Name="Errorbox" Text="Hello, world!" MaxLength ="100" Canvas.Left="490" Canvas.Top="1" Width="300" />
             <Label x:Name="NumberOfFigures" Content="0" Canvas.Left="230" Canvas.Top="-4" Height="27" Width="29"/>
-            <Label x:Name="Error" Content="" Canvas.Left="250" Canvas.Top="-4" Height="27" Width="540"/>
-        </Canvas>
-        <Canvas Width="800" Height="449">
+            <Label x:Name="Error" Content="" Canvas.Left="479" Canvas.Top="-4" Height="27" Width="311"/>
 
         </Canvas>
-        
-        <ListView ItemsSource="{Binding ViewModel.AllFigures}"/>
+        <Canvas Name="MainCanvas" Width="700" Height="700">
+            <Grid Name="Holst">
+            </Grid>
+        </Canvas>
+
+
+        <ListView ItemsSource="{Binding ViewModel.AllFigures}" MouseDoubleClick="DeteleFromList"/>
 
 
 

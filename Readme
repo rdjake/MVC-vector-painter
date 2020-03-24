@@ -1,4 +1,14 @@
-Балбуцкий Антон - ТимЛид
+Загрузка проекта:
+	git clone https://gitlab.com/BalbutskijTony/vpainterwpf --recursive
+или
+	git clone https://gitlab.com/BalbutskijTony/vpainterwpf
+	git submodule init
+	git submodule update --recursive --remote
+
+
+Команда:
+TeamLid:
+Балбуцкий Антон
 
 Model(Figure):
 -Кашаутов Максим
