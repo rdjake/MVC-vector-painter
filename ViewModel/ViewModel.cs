@@ -66,7 +66,7 @@ namespace ViewModel
             Add = ReactiveCommand.Create<IFigure, Unit>(
             fig =>
             {
-                Figures.Add(fig);
+                Figures.Insert(0,fig);
                 return default;
             });
 
