@@ -89,19 +89,21 @@ namespace MiniEditor
 
         public void Rotate(double angle)
         {
+            double cos = Math.Cos(angle);
+            double sin = Math.Sin(angle);
             if (angle > 0)
             {
-                A.X = A.X * Math.Cos(angle) - A.Y * Math.Sin(angle);
-                A.Y = A.X * Math.Sin(angle) + A.Y * Math.Cos(angle);
-                B.X = B.X * Math.Cos(angle) - B.Y * Math.Sin(angle);
-                B.Y = B.X * Math.Sin(angle) + B.Y * Math.Cos(angle);              
+                A.X = A.X * cos - A.Y * sin;
+                A.Y = A.X * sin + A.Y * cos;
+                B.X = B.X * cos - B.Y * sin;
+                B.Y = B.X * sin + B.Y * cos;              
             }
             else
             {
-                A.X = A.X * Math.Cos(angle) + A.Y * Math.Sin(angle);
-                A.Y = -A.X * Math.Sin(angle) + A.Y * Math.Cos(angle);
-                B.X = B.X * Math.Cos(angle) + B.Y * Math.Sin(angle);
-                B.Y = -B.X * Math.Sin(angle) + B.Y * Math.Cos(angle);
+                A.X = A.X * cos + A.Y * sin;
+                A.Y = -A.X * sin + A.Y * cos;
+                B.X = B.X * cos + B.Y * sin;
+                B.Y = -B.X * sin + B.Y * cos;
             }
         }
         public string Name => "Line";
@@ -183,30 +185,32 @@ namespace MiniEditor
         }
         public void Rotate(double angle)
         {
-            if(angle>0)
+            double cos = Math.Cos(angle);
+            double sin = Math.Sin(angle);
+            if (angle>0)
             {
-                A.X = A.X * Math.Cos(angle) - A.Y * Math.Sin(angle);
-                A.Y = A.X * Math.Sin(angle) + A.Y * Math.Cos(angle);
-                B.X = B.X * Math.Cos(angle) - B.Y * Math.Sin(angle);
-                B.Y = B.X * Math.Sin(angle) + B.Y * Math.Cos(angle);
-                C.X = C.X * Math.Cos(angle) - C.Y * Math.Sin(angle);
-                C.Y = C.X * Math.Sin(angle) + C.Y * Math.Cos(angle);
-                D.X = D.X * Math.Cos(angle) - D.Y * Math.Sin(angle);
-                D.Y = D.X * Math.Sin(angle) + D.Y * Math.Cos(angle);
+                A.X = A.X * cos - A.Y * sin;
+                A.Y = A.X * sin + A.Y * cos;
+                B.X = B.X * cos - B.Y * sin;
+                B.Y = B.X * sin + B.Y * cos;
+                C.X = C.X * cos - C.Y * sin;
+                C.Y = C.X * sin + C.Y * cos;
+                D.X = D.X * cos - D.Y * sin;
+                D.Y = D.X * sin + D.Y * cos;
             }
             else
             {
-                A.X = A.X * Math.Cos(angle) + A.Y * Math.Sin(angle);
-                A.Y = -A.X * Math.Sin(angle) + A.Y * Math.Cos(angle);
-                B.X = B.X * Math.Cos(angle) + B.Y * Math.Sin(angle);
-                B.Y = -B.X * Math.Sin(angle) + B.Y * Math.Cos(angle);
-                C.X = C.X * Math.Cos(angle) + C.Y * Math.Sin(angle);
-                C.Y = -C.X * Math.Sin(angle) + C.Y * Math.Cos(angle);
-                D.X = D.X * Math.Cos(angle) + D.Y * Math.Sin(angle);
-                D.Y = -D.X * Math.Sin(angle) + D.Y * Math.Cos(angle);
+                A.X = A.X * cos + A.Y * sin;
+                A.Y = -A.X * sin + A.Y * cos;
+                B.X = B.X * cos + B.Y * sin;
+                B.Y = -B.X * sin + B.Y * cos;
+                C.X = C.X * cos + C.Y * sin;
+                C.Y = -C.X * sin + C.Y * cos;
+                D.X = D.X * cos + D.Y * sin;
+                D.Y = -D.X * sin + D.Y * cos;
             }
         }
-        
+
 
         public string Name => "Rectangle";
     }
