@@ -33,11 +33,14 @@ namespace WpfApp
         public ReactiveCommand<Unit, Unit> SaveAll { get; set; }
         public ReactiveCommand<Unit, Unit> LoadAll { get; set; }
 
-        //Обработчик мышки
-        public MiniEditor.Point pos1, pos2;
-        public int right = 0, left = 0;
+        public ReactiveCommand<Unit, Unit> Draw { get; set; }
 
-        private int CurrentFigure = 0;
+        //Обработчик мышки
+        private MiniEditor.Point Mousepos1, Mousepos2;
+        private int RightPressed = 0, LeftPressed = 0;
+
+        private string CurrentFigureName = "Empty";
+        private IGraphic CurrentFigure;
         private List<Button> Buttons = new List<Button>();
 
         public MainWindow()
@@ -58,8 +61,6 @@ namespace WpfApp
                     return default;
                 }).DisposeWith(disposer);
 
-
-
                 Delete = ReactiveCommand.Create<Unit, Unit>(_ => {
                     Random random = new Random();
                     var fig = ViewModel.AllFigures.FirstOrDefault();
@@ -69,7 +70,6 @@ namespace WpfApp
                     DrawAll();
                     return default;
                 }, ViewModel.Delete.CanExecute).DisposeWith(disposer);
-
 
                 SaveAll = ReactiveCommand.Create<Unit, Unit>(_ => {
                     ViewModel.SaveAll.Execute().Subscribe();
@@ -84,13 +84,21 @@ namespace WpfApp
                     return default;
                 }).DisposeWith(disposer);
 
+                //Реактивная команда для отрисовки 
+                Draw = ReactiveCommand.Create<Unit, Unit>(_ => {
+                    ViewModel.Add.Execute(fig).Subscribe();
+                    this.Error.Content = ViewModel.error;
+                    DrawAll();
+                    return default;
+                }).DisposeWith(disposer);
+
+
                 this.RaisePropertyChanged("Add");
                 this.RaisePropertyChanged("Delete");
                 this.RaisePropertyChanged("SaveAll");
                 this.RaisePropertyChanged("LoadAll");
                 this.RaisePropertyChanged("Circle");
                 this.RaisePropertyChanged("Line");
-                this.RaisePropertyChanged("Triangle");
                 this.RaisePropertyChanged("Polygon");
             });
 
@@ -98,6 +106,11 @@ namespace WpfApp
         ViewModel.ViewModel viewModel = new ViewModel.ViewModel();
         public ViewModel.ViewModel ViewModel { get => viewModel; set { } }
         object IViewFor.ViewModel { get => ViewModel; set => ViewModel = (ViewModel.ViewModel)value; }
+
+
+        private IGraphic FigureBuilder() {
+            
+        }
 
         public void RaisePropertyChanging(PropertyChangingEventArgs args)
         {
@@ -112,12 +125,12 @@ namespace WpfApp
         //Функция для передачи координат ModelView
         private void DrawFigure()
         {
-            switch (CurrentFigure)
+            switch (CurrentFigureName)
             {
-                case 0: { break; }
-                case 1: { break; }
-                case 2: { break; }
-
+                case "Emplty": { break; }
+                case "Line": { break; }
+                case "Circle": { break; }
+                case "Polygon": { break; }
             }
         }
 
@@ -125,37 +138,26 @@ namespace WpfApp
         private void Line_Button_Click(object sender, RoutedEventArgs e)
         {
             LineButton.Background = System.Windows.Media.Brushes.DarkRed;
-            CircleButton.Background = System.Windows.Media.Brushes.LightCyan;
-            TriangleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            EllipseButton.Background = System.Windows.Media.Brushes.LightCyan;
             PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
-            CurrentFigure = 1;
+            CurrentFigureName = "Line";
         }
         //Обработчик нажатия на кнопку круга
         private void Circle_Button_Click(object sender, RoutedEventArgs e)
         {
             LineButton.Background = System.Windows.Media.Brushes.LightCyan;
-            CircleButton.Background = System.Windows.Media.Brushes.DarkRed;
-            TriangleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            EllipseButton.Background = System.Windows.Media.Brushes.DarkRed;
             PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
-            CurrentFigure = 2;
+            CurrentFigureName = "Circle";
         }
-        //Обработчик нажатия на кнопку треугольника
-        private void Triangle_Button_Click(object sender, RoutedEventArgs e)
-        {
-            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
-            CircleButton.Background = System.Windows.Media.Brushes.LightCyan;
-            TriangleButton.Background = System.Windows.Media.Brushes.DarkRed;
-            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
-            CurrentFigure = 3;
-        }
+
         //Обработчик нажатия на кнопку полигона
         private void Polygon_Button_Click(object sender, RoutedEventArgs e)
         {
             LineButton.Background = System.Windows.Media.Brushes.LightCyan;
-            CircleButton.Background = System.Windows.Media.Brushes.LightCyan;
-            TriangleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            EllipseButton.Background = System.Windows.Media.Brushes.LightCyan;
             PolygonButton.Background = System.Windows.Media.Brushes.DarkRed;
-            CurrentFigure = 4;
+            CurrentFigureName = "Polygon";
         }
 
 
@@ -248,6 +250,9 @@ namespace WpfApp
                     el.StrokeThickness = 3;
                     Holst.Children.Add(el);
                 }
+
+                
+
             }
         }
 
