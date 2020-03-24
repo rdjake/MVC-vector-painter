@@ -86,6 +86,8 @@ namespace WpfApp
 
                 //Реактивная команда для отрисовки 
                 Draw = ReactiveCommand.Create<Unit, Unit>(_ => {
+                    BuildFigure fig = new BuildFigure();
+                    fig.Line(Mousepos1, Mousepos2, Brushes.Black);
                     ViewModel.Add.Execute(fig).Subscribe();
                     this.Error.Content = ViewModel.error;
                     DrawAll();
@@ -109,7 +111,8 @@ namespace WpfApp
 
 
         private IGraphic FigureBuilder() {
-            
+            IGraphic tmp;
+            return tmp;
         }
 
         public void RaisePropertyChanging(PropertyChangingEventArgs args)
@@ -250,7 +253,7 @@ namespace WpfApp
                     el.StrokeThickness = 3;
                     Holst.Children.Add(el);
                 }
-
+                if
                 
 
             }
