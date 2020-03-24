@@ -6,6 +6,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
+using System.Drawing;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +25,7 @@ namespace WpfApp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    ///
     public partial class MainWindow : Window,IViewFor<ViewModel.ViewModel>,IReactiveObject
     {
         public ReactiveCommand<Unit,Unit> Add { get; set; }
@@ -31,30 +34,36 @@ namespace WpfApp
         public ReactiveCommand<Unit, Unit> SaveAll { get; set; }
         public ReactiveCommand<Unit, Unit> LoadAll { get; set; }
 
+        //Обработчик мышки
+        public MiniEditor.Point pos1,pos2;
+        public int right = 0, left = 0;
+        
+        
+
+        private int CurrentFigure = 0;
+        private List<Button> Buttons = new List<Button>();
         public MainWindow()
         {
             DataContext = this;
             InitializeComponent();
+            IGraphic graphic; //Задел под нашу графику
+            
+
+            Buttons.Add(LineButton);
+            Buttons.Add(CircleButton);
+            Buttons.Add(TriangleButton);
+            Buttons.Add(PolygonButton);
+
             this.WhenActivated(disposer => 
             {
 
                 Add = ReactiveCommand.Create<Unit,Unit>(_ => {
                     Random random = new Random();
-                    ViewModel.Add.Execute(new MiniEditor.Circle(
-                    new MiniEditor.Point { X = random.Next(100), Y = random.Next(100) },
-                    new MiniEditor.Point { X = random.Next(300), Y = random.Next(300) })).Subscribe();
-
-                    // Пример отрисовки эллипса
-                    Ellipse el = new Ellipse();
-                    el.Width = 50 + ViewModel.AllFigures.Count();
-                    el.Height = 50 + ViewModel.AllFigures.Count();
-                    el.VerticalAlignment = VerticalAlignment.Top;
-                    el.Fill = Brushes.Green;
-                    el.Stroke = Brushes.Red;
-                    el.StrokeThickness = 3;
-                    Holst.Children.Add(el);
-
-                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                    if (left == 1)
+                    {
+                        ViewModel.Add.Execute(new MiniEditor.Circle(pos1, pos2)).Subscribe();
+                        this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                    }
                     return default;
                 }).DisposeWith(disposer);
 
@@ -79,9 +88,14 @@ namespace WpfApp
                 this.RaisePropertyChanged("Delete");
                 this.RaisePropertyChanged("SaveAll");
                 this.RaisePropertyChanged("LoadAll");
+                this.RaisePropertyChanged("Circle");
+                this.RaisePropertyChanged("Line");
+                this.RaisePropertyChanged("Triangle");
+                this.RaisePropertyChanged("Polygon");
             });
             
         }
+
         ViewModel.ViewModel viewModel=new ViewModel.ViewModel();
         public ViewModel.ViewModel ViewModel { get=>viewModel; set { } }
         object IViewFor.ViewModel { get=> ViewModel; set=> ViewModel=(ViewModel.ViewModel)value; }
@@ -95,6 +109,112 @@ namespace WpfApp
         {
             PropertyChanged.Invoke(this, args);
         }
+
+        //Функция для передачи координат ModelView
+        private void DrawFigure() {
+            switch (CurrentFigure) {
+                case 0: { break; }
+                case 1: { break; }
+                case 2: { break; }
+                   
+            }
+        }
+
+        //Обработчик нажатия на кнопку линии
+        private void Line_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LineButton.Background = System.Windows.Media.Brushes.DarkRed;
+            CircleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            TriangleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CurrentFigure = 1;
+        }
+        //Обработчик нажатия на кнопку круга
+        private void Circle_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CircleButton.Background = System.Windows.Media.Brushes.DarkRed;
+            TriangleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CurrentFigure = 2;
+        }
+        //Обработчик нажатия на кнопку треугольника
+        private void Triangle_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CircleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            TriangleButton.Background = System.Windows.Media.Brushes.DarkRed;
+            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CurrentFigure = 3;
+        }
+        //Обработчик нажатия на кнопку полигона
+        private void Polygon_Button_Click(object sender, RoutedEventArgs e)
+        {
+            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+            CircleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            TriangleButton.Background = System.Windows.Media.Brushes.LightCyan;
+            PolygonButton.Background = System.Windows.Media.Brushes.DarkRed;
+            CurrentFigure = 4;
+        }
+
+
+        //Нажатие на левую кнопку мыши
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+            Errorbox.Text = "LeftMousePressed" + "\n" +
+               "X: " + position.X +
+               "\n" +
+               "Y: " + position.Y;
+            pos1.X = position.X;
+            pos1.Y = position.Y;
+            left = 1;
+        }
+
+        //Нажатие правую кнопку мыши
+        private void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+            Errorbox.Text = "RightMousePressed" + "\n" +
+                "X: " + position.X +
+                "\n" +
+                "Y: " + position.Y;
+        }
+
+        //Перемещение мыши
+        private void Window_MouseMove(object sender, MouseEventArgs e)
+        {
+            System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+            //LeftDrag
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+               
+                Errorbox.Text = "LeftMouseDrag" + "\n" +
+               "X: " + position.X +
+               "\n" +
+               "Y: " + position.Y;
+                //Переделать
+                if (left == 1)
+                {
+                    pos2.X = position.X;
+                    pos2.Y = position.Y;
+                }
+            }
+            else
+            {
+                left = 0;
+            }
+            //RightDrag
+            if (e.RightButton == MouseButtonState.Pressed)
+            { 
+                Errorbox.Text = "RightMouseDrag" + "\n" +
+               "X: " + position.X +
+               "\n" +
+               "Y: " + position.Y;
+            }
+        }
+
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangingEventHandler PropertyChanging;

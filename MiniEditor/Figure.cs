@@ -225,7 +225,7 @@ namespace MiniEditor
 
         public void Draw(IGraphic graphic)
         {
-           // graphic.Circle(C, R, new Color { R = 255, G = 0, B = 0, A = 128 });
+          //// graphic.Circle(C, R, new Color { R = 255, G = 0, B = 0, A = 128 });
         }
         public void Move(Point vector)
         {
