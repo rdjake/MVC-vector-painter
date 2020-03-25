@@ -20,14 +20,13 @@
             <Rectangle Fill="LightBlue" Canvas.Left="0" Canvas.Top="0" Width="800" Height="50" />
             <Button x:Name="AddButton" Content="Copy" Command="{Binding Add}" Width="55"  />
             <Button x:Name="DeleteButton" Content="Delete" Command="{Binding Delete}" Width="55" Canvas.Left="55"/>
-            <Button x:Name="SaveAllButton" Content="SaveAll" Command="{Binding SaveAll}" Width="55" Canvas.Left="110"/>
-            <Button x:Name="LoadAllButton" Content="LoadAll" Command="{Binding LoadAll}" Width="55" Canvas.Left="165"/>
+            <Button x:Name="SaveAllButton" Content="Save" Command="{Binding SaveAll}" Width="55" Canvas.Left="110"/>
+            <Button x:Name="LoadAllButton" Content="Load" Command="{Binding LoadAll}" Width="55" Canvas.Left="165"/>
             <Button x:Name="LineButton" Content="Line" Command="{Binding Line}" Width="55" Canvas.Left="250" Click="Line_Button_Click" />
             <Button x:Name="EllipseButton" Content="Circle" Command="{Binding Ellipse}" Width="55" Canvas.Left="300" Click="Circle_Button_Click" />
-            <Button x:Name="PolygonButton" Content="Polygon" Command="{Binding Polygon}" Width="55" Canvas.Left="350" Click="Polygon_Button_Click" />
-            <TextBox x:Name="Errorbox" Text="Hello, world!" MaxLength ="100" Canvas.Left="490" Canvas.Top="1" Width="300" />
+            <Button x:Name="PolygonButton" Content="Rectangle" Command="{Binding Polygon}" Width="55" Canvas.Left="350" Click="Polygon_Button_Click" />
+            <TextBox x:Name="Errorbox" Text="Hello, world!" MaxLength ="100" Canvas.Left="490" Canvas.Top="1" Width="208" Height="49" />
             <Label x:Name="NumberOfFigures" Content="0" Canvas.Left="230" Canvas.Top="-4" Height="27" Width="29"/>
-            <Label x:Name="Error" Content="" Canvas.Left="479" Canvas.Top="-4" Height="27" Width="311"/>
         </Canvas>
         <Canvas x:Name="MainCanvas" Width="700" Height="700" Background="Transparent">
 

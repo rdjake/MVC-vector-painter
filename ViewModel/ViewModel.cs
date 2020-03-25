@@ -42,7 +42,7 @@ namespace ViewModel
         public ReactiveCommand<IFigure, Unit> Delete { get; }
         public ReactiveCommand<IGraphic, Unit> Draw { get; }
         public ReactiveCommand<IGraphic, Unit> SaveAll { get; }
-        public ReactiveCommand<IGraphic, Unit> LoadAll { get; }
+        public ReactiveCommand<string, Unit> LoadAll { get; }
         static ViewModel()
         {
             System.Reflection.Assembly[] assemblies = { typeof(Point).Assembly };
@@ -60,9 +60,8 @@ namespace ViewModel
 
         public ViewModel()
         {
-
-
             Figures.Connect().Bind(out allFigures).Subscribe();
+
             Add = ReactiveCommand.Create<IFigure, Unit>(
             fig =>
             {
@@ -135,15 +134,13 @@ namespace ViewModel
             }, Figures.CountChanged.Select(i => i > 0));
 
             //пока что загружает последнее сохранение
-            LoadAll = ReactiveCommand.Create<IGraphic, Unit>(_ =>
+            LoadAll = ReactiveCommand.Create<string, Unit>(file =>
             {
                 string path, pathList = Directory.GetCurrentDirectory() + @"\SaveList.txt";
                 if (!File.Exists(pathList)) error = "Нет сохранений";
                 else
                 {
-                    string LastSave = File.ReadLines(pathList).Last();
-                    path = Directory.GetCurrentDirectory() + @"\" + LastSave;
-                    using (StreamReader sw = new StreamReader(path))
+                    using (StreamReader sw = new StreamReader(file))
                     {
                         int count = Int32.Parse(sw.ReadLine()); //количество фигур
                         for (int i = 0; i < count; i++)
@@ -156,7 +153,7 @@ namespace ViewModel
                             List<Point> Points = new List<Point>(); //считаем, что параметры только точки
                             for (int j = 0; j < param; j++)
                             {
-                                Points.Add(new Point { X = Int32.Parse(figure[index]), Y = Int32.Parse(figure[index + 1]) });
+                                Points.Add(new Point { X = Double.Parse(figure[index]), Y = Double.Parse(figure[index + 1]) });
                                 index += 2;
                             }
                             IFigure NewFigure = Create(type, Points);

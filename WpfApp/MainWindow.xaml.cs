@@ -1,8 +1,10 @@
-﻿using MiniEditor;
+﻿using Microsoft.Win32;
+using MiniEditor;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
@@ -41,7 +43,7 @@ namespace WpfApp
 
         public IGraphic CurrentCanvas;
 
-        private string CurrentFigureName = "Line";
+        private string CurrentFigureName = "Empty";
         private List<Button> Buttons = new List<Button>();
 
         private IFigure fig;
@@ -67,12 +69,11 @@ namespace WpfApp
                 }).DisposeWith(disposer);
 
                 Delete = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    Random random = new Random();
                     var fig = ViewModel.AllFigures.FirstOrDefault();
                     ViewModel.Delete.Execute(fig).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     MainCanvas.Children.Clear();
-                    DrawAll(true);
+                    DrawAll(false);
                     return default;
                 }, ViewModel.Delete.CanExecute).DisposeWith(disposer);
 
@@ -82,10 +83,13 @@ namespace WpfApp
                 }, ViewModel.SaveAll.CanExecute).DisposeWith(disposer);
 
                 LoadAll = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    Random random = new Random();
-                    ViewModel.LoadAll.Execute().Subscribe();
-                    this.Error.Content = ViewModel.error;
-                    DrawAll(true);
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                    openFileDialog.Filter = "txt files (*.txt)|AllFigures*.txt";
+                    if (openFileDialog.ShowDialog() == true)
+                        ViewModel.LoadAll.Execute(openFileDialog.FileName).Subscribe();
+                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                    DrawAll(false);
                     return default;
                 }).DisposeWith(disposer);
 
@@ -95,7 +99,7 @@ namespace WpfApp
                 this.RaisePropertyChanged("LoadAll");
                 this.RaisePropertyChanged("Circle");
                 this.RaisePropertyChanged("Line");
-                this.RaisePropertyChanged("Polygon");
+                this.RaisePropertyChanged("Rectangle");
             });
 
         }
@@ -121,7 +125,7 @@ namespace WpfApp
                 case "Emplty": { break; }
                 case "Line": { break; }
                 case "Circle": { break; }
-                case "Polygon": { break; }
+                case "Rectangle": { break; }
             }
         }
 
@@ -148,7 +152,7 @@ namespace WpfApp
             LineButton.Background = System.Windows.Media.Brushes.LightCyan;
             EllipseButton.Background = System.Windows.Media.Brushes.LightCyan;
             PolygonButton.Background = System.Windows.Media.Brushes.DarkRed;
-            CurrentFigureName = "Polygon";
+            CurrentFigureName = "Rectangle";
         }
 
 
@@ -180,48 +184,49 @@ namespace WpfApp
         {
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
             //LeftDrag
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                Errorbox.Text = "LeftMouseDrag" + "\n" +
-               "X: " + position.X +
-               "\n" +
-               "Y: " + position.Y;
-                Mousepos2 = position;
-                MiniEditor.Point tmp1, tmp2;
-                tmp1.X = Mousepos1.X;
-                tmp1.Y = Mousepos1.Y;
-                tmp2.X = Mousepos2.X;
-                tmp2.Y = Mousepos2.Y;
-                switch (CurrentFigureName) {
-                    case "Empty": { fig = new MiniEditor.Line(tmp1, tmp2); break; }
-                    case "Line" : { fig = new MiniEditor.Line(tmp1, tmp2); break; }
-                    case "Circle": { fig = new MiniEditor.Circle(tmp1, tmp2); break; }
-                    case "Polygon": { fig = new MiniEditor.Circle(tmp1, tmp2); break; }
-                }
-                ViewModel.Add.Execute(fig).Subscribe();
-                DrawAll(true);
-                ViewModel.Delete.Execute(fig).Subscribe();
-                figUpdated = 1;
-            }
-            else
-            {
-                if (figUpdated == 1)
+            if (CurrentFigureName != "Empty") {
+                if (e.LeftButton == MouseButtonState.Pressed)
                 {
+                    Errorbox.Text = "LeftMouseDrag" + "\n" +
+                   "X: " + position.X +
+                   "\n" +
+                   "Y: " + position.Y;
+                    Mousepos2 = position;
+                    List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
+                    Points.Add(new MiniEditor.Point { X = Mousepos1.X, Y = Mousepos1.Y });
+                    Points.Add(new MiniEditor.Point { X = Mousepos2.X, Y = Mousepos2.Y});
+                    /*IFigure*/ fig = ViewModel.Create(CurrentFigureName, Points);
+
                     ViewModel.Add.Execute(fig).Subscribe();
+                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                    MainCanvas.Children.Clear();
                     DrawAll(false);
-                    figUpdated = 0;
+                    ViewModel.Delete.Execute(fig).Subscribe();
+                    figUpdated = 1;
+                }
+                else
+                {
+                    if (figUpdated == 1)
+                    {
+                        ViewModel.Add.Execute(fig).Subscribe();
+                        DrawAll(false);
+                        figUpdated = 0;
+                    }
+                }
+
+                //RightDrag
+                if (e.RightButton == MouseButtonState.Pressed)
+                {
+                    Errorbox.Text = "RightMouseDrag" + "\n" +
+                    "X: " + position.X +
+                     "\n" +
+                     "Y: " + position.Y;
                 }
             }
-
-            //RightDrag
-            if (e.RightButton == MouseButtonState.Pressed)
+            else 
             {
-               Errorbox.Text = "RightMouseDrag" + "\n" +
-               "X: " + position.X +
-                "\n" +
-                "Y: " + position.Y;
+                //тут режим Empty, типа перетаскивание пусть включается
             }
-
          }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -240,19 +245,32 @@ namespace WpfApp
         public void DrawAll(bool clearall)
         {
             var Figures = ViewModel.AllFigures.Reverse().ToArray();
-            foreach (var p in Figures)
+            if (clearall) MainCanvas.Children.Clear();
+            foreach (var fig in Figures)
             {
-                if (clearall) MainCanvas.Children.Clear();
-                if (p.Name == "Line")
+                if (fig != null)
                 {
-                    CurrentCanvas.Polyline(new[] { Mousepos1, Mousepos2 }, Colors.Black , 5);
+                    List<System.Windows.Point> C = new List<System.Windows.Point>(); //здесь будут точки текущей фигуры
+                    foreach (var p in fig.Parameters)
+                    {
+                        C.Add(new System.Windows.Point { X = ((MiniEditor.Point)fig[p]).X, Y = ((MiniEditor.Point)fig[p]).Y });
+
+                    }
+                    if (fig.Name == "Line")
+                    {
+                        CurrentCanvas.Polyline(C, Colors.Red, 5);
+                    }
+
+                    if (fig.Name == "Circle")
+                    {
+                        CurrentCanvas.Circle(C, Colors.Red, 5);
+                    }
+
+                    if (fig.Name == "Rectangle")
+                    {
+                        CurrentCanvas.Rectangle(C, Colors.Red, 5);
+                    }
                 }
-
-                if (p.Name == "Circle")
-                {
-                    CurrentCanvas.Circle(Mousepos1, Mousepos2, Colors.Red, 5);
-                }          
-
             }
         }
 

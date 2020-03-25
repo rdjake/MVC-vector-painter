@@ -11,9 +11,10 @@ using Point = System.Windows.Point;
 
 public interface IGraphic
 {
-    void Polyline(IEnumerable<Point> points, Color color, uint thickness);
-    void Polygon(IEnumerable<Point> points, Color color, uint thickness);
-    void Circle(Point A, Point B, Color color, uint thickness);
+    void Polyline(List<System.Windows.Point> points, Color color, uint thickness);
+    void Polygon(List<System.Windows.Point> points, Color color, uint thickness);
+    void Rectangle(List<System.Windows.Point> points, Color color, uint thickness);
+    void Circle(List<System.Windows.Point> points, Color color, uint thickness);
 }
 
 public interface IBrush
@@ -36,7 +37,7 @@ public class BuildFigure : IGraphic
     }
 
 
-    public void Polyline(IEnumerable<Point> points, Color color, uint thickness)
+    public void Polyline(List<System.Windows.Point> points, Color color, uint thickness)
     {
         Polyline polyline = new Polyline();
 
@@ -50,7 +51,7 @@ public class BuildFigure : IGraphic
 
         canvas.Children.Add(polyline);
     }
-    public void Polygon(IEnumerable<Point> points, Color color, uint thickness)
+    public void Polygon(List<System.Windows.Point> points, Color color, uint thickness)
     {
         Polygon polygon = new Polygon();
 
@@ -65,20 +66,43 @@ public class BuildFigure : IGraphic
         canvas.Children.Add(polygon);
     }
 
-    public void Circle(Point A, Point B, Color color, uint thickness)
+    public void Rectangle(List<System.Windows.Point> points, Color color, uint thickness)
     {
-        double radius = Math.Sqrt(Math.Pow(A.X - B.X, 2) + Math.Pow(A.Y - B.Y, 2));
+        Polygon polygon = new Polygon();
+
+        polygon.Stroke = new SolidColorBrush(Color.FromRgb(color.R, color.G, color.B));
+        polygon.StrokeThickness = thickness;
+
+        var C = points.ToArray();
+
+        polygon.Points.Add(new System.Windows.Point(C[0].X, C[0].Y));
+        polygon.Points.Add(new System.Windows.Point(C[1].X, C[0].Y));
+        polygon.Points.Add(new System.Windows.Point(C[1].X, C[1].Y));
+        polygon.Points.Add(new System.Windows.Point(C[0].X, C[1].Y));
+
+
+        canvas.Children.Add(polygon);
+    }
+
+    public void Circle(List<System.Windows.Point> Points, Color color, uint thickness)
+    {
+        var C = Points.ToArray();
         Ellipse myEllipse = new Ellipse();
 
         myEllipse.Stroke = new SolidColorBrush(Color.FromRgb(color.R, color.G, color.B));
         myEllipse.StrokeThickness = thickness;
-
-        myEllipse.Width = 2 * radius;
-        myEllipse.Height = 2 * radius;
+        double radius = (C[1].X - C[0].X);
+        double radius2 = (C[1].Y - C[0].Y);
+        myEllipse.Width = 2 * Math.Abs(radius);
+        myEllipse.Height = 2 * Math.Abs(radius2);
 
         canvas.Children.Add(myEllipse);
-
-        Canvas.SetLeft(myEllipse, A.X - radius);
-        Canvas.SetTop(myEllipse, A.Y - radius);
+        double Left, Top;
+        if (radius > 0) Left = C[0].X - radius;
+        else Left = C[1].X;
+        if (radius2 > 0) Top = C[0].Y - radius2;
+        else Top = C[1].Y;
+        Canvas.SetLeft(myEllipse, Left);
+        Canvas.SetTop(myEllipse, Top);
     }
 }
