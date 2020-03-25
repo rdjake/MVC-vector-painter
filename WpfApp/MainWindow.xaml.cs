@@ -1,8 +1,10 @@
-﻿using MiniEditor;
+﻿using Microsoft.Win32;
+using MiniEditor;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
@@ -67,7 +69,6 @@ namespace WpfApp
                 }).DisposeWith(disposer);
 
                 Delete = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    Random random = new Random();
                     var fig = ViewModel.AllFigures.FirstOrDefault();
                     ViewModel.Delete.Execute(fig).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
@@ -82,10 +83,12 @@ namespace WpfApp
                 }, ViewModel.SaveAll.CanExecute).DisposeWith(disposer);
 
                 LoadAll = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    Random random = new Random();
-                    ViewModel.LoadAll.Execute().Subscribe();
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    openFileDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                    openFileDialog.Filter = "txt files (*.txt)|AllFigures*.txt";
+                    if (openFileDialog.ShowDialog() == true)
+                        ViewModel.LoadAll.Execute(openFileDialog.FileName).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
-                    this.Error.Content = ViewModel.error;
                     DrawAll(false);
                     return default;
                 }).DisposeWith(disposer);
