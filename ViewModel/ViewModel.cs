@@ -60,9 +60,8 @@ namespace ViewModel
 
         public ViewModel()
         {
-
-
             Figures.Connect().Bind(out allFigures).Subscribe();
+
             Add = ReactiveCommand.Create<IFigure, Unit>(
             fig =>
             {

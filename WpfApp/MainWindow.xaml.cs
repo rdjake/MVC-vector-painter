@@ -41,7 +41,7 @@ namespace WpfApp
 
         public IGraphic CurrentCanvas;
 
-        private string CurrentFigureName = "Line";
+        private string CurrentFigureName = "Empty";
         private List<Button> Buttons = new List<Button>();
 
         private IFigure fig;
@@ -96,7 +96,7 @@ namespace WpfApp
                 this.RaisePropertyChanged("LoadAll");
                 this.RaisePropertyChanged("Circle");
                 this.RaisePropertyChanged("Line");
-                this.RaisePropertyChanged("Polygon");
+                this.RaisePropertyChanged("Rectangle");
             });
 
         }
@@ -122,7 +122,7 @@ namespace WpfApp
                 case "Emplty": { break; }
                 case "Line": { break; }
                 case "Circle": { break; }
-                case "Polygon": { break; }
+                case "Rectangle": { break; }
             }
         }
 
@@ -149,7 +149,7 @@ namespace WpfApp
             LineButton.Background = System.Windows.Media.Brushes.LightCyan;
             EllipseButton.Background = System.Windows.Media.Brushes.LightCyan;
             PolygonButton.Background = System.Windows.Media.Brushes.DarkRed;
-            CurrentFigureName = "Polygon";
+            CurrentFigureName = "Rectangle";
         }
 
 
@@ -181,45 +181,49 @@ namespace WpfApp
         {
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
             //LeftDrag
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                Errorbox.Text = "LeftMouseDrag" + "\n" +
-               "X: " + position.X +
-               "\n" +
-               "Y: " + position.Y;
-                Mousepos2 = position;
-                MiniEditor.Point tmp1, tmp2;
-                tmp1.X = Mousepos1.X;
-                tmp1.Y = Mousepos1.Y;
-                tmp2.X = Mousepos2.X;
-                tmp2.Y = Mousepos2.Y;
-                fig = new MiniEditor.Circle(tmp1,tmp2);
-                ViewModel.Add.Execute(fig).Subscribe();
-                this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
-                MainCanvas.Children.Clear();
-                DrawAll(false);
-                ViewModel.Delete.Execute(fig).Subscribe();
-                figUpdated = 1;
-            }
-            else
-            {
-                if (figUpdated == 1)
+            if (CurrentFigureName != "Empty") {
+                if (e.LeftButton == MouseButtonState.Pressed)
                 {
+                    Errorbox.Text = "LeftMouseDrag" + "\n" +
+                   "X: " + position.X +
+                   "\n" +
+                   "Y: " + position.Y;
+                    Mousepos2 = position;
+                    List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
+                    Points.Add(new MiniEditor.Point { X = Mousepos1.X, Y = Mousepos1.Y });
+                    Points.Add(new MiniEditor.Point { X = Mousepos2.X, Y = Mousepos2.Y});
+                    /*IFigure*/ fig = ViewModel.Create(CurrentFigureName, Points);
+
                     ViewModel.Add.Execute(fig).Subscribe();
+                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                    MainCanvas.Children.Clear();
                     DrawAll(false);
-                    figUpdated = 0;
+                    ViewModel.Delete.Execute(fig).Subscribe();
+                    figUpdated = 1;
+                }
+                else
+                {
+                    if (figUpdated == 1)
+                    {
+                        ViewModel.Add.Execute(fig).Subscribe();
+                        DrawAll(false);
+                        figUpdated = 0;
+                    }
+                }
+
+                //RightDrag
+                if (e.RightButton == MouseButtonState.Pressed)
+                {
+                    Errorbox.Text = "RightMouseDrag" + "\n" +
+                    "X: " + position.X +
+                     "\n" +
+                     "Y: " + position.Y;
                 }
             }
-
-            //RightDrag
-            if (e.RightButton == MouseButtonState.Pressed)
+            else 
             {
-               Errorbox.Text = "RightMouseDrag" + "\n" +
-               "X: " + position.X +
-                "\n" +
-                "Y: " + position.Y;
+                //тут режим Empty, типа перетаскивание пусть включается
             }
-
          }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -239,25 +243,31 @@ namespace WpfApp
         {
             var Figures = ViewModel.AllFigures.Reverse().ToArray();
             if (clearall) MainCanvas.Children.Clear();
-            foreach (var p in Figures)
+            foreach (var fig in Figures)
             {
-                
-                if (p.Name == "Line")
+                if (fig != null)
                 {
-                    CurrentCanvas.Polyline(new[] { Mousepos1, Mousepos2 }, Colors.Red , 5);
+                    List<System.Windows.Point> C = new List<System.Windows.Point>(); //здесь будут точки текущей фигуры
+                    foreach (var p in fig.Parameters)
+                    {
+                        C.Add(new System.Windows.Point { X = ((MiniEditor.Point)fig[p]).X, Y = ((MiniEditor.Point)fig[p]).Y });
+
+                    }
+                    if (fig.Name == "Line")
+                    {
+                        CurrentCanvas.Polyline(C, Colors.Red, 5);
+                    }
+
+                    if (fig.Name == "Circle")
+                    {
+                        CurrentCanvas.Circle(C, Colors.Red, 5);
+                    }
+
+                    if (fig.Name == "Rectangle")
+                    {
+                        CurrentCanvas.Rectangle(C, Colors.Red, 5);
+                    }
                 }
-
-                if (p.Name == "Circle")
-                {
-
-                    System.Windows.Point C, C2;
-                    C.X = ((MiniEditor.Point)p["C"]).X;
-                    C.Y = ((MiniEditor.Point)p["C"]).Y;
-                    C2.X = ((MiniEditor.Point)p["C2"]).X;
-                    C2.Y = ((MiniEditor.Point)p["C2"]).Y;
-                    CurrentCanvas.Circle(C,C2, Colors.Red, 5);
-                }          
-
             }
         }
 
