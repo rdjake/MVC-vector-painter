@@ -156,7 +156,7 @@ namespace ViewModel
                             List<Point> Points = new List<Point>(); //считаем, что параметры только точки
                             for (int j = 0; j < param; j++)
                             {
-                                Points.Add(new Point { X = Int32.Parse(figure[index]), Y = Int32.Parse(figure[index + 1]) });
+                                Points.Add(new Point { X = Double.Parse(figure[index]), Y = Double.Parse(figure[index + 1]) });
                                 index += 2;
                             }
                             IFigure NewFigure = Create(type, Points);

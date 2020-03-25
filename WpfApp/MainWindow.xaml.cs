@@ -72,7 +72,7 @@ namespace WpfApp
                     ViewModel.Delete.Execute(fig).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     MainCanvas.Children.Clear();
-                    DrawAll(true);
+                    DrawAll(false);
                     return default;
                 }, ViewModel.Delete.CanExecute).DisposeWith(disposer);
 
@@ -84,8 +84,9 @@ namespace WpfApp
                 LoadAll = ReactiveCommand.Create<Unit, Unit>(_ => {
                     Random random = new Random();
                     ViewModel.LoadAll.Execute().Subscribe();
+                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     this.Error.Content = ViewModel.error;
-                    DrawAll(true);
+                    DrawAll(false);
                     return default;
                 }).DisposeWith(disposer);
 
@@ -194,6 +195,7 @@ namespace WpfApp
                 tmp2.Y = Mousepos2.Y;
                 fig = new MiniEditor.Circle(tmp1,tmp2);
                 ViewModel.Add.Execute(fig).Subscribe();
+                this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                 MainCanvas.Children.Clear();
                 DrawAll(false);
                 ViewModel.Delete.Execute(fig).Subscribe();
@@ -236,9 +238,10 @@ namespace WpfApp
         public void DrawAll(bool clearall)
         {
             var Figures = ViewModel.AllFigures.Reverse().ToArray();
+            if (clearall) MainCanvas.Children.Clear();
             foreach (var p in Figures)
             {
-                if (clearall) MainCanvas.Children.Clear();
+                
                 if (p.Name == "Line")
                 {
                     CurrentCanvas.Polyline(new[] { Mousepos1, Mousepos2 }, Colors.Red , 5);
@@ -246,7 +249,13 @@ namespace WpfApp
 
                 if (p.Name == "Circle")
                 {
-                    CurrentCanvas.Circle(Mousepos1, Mousepos2, Colors.Red, 5);
+
+                    System.Windows.Point C, C2;
+                    C.X = ((MiniEditor.Point)p["C"]).X;
+                    C.Y = ((MiniEditor.Point)p["C"]).Y;
+                    C2.X = ((MiniEditor.Point)p["C2"]).X;
+                    C2.Y = ((MiniEditor.Point)p["C2"]).Y;
+                    CurrentCanvas.Circle(C,C2, Colors.Red, 5);
                 }          
 
             }
