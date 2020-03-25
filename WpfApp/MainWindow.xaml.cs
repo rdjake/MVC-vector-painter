@@ -41,7 +41,9 @@ namespace WpfApp
         private System.Windows.Point Mousepos1, Mousepos2;
         private int RightPressed = 0, LeftPressed = 0;
 
-        public IGraphic CurrentCanvas;
+        private IGraphic CurrentCanvas;
+
+        private  System.Windows.Media.SolidColorBrush CurrentBrush;
 
         private string CurrentFigureName = "Empty";
         private List<Button> Buttons = new List<Button>();
@@ -54,6 +56,7 @@ namespace WpfApp
             DataContext = this;
             InitializeComponent();
             CurrentCanvas = new BuildFigure(MainCanvas);
+            CurrentBrush = new System.Windows.Media.SolidColorBrush(Colors.Black);
             this.WhenActivated(disposer =>
             {
                 
@@ -115,18 +118,6 @@ namespace WpfApp
         public void RaisePropertyChanged(PropertyChangedEventArgs args)
         {
             PropertyChanged.Invoke(this, args);
-        }
-
-        //Функция для передачи координат ModelView
-        private void DrawFigure()
-        {
-            switch (CurrentFigureName)
-            {
-                case "Emplty": { break; }
-                case "Line": { break; }
-                case "Circle": { break; }
-                case "Rectangle": { break; }
-            }
         }
 
         //Обработчик нажатия на кнопку линии
@@ -232,6 +223,12 @@ namespace WpfApp
         public event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangingEventHandler PropertyChanging;
 
+        private void onColorSelect(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            CurrentBrush = (SolidColorBrush)button.Background;
+        }
+
         private void DeteleFromList(object sender, MouseButtonEventArgs e)
         {
             ListView temp = sender as ListView;
@@ -251,14 +248,14 @@ namespace WpfApp
                 if (fig != null)
                 {
                     List<System.Windows.Point> C = new List<System.Windows.Point>(); //здесь будут точки текущей фигуры
+                    List<System.Windows.Media.SolidColorBrush> CBrush = new List<System.Windows.Media.SolidColorBrush>(); //Тут цвет текущей фигуры
                     foreach (var p in fig.Parameters)
                     {
                         C.Add(new System.Windows.Point { X = ((MiniEditor.Point)fig[p]).X, Y = ((MiniEditor.Point)fig[p]).Y });
-
                     }
                     if (fig.Name == "Line")
                     {
-                        CurrentCanvas.Polyline(C, Colors.Red, 5);
+                        CurrentCanvas.Polyline(C, CurrentBrush.Color, 5);
                     }
 
                     if (fig.Name == "Circle")
