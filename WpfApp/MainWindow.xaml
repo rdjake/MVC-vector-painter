@@ -16,8 +16,8 @@
         </DataTemplate>
     </Window.Resources>
     <StackPanel Height="815">
-        <Canvas Width="698" Height="18">
-            <Rectangle Fill="LightBlue" Canvas.Left="0" Canvas.Top="0" Width="800" Height="22" />
+        <Canvas Width="698" Height="50">
+            <Rectangle Fill="LightBlue" Canvas.Left="0" Canvas.Top="0" Width="800" Height="50" />
             <Button x:Name="AddButton" Content="Copy" Command="{Binding Add}" Width="55"  />
             <Button x:Name="DeleteButton" Content="Delete" Command="{Binding Delete}" Width="55" Canvas.Left="55"/>
             <Button x:Name="SaveAllButton" Content="SaveAll" Command="{Binding SaveAll}" Width="55" Canvas.Left="110"/>
@@ -29,12 +29,7 @@
             <Label x:Name="NumberOfFigures" Content="0" Canvas.Left="230" Canvas.Top="-4" Height="27" Width="29"/>
             <Label x:Name="Error" Content="" Canvas.Left="479" Canvas.Top="-4" Height="27" Width="311"/>
         </Canvas>
-        <Canvas Name="MainCanvas" Width="700" Height="700">
-          <WrapPanel Grid.Row="1" >
-            <Button x:Name="DefaultColor" BorderBrush="Green" BorderThickness="2" Height="20" Width="20" Background="Black"/>
-            <Button BorderBrush="Green" BorderThickness="0" Height="20" Width="20" Background="Gray"/>
-            <Button BorderBrush="Green" BorderThickness="0" Height="20" Width="20" Background="White"/>
-          </WrapPanel>
+        <Canvas x:Name="MainCanvas" Width="700" Height="700" Background="Transparent">
 
 
         </Canvas>

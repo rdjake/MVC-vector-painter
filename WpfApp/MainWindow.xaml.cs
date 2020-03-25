@@ -39,10 +39,9 @@ namespace WpfApp
         private System.Windows.Point Mousepos1, Mousepos2;
         private int RightPressed = 0, LeftPressed = 0;
 
-        private BuildFigure bu;
+        public IGraphic CurrentCanvas;
 
-        private string CurrentFigureName = "Empty";
-        private IGraphic CurrentFigure;
+        private string CurrentFigureName = "Line";
         private List<Button> Buttons = new List<Button>();
 
         private IFigure fig;
@@ -50,7 +49,7 @@ namespace WpfApp
 
         public MainWindow()
         {
-            BuildFigure bu = new BuildFigure();
+            CurrentCanvas = new BuildFigure(MainCanvas);
             DataContext = this;
             InitializeComponent();
             this.WhenActivated(disposer =>
@@ -89,8 +88,6 @@ namespace WpfApp
                     DrawAll(true);
                     return default;
                 }).DisposeWith(disposer);
-
-
 
                 this.RaisePropertyChanged("Add");
                 this.RaisePropertyChanged("Delete");
@@ -212,8 +209,6 @@ namespace WpfApp
                 }
             }
 
-
-
             //RightDrag
             if (e.RightButton == MouseButtonState.Pressed)
             {
@@ -246,22 +241,12 @@ namespace WpfApp
                 if (clearall) MainCanvas.Children.Clear();
                 if (p.Name == "Line")
                 {
-                    MainCanvas.Children.Add(bu.Line(Mousepos1,Mousepos2,Brushes.Black));
+                    CurrentCanvas.Polyline(new[] { Mousepos1, Mousepos2 }, Colors.Red , 5);
                 }
 
                 if (p.Name == "Circle")
                 {
-                    Ellipse el = new Ellipse();
-                    var par = p.Parameters.ToList();
-                    MiniEditor.Point point1 = (MiniEditor.Point)(p[par[0]]);
-                    MiniEditor.Point point2 = (MiniEditor.Point)(p[par[1]]);
-                    el.Width = 2 * Math.Abs(point1.X - point2.X);
-                    el.Height = 2 * Math.Abs(point1.Y - point2.Y);
-                    el.Margin = new Thickness(point1.X / 2, point1.Y / 2, 0, 0);
-                    el.Fill = Brushes.Green;
-                    el.Stroke = Brushes.Red;
-                    el.StrokeThickness = 3;
-                    MainCanvas.Children.Add(el);
+                    CurrentCanvas.Circle(Mousepos1, (double)Mousepos2.X, Colors.Red, 5);
                 }          
 
             }
