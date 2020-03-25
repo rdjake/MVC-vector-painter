@@ -36,7 +36,7 @@ namespace WpfApp
         public ReactiveCommand<Unit, Unit> Draw { get; set; }
 
         //Обработчик мышки
-        private MiniEditor.Point Mousepos1, Mousepos2;
+        private System.Windows.Point Mousepos1, Mousepos2;
         private int RightPressed = 0, LeftPressed = 0;
 
         private string CurrentFigureName = "Empty";
@@ -84,15 +84,6 @@ namespace WpfApp
                     return default;
                 }).DisposeWith(disposer);
 
-                //Реактивная команда для отрисовки 
-                Draw = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    BuildFigure fig = new BuildFigure();
-                    fig.Line(Mousepos1, Mousepos2, Brushes.Black);
-                    ViewModel.Add.Execute(fig).Subscribe();
-                    this.Error.Content = ViewModel.error;
-                    DrawAll();
-                    return default;
-                }).DisposeWith(disposer);
 
 
                 this.RaisePropertyChanged("Add");
@@ -108,12 +99,6 @@ namespace WpfApp
         ViewModel.ViewModel viewModel = new ViewModel.ViewModel();
         public ViewModel.ViewModel ViewModel { get => viewModel; set { } }
         object IViewFor.ViewModel { get => ViewModel; set => ViewModel = (ViewModel.ViewModel)value; }
-
-
-        private IGraphic FigureBuilder() {
-            IGraphic tmp;
-            return tmp;
-        }
 
         public void RaisePropertyChanging(PropertyChangingEventArgs args)
         {
@@ -172,19 +157,19 @@ namespace WpfApp
                "X: " + position.X +
                "\n" +
                "Y: " + position.Y;
-            pos1.X = position.X;
-            pos1.Y = position.Y;
-            left = 1;
+            Mousepos1 = position;
         }
 
         //Нажатие правую кнопку мыши
         private void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
+
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
             Errorbox.Text = "RightMousePressed" + "\n" +
                 "X: " + position.X +
                 "\n" +
                 "Y: " + position.Y;
+            
         }
 
         //Перемещение мыши
@@ -194,32 +179,36 @@ namespace WpfApp
             //LeftDrag
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-
+                Holst.Children.Clear();
                 Errorbox.Text = "LeftMouseDrag" + "\n" +
                "X: " + position.X +
                "\n" +
                "Y: " + position.Y;
-                //Переделать
-                if (left == 1)
-                {
-                    pos2.X = position.X;
-                    pos2.Y = position.Y;
-                }
+                Mousepos2 = position;
+                BuildFigure bu = new BuildFigure();
+                MiniEditor.Point tmp1, tmp2;
+                tmp1.X = Mousepos1.X;
+                tmp1.Y = Mousepos1.Y;
+                tmp2.X = Mousepos2.X;
+                tmp2.Y = Mousepos2.Y;
+                var fig = new MiniEditor.Circle(tmp1, tmp2);
+                ViewModel.Add.Execute(fig).Subscribe();
+                DrawAll();
+
             }
-            else
-            {
-                left = 0;
-            }
+
+           
+
             //RightDrag
             if (e.RightButton == MouseButtonState.Pressed)
             {
-                Errorbox.Text = "RightMouseDrag" + "\n" +
+               Errorbox.Text = "RightMouseDrag" + "\n" +
                "X: " + position.X +
-               "\n" +
-               "Y: " + position.Y;
+                "\n" +
+                "Y: " + position.Y;
             }
-        }
 
+         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangingEventHandler PropertyChanging;
@@ -253,7 +242,6 @@ namespace WpfApp
                     el.StrokeThickness = 3;
                     Holst.Children.Add(el);
                 }
-                if
                 
 
             }
