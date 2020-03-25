@@ -48,10 +48,10 @@ namespace WpfApp
         private int figUpdated = 0;
 
         public MainWindow()
-        {
-            CurrentCanvas = new BuildFigure(MainCanvas);
+        {       
             DataContext = this;
             InitializeComponent();
+            CurrentCanvas = new BuildFigure(MainCanvas);
             this.WhenActivated(disposer =>
             {
                 
