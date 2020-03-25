@@ -39,17 +39,23 @@ namespace WpfApp
         private System.Windows.Point Mousepos1, Mousepos2;
         private int RightPressed = 0, LeftPressed = 0;
 
+        private BuildFigure bu;
+
         private string CurrentFigureName = "Empty";
         private IGraphic CurrentFigure;
         private List<Button> Buttons = new List<Button>();
 
+        private IFigure fig;
+        private int figUpdated = 0;
+
         public MainWindow()
         {
+            BuildFigure bu = new BuildFigure();
             DataContext = this;
             InitializeComponent();
             this.WhenActivated(disposer =>
             {
-
+                
                 Add = ReactiveCommand.Create<Unit, Unit>(_ => {
                     Random random = new Random();
                     var C = new MiniEditor.Point { X = random.Next(100, 600), Y = random.Next(100, 600) };
@@ -179,25 +185,33 @@ namespace WpfApp
             //LeftDrag
             if (e.LeftButton == MouseButtonState.Pressed)
             {
-                Holst.Children.Clear();
                 Errorbox.Text = "LeftMouseDrag" + "\n" +
                "X: " + position.X +
                "\n" +
                "Y: " + position.Y;
                 Mousepos2 = position;
-                BuildFigure bu = new BuildFigure();
                 MiniEditor.Point tmp1, tmp2;
                 tmp1.X = Mousepos1.X;
                 tmp1.Y = Mousepos1.Y;
                 tmp2.X = Mousepos2.X;
                 tmp2.Y = Mousepos2.Y;
-                var fig = new MiniEditor.Circle(tmp1, tmp2);
+                fig = new MiniEditor.Circle(tmp1,tmp2);
                 ViewModel.Add.Execute(fig).Subscribe();
                 DrawAll();
-
+                ViewModel.Delete.Execute(fig).Subscribe();
+                figUpdated = 1;
+            }
+            else
+            {
+                if (figUpdated == 1)
+                {
+                    ViewModel.Add.Execute(fig).Subscribe();
+                    DrawAll();
+                    figUpdated = 0;
+                }
             }
 
-           
+
 
             //RightDrag
             if (e.RightButton == MouseButtonState.Pressed)
@@ -228,6 +242,12 @@ namespace WpfApp
             var Figures = ViewModel.AllFigures.Reverse().ToArray();
             foreach (var p in Figures)
             {
+                Holst.Children.Clear();
+                if (p.Name == "Line")
+                {
+                    Holst.Children.Add(bu.Line(Mousepos1,Mousepos2,Brushes.Black));
+                }
+
                 if (p.Name == "Circle")
                 {
                     Ellipse el = new Ellipse();
