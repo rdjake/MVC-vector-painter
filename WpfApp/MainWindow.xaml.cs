@@ -123,27 +123,57 @@ namespace WpfApp
         //Обработчик нажатия на кнопку линии
         private void Line_Button_Click(object sender, RoutedEventArgs e)
         {
-            LineButton.Background = System.Windows.Media.Brushes.DarkRed;
-            EllipseButton.Background = System.Windows.Media.Brushes.LightCyan;
-            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
-            CurrentFigureName = "Line";
+            if (CurrentFigureName == "Line")
+            {
+                LineButton.Background = System.Windows.Media.Brushes.LightGray;
+                EllipseButton.Background = System.Windows.Media.Brushes.LightGray;
+                PolygonButton.Background = System.Windows.Media.Brushes.LightGray;
+                CurrentFigureName = "Empty";
+            }
+            else
+            {
+                LineButton.Background = System.Windows.Media.Brushes.DarkRed;
+                EllipseButton.Background = System.Windows.Media.Brushes.LightCyan;
+                PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+                CurrentFigureName = "Line";
+            }
         }
         //Обработчик нажатия на кнопку круга
         private void Circle_Button_Click(object sender, RoutedEventArgs e)
         {
-            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
-            EllipseButton.Background = System.Windows.Media.Brushes.DarkRed;
-            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
-            CurrentFigureName = "Circle";
+            if (CurrentFigureName == "Circle")
+            {
+                LineButton.Background = System.Windows.Media.Brushes.LightGray;
+                EllipseButton.Background = System.Windows.Media.Brushes.LightGray;
+                PolygonButton.Background = System.Windows.Media.Brushes.LightGray;
+                CurrentFigureName = "Empty";
+            }
+            else
+            {
+                LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+                EllipseButton.Background = System.Windows.Media.Brushes.DarkRed;
+                PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+                CurrentFigureName = "Circle";
+            }
         }
 
         //Обработчик нажатия на кнопку полигона
         private void Polygon_Button_Click(object sender, RoutedEventArgs e)
         {
-            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
-            EllipseButton.Background = System.Windows.Media.Brushes.LightCyan;
-            PolygonButton.Background = System.Windows.Media.Brushes.DarkRed;
-            CurrentFigureName = "Rectangle";
+            if (CurrentFigureName == "Rectangle")
+            {
+                LineButton.Background = System.Windows.Media.Brushes.LightGray;
+                EllipseButton.Background = System.Windows.Media.Brushes.LightGray;
+                PolygonButton.Background = System.Windows.Media.Brushes.LightGray;
+                CurrentFigureName = "Empty";
+            }
+            else
+            {
+                LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+                EllipseButton.Background = System.Windows.Media.Brushes.LightCyan;
+                PolygonButton.Background = System.Windows.Media.Brushes.DarkRed;
+                CurrentFigureName = "Rectangle";
+            }
         }
 
 
