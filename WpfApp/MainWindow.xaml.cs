@@ -192,10 +192,14 @@ namespace WpfApp
                 tmp1.Y = Mousepos1.Y;
                 tmp2.X = Mousepos2.X;
                 tmp2.Y = Mousepos2.Y;
-                fig = new MiniEditor.Circle(tmp1,tmp2);
+                switch (CurrentFigureName) {
+                    case "Empty": { fig = new MiniEditor.Line(tmp1, tmp2); break; }
+                    case "Line" : { fig = new MiniEditor.Line(tmp1, tmp2); break; }
+                    case "Circle": { fig = new MiniEditor.Circle(tmp1, tmp2); break; }
+                    case "Polygon": { fig = new MiniEditor.Circle(tmp1, tmp2); break; }
+                }
                 ViewModel.Add.Execute(fig).Subscribe();
-                MainCanvas.Children.Clear();
-                DrawAll(false);
+                DrawAll(true);
                 ViewModel.Delete.Execute(fig).Subscribe();
                 figUpdated = 1;
             }
@@ -241,12 +245,12 @@ namespace WpfApp
                 if (clearall) MainCanvas.Children.Clear();
                 if (p.Name == "Line")
                 {
-                    CurrentCanvas.Polyline(new[] { Mousepos1, Mousepos2 }, Colors.Red , 5);
+                    CurrentCanvas.Polyline(new[] { Mousepos1, Mousepos2 }, Colors.Black , 5);
                 }
 
                 if (p.Name == "Circle")
                 {
-                    CurrentCanvas.Circle(Mousepos1, (double)Mousepos2.X, Colors.Red, 5);
+                    CurrentCanvas.Circle(Mousepos1, Mousepos2, Colors.Red, 5);
                 }          
 
             }

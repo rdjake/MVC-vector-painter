@@ -13,7 +13,7 @@ public interface IGraphic
 {
     void Polyline(IEnumerable<Point> points, Color color, uint thickness);
     void Polygon(IEnumerable<Point> points, Color color, uint thickness);
-    void Circle(Point A, double radius, Color color, uint thickness);
+    void Circle(Point A, Point B, Color color, uint thickness);
 }
 
 public interface IBrush
@@ -65,8 +65,9 @@ public class BuildFigure : IGraphic
         canvas.Children.Add(polygon);
     }
 
-    public void Circle(Point A, double radius, Color color, uint thickness)
+    public void Circle(Point A, Point B, Color color, uint thickness)
     {
+        double radius = Math.Sqrt(Math.Pow(A.X - B.X, 2) + Math.Pow(A.Y - B.Y, 2));
         Ellipse myEllipse = new Ellipse();
 
         myEllipse.Stroke = new SolidColorBrush(Color.FromRgb(color.R, color.G, color.B));
