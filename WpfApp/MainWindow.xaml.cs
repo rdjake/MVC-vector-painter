@@ -246,7 +246,7 @@ namespace WpfApp
 
                 if (p.Name == "Circle")
                 {
-                    CurrentCanvas.Circle(Mousepos1, (double)Mousepos2.X, Colors.Red, 5);
+                    CurrentCanvas.Circle(Mousepos1, Mousepos2, Colors.Red, 5);
                 }          
 
             }
