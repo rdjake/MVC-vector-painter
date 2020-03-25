@@ -28,11 +28,14 @@
             <TextBox x:Name="Errorbox" Text="Hello, world!" MaxLength ="100" Canvas.Left="490" Canvas.Top="1" Width="300" />
             <Label x:Name="NumberOfFigures" Content="0" Canvas.Left="230" Canvas.Top="-4" Height="27" Width="29"/>
             <Label x:Name="Error" Content="" Canvas.Left="479" Canvas.Top="-4" Height="27" Width="311"/>
-
         </Canvas>
         <Canvas Name="MainCanvas" Width="700" Height="700">
-           <Grid Name="Holst"  Height="690" Width="700" Canvas.Top="10" >
-           </Grid>
+          <WrapPanel Grid.Row="1" >
+            <Button x:Name="DefaultColor" BorderBrush="Green" BorderThickness="2" Height="20" Width="20" Background="Black"/>
+            <Button BorderBrush="Green" BorderThickness="0" Height="20" Width="20" Background="Gray"/>
+            <Button BorderBrush="Green" BorderThickness="0" Height="20" Width="20" Background="White"/>
+          </WrapPanel>
+
 
         </Canvas>
 

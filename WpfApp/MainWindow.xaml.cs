@@ -62,7 +62,7 @@ namespace WpfApp
                     var C2 = new MiniEditor.Point { X = C.X + random.Next(-100, 100), Y = C.Y + random.Next(-100, 100) };
                     var fig = new MiniEditor.Circle(C, C2);
                     ViewModel.Add.Execute(fig).Subscribe();
-                    DrawAll();
+                    DrawAll(true);
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     return default;
                 }).DisposeWith(disposer);
@@ -72,8 +72,8 @@ namespace WpfApp
                     var fig = ViewModel.AllFigures.FirstOrDefault();
                     ViewModel.Delete.Execute(fig).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
-                    Holst.Children.Clear();
-                    DrawAll();
+                    MainCanvas.Children.Clear();
+                    DrawAll(true);
                     return default;
                 }, ViewModel.Delete.CanExecute).DisposeWith(disposer);
 
@@ -86,7 +86,7 @@ namespace WpfApp
                     Random random = new Random();
                     ViewModel.LoadAll.Execute().Subscribe();
                     this.Error.Content = ViewModel.error;
-                    DrawAll();
+                    DrawAll(true);
                     return default;
                 }).DisposeWith(disposer);
 
@@ -197,7 +197,8 @@ namespace WpfApp
                 tmp2.Y = Mousepos2.Y;
                 fig = new MiniEditor.Circle(tmp1,tmp2);
                 ViewModel.Add.Execute(fig).Subscribe();
-                DrawAll();
+                MainCanvas.Children.Clear();
+                DrawAll(false);
                 ViewModel.Delete.Execute(fig).Subscribe();
                 figUpdated = 1;
             }
@@ -206,7 +207,7 @@ namespace WpfApp
                 if (figUpdated == 1)
                 {
                     ViewModel.Add.Execute(fig).Subscribe();
-                    DrawAll();
+                    DrawAll(false);
                     figUpdated = 0;
                 }
             }
@@ -233,26 +234,35 @@ namespace WpfApp
             var item = temp.SelectedItem as MiniEditor.IFigure;
             ViewModel.Delete.Execute(item).Subscribe();
             ViewModel.Add.Execute(item).Subscribe();
-            Holst.Children.Clear();
-            DrawAll();
+            MainCanvas.Children.Clear();
+            DrawAll(true);
         }
 
-        public void DrawAll()
+        public void DrawAll(bool clearall)
         {
             var Figures = ViewModel.AllFigures.Reverse().ToArray();
             foreach (var p in Figures)
             {
-                Holst.Children.Clear();
+                if (clearall) MainCanvas.Children.Clear();
                 if (p.Name == "Line")
                 {
-                    Holst.Children.Add(bu.Line(Mousepos1,Mousepos2,Brushes.Black));
+                    MainCanvas.Children.Add(bu.Line(Mousepos1,Mousepos2,Brushes.Black));
                 }
 
                 if (p.Name == "Circle")
                 {
-                    Holst.Children.Add(bu.Ellipse(Mousepos1, Mousepos2,10, Colors.Black, Brushes.Black));
-                }
-                
+                    Ellipse el = new Ellipse();
+                    var par = p.Parameters.ToList();
+                    MiniEditor.Point point1 = (MiniEditor.Point)(p[par[0]]);
+                    MiniEditor.Point point2 = (MiniEditor.Point)(p[par[1]]);
+                    el.Width = 2 * Math.Abs(point1.X - point2.X);
+                    el.Height = 2 * Math.Abs(point1.Y - point2.Y);
+                    el.Margin = new Thickness(point1.X / 2, point1.Y / 2, 0, 0);
+                    el.Fill = Brushes.Green;
+                    el.Stroke = Brushes.Red;
+                    el.StrokeThickness = 3;
+                    MainCanvas.Children.Add(el);
+                }          
 
             }
         }
