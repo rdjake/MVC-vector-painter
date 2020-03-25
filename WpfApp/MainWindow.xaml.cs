@@ -250,17 +250,7 @@ namespace WpfApp
 
                 if (p.Name == "Circle")
                 {
-                    Ellipse el = new Ellipse();
-                    var par = p.Parameters.ToList();
-                    MiniEditor.Point point1 = (MiniEditor.Point)(p[par[0]]);
-                    MiniEditor.Point point2 = (MiniEditor.Point)(p[par[1]]);
-                    el.Width = 2 * Math.Abs(point1.X - point2.X);
-                    el.Height = 2 * Math.Abs(point1.Y - point2.Y);
-                    el.Margin = new Thickness(point1.X / 2, point1.Y / 2, 0, 0);
-                    el.Fill = Brushes.Green;
-                    el.Stroke = Brushes.Red;
-                    el.StrokeThickness = 3;
-                    Holst.Children.Add(el);
+                    Holst.Children.Add(bu.Ellipse(Mousepos1, Mousepos2,10, Colors.Black, Brushes.Black));
                 }
                 
 

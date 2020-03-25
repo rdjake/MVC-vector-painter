@@ -12,9 +12,9 @@ public interface IGraphic
     {
         System.Windows.Shapes.Line Line(Point start, Point end, System.Windows.Media.SolidColorBrush brush);
 
-        System.Windows.Shapes.Ellipse Ellipse(Point center, Point rad, double ry, System.Windows.Media.Color color, IBrush fill);
+        System.Windows.Shapes.Ellipse Ellipse(Point center, Point rad, double ry, System.Windows.Media.Color color, System.Windows.Media.SolidColorBrush brush);
 
-        System.Windows.Shapes.Polygon Polygon(IEnumerable<Point> points, System.Windows.Media.Color color, IBrush fill);
+        System.Windows.Shapes.Polygon Polygon(IEnumerable<Point> points, System.Windows.Media.Color color, System.Windows.Media.SolidColorBrush brush);
         
     }
 
@@ -47,7 +47,7 @@ public interface IGraphic
             return redLine;
         }
 
-        public System.Windows.Shapes.Ellipse Ellipse(Point center, Point rad, double ry, System.Windows.Media.Color color, IBrush fill)
+        public System.Windows.Shapes.Ellipse Ellipse(Point center, Point rad, double ry, System.Windows.Media.Color color, System.Windows.Media.SolidColorBrush brush)
         {
             Ellipse el = new Ellipse();
             Point point2 = rad;
@@ -61,7 +61,7 @@ public interface IGraphic
             return el;
         }
 
-        public System.Windows.Shapes.Polygon Polygon(IEnumerable<Point> points, System.Windows.Media.Color color, IBrush fill) { 
+        public System.Windows.Shapes.Polygon Polygon(IEnumerable<Point> points, System.Windows.Media.Color color, System.Windows.Media.SolidColorBrush brush) { 
         return null;
         }
  
