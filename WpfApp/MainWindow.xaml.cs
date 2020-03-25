@@ -182,18 +182,22 @@ namespace WpfApp
                    "X: " + position.X +
                    "\n" +
                    "Y: " + position.Y;
-                    Mousepos2 = position;
-                    List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
-                    Points.Add(new MiniEditor.Point { X = Mousepos1.X, Y = Mousepos1.Y });
-                    Points.Add(new MiniEditor.Point { X = Mousepos2.X, Y = Mousepos2.Y});
-                    /*IFigure*/ fig = ViewModel.Create(CurrentFigureName, Points);
+                    if (position.Y < 700) //Чтобы не залазить на панель работы с выпадающим списком
+                    {
+                        Mousepos2 = position;
+                        List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
+                        Points.Add(new MiniEditor.Point { X = Mousepos1.X, Y = Mousepos1.Y });
+                        Points.Add(new MiniEditor.Point { X = Mousepos2.X, Y = Mousepos2.Y });
+                        /*IFigure*/
+                        fig = ViewModel.Create(CurrentFigureName, Points);
 
-                    ViewModel.Add.Execute(fig).Subscribe();
-                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
-                    MainCanvas.Children.Clear();
-                    DrawAll(false);
-                    ViewModel.Delete.Execute(fig).Subscribe();
-                    figUpdated = 1;
+                        ViewModel.Add.Execute(fig).Subscribe();
+                        this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                        MainCanvas.Children.Clear();
+                        DrawAll(false);
+                        ViewModel.Delete.Execute(fig).Subscribe();
+                        figUpdated = 1;
+                    }
                 }
                 else
                 {
@@ -227,6 +231,7 @@ namespace WpfApp
         {
             Button button = (Button)sender;
             CurrentBrush = (SolidColorBrush)button.Background;
+            MaincolorRect.Fill = button.Background;
         }
 
         private void DeteleFromList(object sender, MouseButtonEventArgs e)

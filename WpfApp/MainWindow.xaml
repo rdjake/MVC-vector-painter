@@ -53,7 +53,8 @@
         </Canvas>
 
 
-        <ListView ItemsSource="{Binding ViewModel.AllFigures}" MouseDoubleClick="DeteleFromList"/>
+        <ListView Panel.ZIndex="99" ItemsSource="{Binding ViewModel.AllFigures}" MouseDoubleClick="DeteleFromList"/>
+        <Rectangle Panel.ZIndex="9" Fill="White" Canvas.Left="0" Canvas.Top="0" Width="3000" Height="100" />
 
 
 
