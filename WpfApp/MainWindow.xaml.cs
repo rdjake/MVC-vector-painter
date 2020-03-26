@@ -1,4 +1,4 @@
-﻿using Microsoft.Win32;
+using Microsoft.Win32;
 using MiniEditor;
 using ReactiveUI;
 using System;
@@ -45,6 +45,7 @@ namespace WpfApp
 
         private  System.Windows.Media.SolidColorBrush CurrentBrush;
         private System.Windows.Media.SolidColorBrush CurrentBGColor;
+        private double Thickness = 5;
 
         private string CurrentFigureName = "Empty";
         private List<Button> Buttons = new List<Button>();
@@ -60,15 +61,15 @@ namespace WpfApp
             CurrentBrush = new System.Windows.Media.SolidColorBrush(Colors.Black);
             this.WhenActivated(disposer =>
             {
-                
+
                 Add = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    Random random = new Random();
-                    var C = new MiniEditor.Point { X = random.Next(100, 600), Y = random.Next(100, 600) };
-                    var C2 = new MiniEditor.Point { X = C.X + random.Next(-100, 100), Y = C.Y + random.Next(-100, 100) };
-                    var fig = new MiniEditor.Circle(C, C2);
-                    ViewModel.Add.Execute(fig).Subscribe();
-                    DrawAll(true);
-                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                    //Random random = new Random();
+                    //var C = new MiniEditor.Point { X = random.Next(100, 600), Y = random.Next(100, 600) };
+                    //var C2 = new MiniEditor.Point { X = C.X + random.Next(-100, 100), Y = C.Y + random.Next(-100, 100) };
+                    //var fig = new MiniEditor.Circle(C, C2);
+                    //ViewModel.Add.Execute(fig).Subscribe();
+                    //DrawAll(true);
+                    //this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     return default;
                 }).DisposeWith(disposer);
 
@@ -182,10 +183,6 @@ namespace WpfApp
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
-            Errorbox.Text = "LeftMousePressed" + "\n" +
-               "X: " + position.X +
-               "\n" +
-               "Y: " + position.Y;
             Mousepos1 = position;
         }
 
@@ -194,11 +191,6 @@ namespace WpfApp
         {
 
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
-            Errorbox.Text = "RightMousePressed" + "\n" +
-                "X: " + position.X +
-                "\n" +
-                "Y: " + position.Y;
-            
         }
 
         //Перемещение мыши
@@ -209,18 +201,28 @@ namespace WpfApp
             if (CurrentFigureName != "Empty") {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
-                    Errorbox.Text = "LeftMouseDrag" + "\n" +
-                   "X: " + position.X +
-                   "\n" +
-                   "Y: " + position.Y;
-                    if (position.Y < 700) //Чтобы не залазить на панель работы с выпадающим списком
+                    
+                    if (position.Y < 700 || position.X > 0) //Чтобы не залазить на панель работы с выпадающим списком
                     {
                         Mousepos2 = position;
                         List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
                         Points.Add(new MiniEditor.Point { X = Mousepos1.X, Y = Mousepos1.Y });
                         Points.Add(new MiniEditor.Point { X = Mousepos2.X, Y = Mousepos2.Y });
+                        MiniEditor.Brush br;
+                        br.Line.R = CurrentBrush.Color.R;
+                        br.Line.G = CurrentBrush.Color.G;
+                        br.Line.B = CurrentBrush.Color.B;
+                        br.Line.A = CurrentBrush.Color.A;
+
+                        //СЮДА ЦВЕТ ЗАЛИВКИ ИЗ ПАЛИТРЫ
+                        br.Fill.R = CurrentBGColor.Color.R;
+                        br.Fill.G = CurrentBGColor.Color.G;
+                        br.Fill.B = CurrentBGColor.Color.B;
+                        br.Fill.A = CurrentBGColor.Color.A;
+
+                        br.Thickness = Thickness;
                         /*IFigure*/
-                        fig = ViewModel.Create(CurrentFigureName, Points);
+                        fig = ViewModel.Create(CurrentFigureName, Points, br);
 
                         ViewModel.Add.Execute(fig).Subscribe();
                         this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
@@ -243,10 +245,7 @@ namespace WpfApp
                 //RightDrag
                 if (e.RightButton == MouseButtonState.Pressed)
                 {
-                    Errorbox.Text = "RightMouseDrag" + "\n" +
-                    "X: " + position.X +
-                     "\n" +
-                     "Y: " + position.Y;
+                   
                 }
             }
             else 
@@ -270,6 +269,13 @@ namespace WpfApp
             CurrentBGColor = (SolidColorBrush)button.Background;
             BackgroundRect.Fill = button.Background;
         }
+        private void ColorSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Thickness = slValue.Value;
+            this.Thick.Content = Thickness;
+            //this.NumberOfFigures.Content = Thickness;
+        }
+
 
         private void DeteleFromList(object sender, MouseButtonEventArgs e)
         {
@@ -290,24 +296,26 @@ namespace WpfApp
                 if (fig != null)
                 {
                     List<System.Windows.Point> C = new List<System.Windows.Point>(); //здесь будут точки текущей фигуры
-                    List<System.Windows.Media.SolidColorBrush> CBrush = new List<System.Windows.Media.SolidColorBrush>(); //Тут цвет текущей фигуры
+                    MiniEditor.Brush br;
                     foreach (var p in fig.Parameters)
                     {
-                        C.Add(new System.Windows.Point { X = ((MiniEditor.Point)fig[p]).X, Y = ((MiniEditor.Point)fig[p]).Y });
+                        if(fig[p].GetType().ToString() == "MiniEditor.Point") 
+                            C.Add(new System.Windows.Point { X = ((MiniEditor.Point)fig[p]).X, Y = ((MiniEditor.Point)fig[p]).Y });
                     }
+                    br = ((MiniEditor.Brush)fig["brush"]);
                     if (fig.Name == "Line")
                     {
-                        CurrentCanvas.Polyline(C, CurrentBrush.Color, 5);
+                      CurrentCanvas.Polyline(C, br);
                     }
 
                     if (fig.Name == "Circle")
                     {
-                        CurrentCanvas.Circle(C, Colors.Red, 5);
+                        CurrentCanvas.Circle(C, br);
                     }
 
                     if (fig.Name == "Rectangle")
                     {
-                        CurrentCanvas.Rectangle(C, Colors.Red, 5);
+                        CurrentCanvas.Rectangle(C, br);
                     }
                 }
             }
