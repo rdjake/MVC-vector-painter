@@ -30,21 +30,21 @@
             <TextBox x:Name="Errorbox" Text="Hello, world!" MaxLength ="100" Canvas.Left="490" Canvas.Top="1" Width="208" Height="49" />
             <Label x:Name="NumberOfFigures" Content="0" Canvas.Left="230" Canvas.Top="-4" Height="27" Width="29"/>
             <DockPanel Grid.Row="1" Width="300" Height="80" >
-                <Button Click="onColorSelect" Height="20" Width="20" Background="Black"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="Gray"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="White"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="Brown"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="BurlyWood"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="DarkBlue"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="MediumBlue"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="Blue"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="Purple"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="LightPink"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="Red"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="Orange"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="Yellow"/>
-                <Button Click="onColorSelect" Height="20" Width="20" Background="Pink" />
-                <Button Click="onColorSelect" Height="20" Width="20" Background="Green" />
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Black"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Gray"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="White"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Brown"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="BurlyWood"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="DarkBlue"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="MediumBlue"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Blue"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Purple"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="LightPink"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Red"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Orange"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Yellow"/>
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Pink" />
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Green" />
             </DockPanel>
         </Canvas>
         <Canvas x:Name="MainCanvas" Width="700" Height="700" Background="Transparent"  Panel.ZIndex="1">

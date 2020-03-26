@@ -44,6 +44,7 @@ namespace WpfApp
         private IGraphic CurrentCanvas;
 
         private  System.Windows.Media.SolidColorBrush CurrentBrush;
+        private System.Windows.Media.SolidColorBrush CurrentBGColor;
 
         private string CurrentFigureName = "Empty";
         private List<Button> Buttons = new List<Button>();
@@ -257,11 +258,17 @@ namespace WpfApp
         public event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangingEventHandler PropertyChanging;
 
-        private void onColorSelect(object sender, RoutedEventArgs e)
+        private void MainColorSelect(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
             CurrentBrush = (SolidColorBrush)button.Background;
             MaincolorRect.Fill = button.Background;
+        }
+        private void BgColorSelect(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            CurrentBGColor = (SolidColorBrush)button.Background;
+            BackgroundRect.Fill = button.Background;
         }
 
         private void DeteleFromList(object sender, MouseButtonEventArgs e)
