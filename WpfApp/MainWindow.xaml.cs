@@ -41,7 +41,9 @@ namespace WpfApp
         private System.Windows.Point Mousepos1, Mousepos2;
         private int RightPressed = 0, LeftPressed = 0;
 
-        public IGraphic CurrentCanvas;
+        private IGraphic CurrentCanvas;
+
+        private  System.Windows.Media.SolidColorBrush CurrentBrush;
 
         private string CurrentFigureName = "Empty";
         private List<Button> Buttons = new List<Button>();
@@ -54,6 +56,7 @@ namespace WpfApp
             DataContext = this;
             InitializeComponent();
             CurrentCanvas = new BuildFigure(MainCanvas);
+            CurrentBrush = new System.Windows.Media.SolidColorBrush(Colors.Black);
             this.WhenActivated(disposer =>
             {
                 
@@ -117,42 +120,60 @@ namespace WpfApp
             PropertyChanged.Invoke(this, args);
         }
 
-        //Функция для передачи координат ModelView
-        private void DrawFigure()
-        {
-            switch (CurrentFigureName)
-            {
-                case "Emplty": { break; }
-                case "Line": { break; }
-                case "Circle": { break; }
-                case "Rectangle": { break; }
-            }
-        }
-
         //Обработчик нажатия на кнопку линии
         private void Line_Button_Click(object sender, RoutedEventArgs e)
         {
-            LineButton.Background = System.Windows.Media.Brushes.DarkRed;
-            EllipseButton.Background = System.Windows.Media.Brushes.LightCyan;
-            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
-            CurrentFigureName = "Line";
+            if (CurrentFigureName == "Line")
+            {
+                LineButton.Background = System.Windows.Media.Brushes.LightGray;
+                EllipseButton.Background = System.Windows.Media.Brushes.LightGray;
+                PolygonButton.Background = System.Windows.Media.Brushes.LightGray;
+                CurrentFigureName = "Empty";
+            }
+            else
+            {
+                LineButton.Background = System.Windows.Media.Brushes.DarkRed;
+                EllipseButton.Background = System.Windows.Media.Brushes.LightCyan;
+                PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+                CurrentFigureName = "Line";
+            }
         }
         //Обработчик нажатия на кнопку круга
         private void Circle_Button_Click(object sender, RoutedEventArgs e)
         {
-            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
-            EllipseButton.Background = System.Windows.Media.Brushes.DarkRed;
-            PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
-            CurrentFigureName = "Circle";
+            if (CurrentFigureName == "Circle")
+            {
+                LineButton.Background = System.Windows.Media.Brushes.LightGray;
+                EllipseButton.Background = System.Windows.Media.Brushes.LightGray;
+                PolygonButton.Background = System.Windows.Media.Brushes.LightGray;
+                CurrentFigureName = "Empty";
+            }
+            else
+            {
+                LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+                EllipseButton.Background = System.Windows.Media.Brushes.DarkRed;
+                PolygonButton.Background = System.Windows.Media.Brushes.LightCyan;
+                CurrentFigureName = "Circle";
+            }
         }
 
         //Обработчик нажатия на кнопку полигона
         private void Polygon_Button_Click(object sender, RoutedEventArgs e)
         {
-            LineButton.Background = System.Windows.Media.Brushes.LightCyan;
-            EllipseButton.Background = System.Windows.Media.Brushes.LightCyan;
-            PolygonButton.Background = System.Windows.Media.Brushes.DarkRed;
-            CurrentFigureName = "Rectangle";
+            if (CurrentFigureName == "Rectangle")
+            {
+                LineButton.Background = System.Windows.Media.Brushes.LightGray;
+                EllipseButton.Background = System.Windows.Media.Brushes.LightGray;
+                PolygonButton.Background = System.Windows.Media.Brushes.LightGray;
+                CurrentFigureName = "Empty";
+            }
+            else
+            {
+                LineButton.Background = System.Windows.Media.Brushes.LightCyan;
+                EllipseButton.Background = System.Windows.Media.Brushes.LightCyan;
+                PolygonButton.Background = System.Windows.Media.Brushes.DarkRed;
+                CurrentFigureName = "Rectangle";
+            }
         }
 
 
@@ -191,18 +212,22 @@ namespace WpfApp
                    "X: " + position.X +
                    "\n" +
                    "Y: " + position.Y;
-                    Mousepos2 = position;
-                    List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
-                    Points.Add(new MiniEditor.Point { X = Mousepos1.X, Y = Mousepos1.Y });
-                    Points.Add(new MiniEditor.Point { X = Mousepos2.X, Y = Mousepos2.Y});
-                    /*IFigure*/ fig = ViewModel.Create(CurrentFigureName, Points);
+                    if (position.Y < 700) //Чтобы не залазить на панель работы с выпадающим списком
+                    {
+                        Mousepos2 = position;
+                        List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
+                        Points.Add(new MiniEditor.Point { X = Mousepos1.X, Y = Mousepos1.Y });
+                        Points.Add(new MiniEditor.Point { X = Mousepos2.X, Y = Mousepos2.Y });
+                        /*IFigure*/
+                        fig = ViewModel.Create(CurrentFigureName, Points);
 
-                    ViewModel.Add.Execute(fig).Subscribe();
-                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
-                    MainCanvas.Children.Clear();
-                    DrawAll(false);
-                    ViewModel.Delete.Execute(fig).Subscribe();
-                    figUpdated = 1;
+                        ViewModel.Add.Execute(fig).Subscribe();
+                        this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                        MainCanvas.Children.Clear();
+                        DrawAll(false);
+                        ViewModel.Delete.Execute(fig).Subscribe();
+                        figUpdated = 1;
+                    }
                 }
                 else
                 {
@@ -232,6 +257,13 @@ namespace WpfApp
         public event PropertyChangedEventHandler PropertyChanged;
         public event PropertyChangingEventHandler PropertyChanging;
 
+        private void onColorSelect(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            CurrentBrush = (SolidColorBrush)button.Background;
+            MaincolorRect.Fill = button.Background;
+        }
+
         private void DeteleFromList(object sender, MouseButtonEventArgs e)
         {
             ListView temp = sender as ListView;
@@ -251,14 +283,14 @@ namespace WpfApp
                 if (fig != null)
                 {
                     List<System.Windows.Point> C = new List<System.Windows.Point>(); //здесь будут точки текущей фигуры
+                    List<System.Windows.Media.SolidColorBrush> CBrush = new List<System.Windows.Media.SolidColorBrush>(); //Тут цвет текущей фигуры
                     foreach (var p in fig.Parameters)
                     {
                         C.Add(new System.Windows.Point { X = ((MiniEditor.Point)fig[p]).X, Y = ((MiniEditor.Point)fig[p]).Y });
-
                     }
                     if (fig.Name == "Line")
                     {
-                        CurrentCanvas.Polyline(C, Colors.Red, 5);
+                        CurrentCanvas.Polyline(C, CurrentBrush.Color, 5);
                     }
 
                     if (fig.Name == "Circle")

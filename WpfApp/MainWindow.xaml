@@ -16,8 +16,10 @@
         </DataTemplate>
     </Window.Resources>
     <StackPanel Height="815">
-        <Canvas Width="698" Height="50">
+        <Canvas  Panel.ZIndex="100" >
             <Rectangle Fill="LightBlue" Canvas.Left="0" Canvas.Top="0" Width="800" Height="50" />
+            <Rectangle Name="BackgroundRect" Fill="White" Canvas.Left="436" Canvas.Top="15" Width="26" Height="25" />
+            <Rectangle Name="MaincolorRect" Fill="Black" Canvas.Left="424" Canvas.Top="1" Width="25" Height="25" />
             <Button x:Name="AddButton" Content="Copy" Command="{Binding Add}" Width="55"  />
             <Button x:Name="DeleteButton" Content="Delete" Command="{Binding Delete}" Width="55" Canvas.Left="55"/>
             <Button x:Name="SaveAllButton" Content="Save" Command="{Binding SaveAll}" Width="55" Canvas.Left="110"/>
@@ -27,14 +29,32 @@
             <Button x:Name="PolygonButton" Content="Rectangle" Command="{Binding Polygon}" Width="55" Canvas.Left="350" Click="Polygon_Button_Click" />
             <TextBox x:Name="Errorbox" Text="Hello, world!" MaxLength ="100" Canvas.Left="490" Canvas.Top="1" Width="208" Height="49" />
             <Label x:Name="NumberOfFigures" Content="0" Canvas.Left="230" Canvas.Top="-4" Height="27" Width="29"/>
+            <DockPanel Grid.Row="1" Width="300" Height="80" >
+                <Button Click="onColorSelect" Height="20" Width="20" Background="Black"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="Gray"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="White"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="Brown"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="BurlyWood"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="DarkBlue"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="MediumBlue"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="Blue"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="Purple"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="LightPink"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="Red"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="Orange"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="Yellow"/>
+                <Button Click="onColorSelect" Height="20" Width="20" Background="Pink" />
+                <Button Click="onColorSelect" Height="20" Width="20" Background="Green" />
+            </DockPanel>
         </Canvas>
-        <Canvas x:Name="MainCanvas" Width="700" Height="700" Background="Transparent">
+        <Canvas x:Name="MainCanvas" Width="700" Height="700" Background="Transparent"  Panel.ZIndex="1">
 
 
         </Canvas>
 
 
-        <ListView ItemsSource="{Binding ViewModel.AllFigures}" MouseDoubleClick="DeteleFromList"/>
+        <ListView Panel.ZIndex="99" ItemsSource="{Binding ViewModel.AllFigures}" MouseDoubleClick="DeteleFromList"/>
+        <Rectangle Panel.ZIndex="9" Fill="White" Canvas.Left="0" Canvas.Top="0" Width="3000" Height="100" />
 
 
 
