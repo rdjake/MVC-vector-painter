@@ -75,7 +75,7 @@ namespace WpfApp
                 }).DisposeWith(disposer);
 
                 Delete = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    var fig = ViewModel.AllFigures.FirstOrDefault();
+                    //var fig = ViewModel.AllFigures.FirstOrDefault();
                     ViewModel.Delete.Execute(fig).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     MainCanvas.Children.Clear();
@@ -190,10 +190,30 @@ namespace WpfApp
         }
 
         //Нажатие правую кнопку мыши
-        private void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private async void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
 
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+            MiniEditor.Point p = new MiniEditor.Point { X = position.X, Y = position.Y };
+            foreach (var figure in ViewModel.AllFigures)
+            {
+                if (figure.Contain(p))
+                {
+                    fig = figure;
+                    MiniEditor.Brush oldBrush = (MiniEditor.Brush)fig["brush"];
+                    MiniEditor.Brush newBrush = oldBrush;
+                    oldBrush.Line.R = 128;
+                    oldBrush.Line.G = 128;
+                    oldBrush.Line.B = 128;
+                    fig["brush"] = oldBrush;
+                    DrawAll(true);
+                    await Task.Delay(100);
+                    fig["brush"] = newBrush;
+                    DrawAll(true);
+                    break;
+                }
+            }
+            
         }
 
         //Перемещение мыши
