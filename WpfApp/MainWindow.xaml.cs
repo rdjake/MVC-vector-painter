@@ -52,7 +52,7 @@ namespace WpfApp
 
         private IFigure fig;
         private int figUpdated = 0;
-
+        private bool moving = false;
         public MainWindow()
         {       
             DataContext = this;
@@ -253,7 +253,36 @@ namespace WpfApp
                 }
                 else
                 {
-                    //тут режим Empty, типа перетаскивание пусть включается
+                    if (e.LeftButton == MouseButtonState.Pressed)
+                    {
+                        //тут режим Empty, типа перетаскивание пусть включается
+                        
+                        MiniEditor.Point p = new MiniEditor.Point { X = position.X, Y = position.Y };
+                        if (!moving)
+                        {
+                            foreach (var figure in ViewModel.AllFigures)
+                            {
+                                if (figure.Contain(p))
+                                {
+                                    fig = figure;
+                                    moving = true;
+                                    figure.Move(p);
+                                    MainCanvas.Children.Clear();
+                                    DrawAll(false);
+                                    break;
+                                }
+                            }
+                        }
+                        else 
+                        {
+                            fig.Move(p);
+                            MainCanvas.Children.Clear();
+                            DrawAll(false);
+                        }
+                    }
+                    if (e.LeftButton == MouseButtonState.Released) { moving = false; }
+
+
                 }
             }
          }
