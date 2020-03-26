@@ -64,15 +64,23 @@ namespace WpfApp
             {
 
                 Add = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    //Random random = new Random();
-                    //var C = new MiniEditor.Point { X = random.Next(100, 600), Y = random.Next(100, 600) };
-                    //var C2 = new MiniEditor.Point { X = C.X + random.Next(-100, 100), Y = C.Y + random.Next(-100, 100) };
-                    //var fig = new MiniEditor.Circle(C, C2);
-                    //ViewModel.Add.Execute(fig).Subscribe();
-                    //DrawAll(true);
-                    //this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                    string type = fig.Name;
+                    var pars = fig.Parameters;
+                    List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
+                    foreach (var p in pars) {
+                        if (fig[p].GetType().ToString() == "MiniEditor.Point")
+                        {
+                            Points.Add(new MiniEditor.Point { X = ((MiniEditor.Point)fig[p]).X + 10, Y = ((MiniEditor.Point)fig[p]).Y + 10 });
+                        }
+                    }
+                    MiniEditor.Brush br = (MiniEditor.Brush)fig["brush"];
+
+                    IFigure NewFigure = ViewModel.Create(fig.Name, Points, br);
+                    ViewModel.Add.Execute(NewFigure).Subscribe();
+                    DrawAll(true);
+                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     return default;
-                }).DisposeWith(disposer);
+                }, ViewModel.Delete.CanExecute).DisposeWith(disposer);
 
                 Delete = ReactiveCommand.Create<Unit, Unit>(_ => {
                     //var fig = ViewModel.AllFigures.FirstOrDefault();
