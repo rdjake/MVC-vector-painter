@@ -18,20 +18,22 @@
     <StackPanel Height="815">
         <Canvas  Panel.ZIndex="100" >
             <Rectangle x:Name="Menu" Fill="LightBlue" Canvas.Left="0" Canvas.Top="0" Width="3000" Height="50" />
-            <Rectangle Name="BackgroundRect" Fill="White" Canvas.Left="491" Canvas.Top="17" Width="26" Height="25" />
-            <Rectangle Name="MaincolorRect" Fill="Black" Canvas.Left="479" Canvas.Top="4" Width="25" Height="26" />
+            <Line x:Name="SliderLine" Canvas.Left="470" Canvas.Top="10" X1="-10" X2="105" Y1="5" Y2="5" Width="120" Stroke="Black" StrokeThickness="5"/>
+            <Rectangle Name="BackgroundRect" Fill="White" Canvas.Left="626" Canvas.Top="17" Width="26" Height="25" />
+            <Rectangle Name="MaincolorRect" Fill="Black" Canvas.Left="614" Canvas.Top="4" Width="25" Height="26" />
             <Button x:Name="AddButton" Content="Copy" Command="{Binding Add}" Width="55"  />
             <Button x:Name="DeleteButton" Content="Delete" Command="{Binding Delete}" Width="55" Canvas.Left="55"/>
             <Button x:Name="SaveAllButton" Content="Save" Command="{Binding SaveAll}" Width="55" Canvas.Left="110"/>
             <Button x:Name="LoadAllButton" Content="Load" Command="{Binding LoadAll}" Width="55" Canvas.Left="165"/>
-            <Button x:Name="LineButton" Content="Line" Command="{Binding Line}" Width="52" Canvas.Left="259" Click="Line_Button_Click" />
-            <Button x:Name="EllipseButton" Content="Circle" Command="{Binding Ellipse}" Width="59" Canvas.Left="311" Click="Circle_Button_Click" />
-            <Button x:Name="PolygonButton" Content="Rectangle" Command="{Binding Polygon}" Width="59" Canvas.Left="370" Click="Polygon_Button_Click" />
-            <Label x:Name="NumberOfFigures" Content="0" Canvas.Left="225" Canvas.Top="-4" Height="27" Width="29" />
-            <Label x:Name="Thick" Content="5" Canvas.Left="426" Canvas.Top="25" Height="27" Width="32"/>
-            <Slider Name="slValue" Minimum="1" Maximum="15" TickFrequency="0.1" Canvas.Left="311" Canvas.Top="31" Width="118" IsSnapToTickEnabled="True" ValueChanged="ColorSlider_ValueChanged" Value="5"/>
+            <Button x:Name="LineButton" Content="Line" Width="52" Canvas.Left="259" Click="Line_Button_Click" />
+            <Button x:Name="EllipseButton" Content="Circle"  Width="59" Canvas.Left="311" Click="Circle_Button_Click" />
+            <Button x:Name="MoveButton" Content="Move" Width="59" Canvas.Left="311" Click="Move_Button_Click" Canvas.Top="24" />
+            <Button x:Name="PolygonButton" Content="Rectangle"  Width="59" Canvas.Left="370" Click="Polygon_Button_Click" />
+            <Label x:Name="NumberOfFigures" Content="0" Canvas.Left="225" Canvas.Top="-4" Height="27" Width="29" RenderTransformOrigin="0.848,0.52" />
+            <Label x:Name="Thick" Content="5" Canvas.Left="434" Canvas.Top="20" Height="26" Width="32"/>
+            <Slider Name="slValue" Minimum="1" Maximum="15" TickFrequency="0.1" Canvas.Left="463" Canvas.Top="24" Width="118" IsSnapToTickEnabled="True" ValueChanged="ColorSlider_ValueChanged" Value="5"/>
 
-            <DockPanel Grid.Row="1" Width="300" Height="80" >
+            <DockPanel Grid.Row="1" Width="300" Height="92" RenderTransformOrigin="0.497,0.331" Canvas.Top="-12" >
                 <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Black"/>
                 <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Gray"/>
                 <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="White"/>
@@ -46,7 +48,7 @@
                 <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Orange"/>
                 <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Yellow"/>
                 <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Pink" />
-                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Green" />
+                <Button Click="MainColorSelect" MouseRightButtonDown="BgColorSelect" Height="20" Width="20" Background="Green" RenderTransformOrigin="0.58,-0.638" />
             </DockPanel>
 
         </Canvas>

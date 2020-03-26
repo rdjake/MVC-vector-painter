@@ -39,8 +39,6 @@ namespace WpfApp
 
         //Обработчик мышки
         private System.Windows.Point Mousepos1, Mousepos2;
-        private int RightPressed = 0, LeftPressed = 0;
-
         private IGraphic CurrentCanvas;
 
         private  System.Windows.Media.SolidColorBrush CurrentBrush;
@@ -48,7 +46,6 @@ namespace WpfApp
         private double Thickness = 5;
 
         private string CurrentFigureName = "Empty";
-        private List<Button> Buttons = new List<Button>();
 
         private IFigure fig;
         private int figUpdated = 0;
@@ -257,8 +254,7 @@ namespace WpfApp
 
                         ViewModel.Add.Execute(fig).Subscribe();
                         this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
-                        MainCanvas.Children.Clear();
-                        DrawAll(false);
+                        DrawAll(true);
                         ViewModel.Delete.Execute(fig).Subscribe();
                         figUpdated = 1;
                         
@@ -295,8 +291,7 @@ namespace WpfApp
                                     fig = figure;
                                     moving = true;
                                     figure.Move(p);
-                                    MainCanvas.Children.Clear();
-                                    DrawAll(false);
+                                    DrawAll(true);
                                     break;
                                 }
                             }
@@ -304,13 +299,10 @@ namespace WpfApp
                         else 
                         {
                             fig.Move(p);
-                            MainCanvas.Children.Clear();
-                            DrawAll(false);
+                            DrawAll(true);
                         }
                     }
                     if (e.LeftButton == MouseButtonState.Released) { moving = false; }
-
-
                 }
             }
          }
@@ -323,6 +315,7 @@ namespace WpfApp
             Button button = (Button)sender;
             CurrentBrush = (SolidColorBrush)button.Background;
             MaincolorRect.Fill = button.Background;
+            SliderLine.Stroke = button.Background;
         }
         private void BgColorSelect(object sender, RoutedEventArgs e)
         {
@@ -334,6 +327,7 @@ namespace WpfApp
         {
             Thickness = slValue.Value;
             this.Thick.Content = Thickness;
+            SliderLine.StrokeThickness = Thickness;
         }
 
         private void DeteleFromList(object sender, MouseButtonEventArgs e)
@@ -342,8 +336,15 @@ namespace WpfApp
             var item = temp.SelectedItem as MiniEditor.IFigure;
             ViewModel.Delete.Execute(item).Subscribe();
             ViewModel.Add.Execute(item).Subscribe();
-            MainCanvas.Children.Clear();
             DrawAll(true);
+        }
+
+        private void Move_Button_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentFigureName = "Empty";
+            LineButton.Background = System.Windows.Media.Brushes.LightGray;
+            EllipseButton.Background = System.Windows.Media.Brushes.LightGray;
+            PolygonButton.Background = System.Windows.Media.Brushes.LightGray;
         }
 
         public void DrawAll(bool clearall)
