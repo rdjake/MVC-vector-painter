@@ -68,7 +68,7 @@ namespace ViewModel
             {
                 Figures.Insert(0,fig);
                 return default;
-            });
+            }, Figures.CountChanged.Select(i => i > 0));
 
             Delete = ReactiveCommand.Create<IFigure, Unit>(
             fig =>

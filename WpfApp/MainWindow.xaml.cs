@@ -64,18 +64,26 @@ namespace WpfApp
             {
 
                 Add = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    //Random random = new Random();
-                    //var C = new MiniEditor.Point { X = random.Next(100, 600), Y = random.Next(100, 600) };
-                    //var C2 = new MiniEditor.Point { X = C.X + random.Next(-100, 100), Y = C.Y + random.Next(-100, 100) };
-                    //var fig = new MiniEditor.Circle(C, C2);
-                    //ViewModel.Add.Execute(fig).Subscribe();
-                    //DrawAll(true);
-                    //this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                    string type = fig.Name;
+                    var pars = fig.Parameters;
+                    List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
+                    foreach (var p in pars) {
+                        if (fig[p].GetType().ToString() == "MiniEditor.Point")
+                        {
+                            Points.Add(new MiniEditor.Point { X = ((MiniEditor.Point)fig[p]).X + 10, Y = ((MiniEditor.Point)fig[p]).Y + 10 });
+                        }
+                    }
+                    MiniEditor.Brush br = (MiniEditor.Brush)fig["brush"];
+
+                    IFigure NewFigure = ViewModel.Create(fig.Name, Points, br);
+                    ViewModel.Add.Execute(NewFigure).Subscribe();
+                    DrawAll(true);
+                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     return default;
-                }).DisposeWith(disposer);
+                }, ViewModel.Delete.CanExecute).DisposeWith(disposer);
 
                 Delete = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    var fig = ViewModel.AllFigures.FirstOrDefault();
+                    //var fig = ViewModel.AllFigures.FirstOrDefault();
                     ViewModel.Delete.Execute(fig).Subscribe();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     MainCanvas.Children.Clear();
@@ -190,10 +198,30 @@ namespace WpfApp
         }
 
         //Нажатие правую кнопку мыши
-        private void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private async void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
 
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+            MiniEditor.Point p = new MiniEditor.Point { X = position.X, Y = position.Y };
+            foreach (var figure in ViewModel.AllFigures)
+            {
+                if (figure.Contain(p))
+                {
+                    fig = figure;
+                    MiniEditor.Brush oldBrush = (MiniEditor.Brush)fig["brush"];
+                    MiniEditor.Brush newBrush = oldBrush;
+                    oldBrush.Line.R = 128;
+                    oldBrush.Line.G = 128;
+                    oldBrush.Line.B = 128;
+                    fig["brush"] = oldBrush;
+                    DrawAll(true);
+                    await Task.Delay(100);
+                    fig["brush"] = newBrush;
+                    DrawAll(true);
+                    break;
+                }
+            }
+            
         }
 
         //Перемещение мыши
