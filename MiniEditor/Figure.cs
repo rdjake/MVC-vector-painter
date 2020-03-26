@@ -18,7 +18,13 @@ namespace MiniEditor
     {
         public byte R, G, B, A;
     }
-
+    //Структура для хранения цвета фигуры
+    public struct FigureColor
+    {
+        Color Fill;
+        Color Line;
+        double LineThickness;
+    }
     public interface IFigure
     {
         string Name { get; }
