@@ -59,6 +59,7 @@ namespace WpfApp
             InitializeComponent();
             CurrentCanvas = new BuildFigure(MainCanvas);
             CurrentBrush = new System.Windows.Media.SolidColorBrush(Colors.Black);
+            CurrentBGColor = new System.Windows.Media.SolidColorBrush(Colors.White);
             this.WhenActivated(disposer =>
             {
 
