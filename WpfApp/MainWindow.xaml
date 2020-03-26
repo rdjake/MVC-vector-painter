@@ -17,7 +17,7 @@
     </Window.Resources>
     <StackPanel Height="815">
         <Canvas  Panel.ZIndex="100" >
-            <Rectangle Fill="LightBlue" Canvas.Left="0" Canvas.Top="0" Width="3000" Height="50" />
+            <Rectangle x:Name="Menu" Fill="LightBlue" Canvas.Left="0" Canvas.Top="0" Width="3000" Height="50" />
             <Rectangle Name="BackgroundRect" Fill="White" Canvas.Left="491" Canvas.Top="17" Width="26" Height="25" />
             <Rectangle Name="MaincolorRect" Fill="Black" Canvas.Left="479" Canvas.Top="4" Width="25" Height="26" />
             <Button x:Name="AddButton" Content="Copy" Command="{Binding Add}" Width="55"  />

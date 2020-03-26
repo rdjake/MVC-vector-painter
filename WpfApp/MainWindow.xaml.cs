@@ -183,8 +183,10 @@ namespace WpfApp
         //Нажатие на левую кнопку мыши
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
-            Mousepos1 = position;
+            if (position.Y < MainCanvas.Height && position.Y > Menu.Height)
+                Mousepos1 = position;
         }
 
         //Нажатие правую кнопку мыши
@@ -198,60 +200,64 @@ namespace WpfApp
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
-            //LeftDrag
-            if (CurrentFigureName != "Empty") {
-                if (e.LeftButton == MouseButtonState.Pressed)
+            if (position.Y < MainCanvas.Height && position.Y > Menu.Height)
+            {
+                //LeftDrag
+                if (CurrentFigureName != "Empty")
                 {
-                    
-                    if (position.Y < 700 || position.X > 0) //Чтобы не залазить на панель работы с выпадающим списком
+                    if (e.LeftButton == MouseButtonState.Pressed)
                     {
-                        Mousepos2 = position;
-                        List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
-                        Points.Add(new MiniEditor.Point { X = Mousepos1.X, Y = Mousepos1.Y });
-                        Points.Add(new MiniEditor.Point { X = Mousepos2.X, Y = Mousepos2.Y });
-                        MiniEditor.Brush br;
-                        br.Line.R = CurrentBrush.Color.R;
-                        br.Line.G = CurrentBrush.Color.G;
-                        br.Line.B = CurrentBrush.Color.B;
-                        br.Line.A = CurrentBrush.Color.A;
 
-                        //СЮДА ЦВЕТ ЗАЛИВКИ ИЗ ПАЛИТРЫ
-                        br.Fill.R = CurrentBGColor.Color.R;
-                        br.Fill.G = CurrentBGColor.Color.G;
-                        br.Fill.B = CurrentBGColor.Color.B;
-                        br.Fill.A = CurrentBGColor.Color.A;
+                        if (position.Y < 700 || position.X > 0) //Чтобы не залазить на панель работы с выпадающим списком
+                        {
+                            Mousepos2 = position;
+                            List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
+                            Points.Add(new MiniEditor.Point { X = Mousepos1.X, Y = Mousepos1.Y });
+                            Points.Add(new MiniEditor.Point { X = Mousepos2.X, Y = Mousepos2.Y });
+                            MiniEditor.Brush br;
+                            br.Line.R = CurrentBrush.Color.R;
+                            br.Line.G = CurrentBrush.Color.G;
+                            br.Line.B = CurrentBrush.Color.B;
+                            br.Line.A = CurrentBrush.Color.A;
 
-                        br.Thickness = Thickness;
-                        /*IFigure*/
-                        fig = ViewModel.Create(CurrentFigureName, Points, br);
+                            //СЮДА ЦВЕТ ЗАЛИВКИ ИЗ ПАЛИТРЫ
+                            br.Fill.R = CurrentBGColor.Color.R;
+                            br.Fill.G = CurrentBGColor.Color.G;
+                            br.Fill.B = CurrentBGColor.Color.B;
+                            br.Fill.A = CurrentBGColor.Color.A;
 
-                        ViewModel.Add.Execute(fig).Subscribe();
-                        this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
-                        MainCanvas.Children.Clear();
-                        DrawAll(false);
-                        ViewModel.Delete.Execute(fig).Subscribe();
-                        figUpdated = 1;
+                            br.Thickness = Thickness;
+                            /*IFigure*/
+                            fig = ViewModel.Create(CurrentFigureName, Points, br);
+
+                            ViewModel.Add.Execute(fig).Subscribe();
+                            this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                            MainCanvas.Children.Clear();
+                            DrawAll(false);
+                            ViewModel.Delete.Execute(fig).Subscribe();
+                            figUpdated = 1;
+                        }
+                    }
+                    else
+                    {
+                        if (figUpdated == 1)
+                        {
+                            ViewModel.Add.Execute(fig).Subscribe();
+                            DrawAll(false);
+                            figUpdated = 0;
+                        }
+                    }
+
+                    //RightDrag
+                    if (e.RightButton == MouseButtonState.Pressed)
+                    {
+
                     }
                 }
                 else
                 {
-                    if (figUpdated == 1)
-                    {
-                        ViewModel.Add.Execute(fig).Subscribe();
-                        DrawAll(false);
-                        figUpdated = 0;
-                    }
+                    //тут режим Empty, типа перетаскивание пусть включается
                 }
-
-                //RightDrag
-                if (e.RightButton == MouseButtonState.Pressed)
-                {
-                   
-                }
-            }
-            else 
-            {
-                //тут режим Empty, типа перетаскивание пусть включается
             }
          }
 
