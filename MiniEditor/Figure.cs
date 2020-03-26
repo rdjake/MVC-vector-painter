@@ -27,7 +27,8 @@ namespace MiniEditor
     public interface IFigure
     {
         string Name { get; }
-
+        public bool Contain(Point p);
+        public void Move(Point vector);
         IEnumerable<string> Parameters { get; }
         object this[string name] { get; set; }
         void Draw(IGraphic graphic);
@@ -97,12 +98,19 @@ namespace MiniEditor
         {
             graphic.Polygon(new[] { A, B }, new Color { R = 255, G = 0, B = 0, A = 128 });
         }
+        public bool Contain(Point p)
+        {  
+            double m = (B.Y - A.Y) / (B.X - A.X);
+            return Math.Abs(p.Y - (m * p.X + A.Y - m * A.X)) < brush.Thickness;
+        }
+    
         public void Move(Point vector)
         {
-            A.X += vector.X;
-            A.Y += vector.Y;
-            B.X += vector.X;
-            B.Y += vector.Y;
+            Point temp = new Point { X = vector.X - (A.X + B.X) / 2.0, Y = vector.Y - (A.Y + B.Y) / 2.0 };
+            A.X += temp.X;
+            A.Y += temp.Y;
+            B.X += temp.X;
+            B.Y += temp.Y;
         }
 
         public void Rotate(double angle)
@@ -198,16 +206,23 @@ namespace MiniEditor
 
             graphic.Polygon(new[] { A, B, C, D }, new Color { R = 255, G = 0, B = 0, A = 128 });
         }
+        public bool Contain(Point p)
+        {
+            if (p.X > Math.Max(A.X, C.X) || p.X < Math.Min(A.X, C.X) || p.Y > Math.Max(A.Y, C.Y) || p.Y < Math.Min(A.Y, C.Y))
+                return false;
+            else return true;
+        }
         public void Move(Point vector)
         {
-            A.X += vector.X;
-            A.Y += vector.Y;
-            B.X += vector.X;
-            B.Y += vector.Y;
-            C.X += vector.X;
-            C.Y += vector.Y;
-            D.X += vector.X;
-            D.Y += vector.Y;
+            Point temp = new Point { X = vector.X - (A.X + C.X) / 2.0, Y = vector.Y - (A.Y + C.Y) / 2.0 };
+            A.X += temp.X;
+            A.Y += temp.Y;
+            B.X += temp.X;
+            B.Y += temp.Y;
+            C.X += temp.X;
+            C.Y += temp.Y;
+            D.X += temp.X;
+            D.Y += temp.Y;
 
         }
         public void Rotate(double angle)
@@ -261,13 +276,14 @@ namespace MiniEditor
         {
             C = c1; 
             C2 = c2;
-            R = Math.Sqrt((c2.X - c1.X)* (c2.X - c1.X) + (c2.Y - c1.Y) * (c2.Y - c1.Y));
+            Rx = Math.Abs(c2.X - c1.X);
+            Ry = Math.Abs(c2.Y - c1.Y);
             brush = br;
         }
 
         Point C;
         Point C2;
-        double R;
+        double Rx, Ry;
         Brush brush;
         public IEnumerable<string> Parameters { get; } = new[] { "C", "C2", "brush" };
 
@@ -313,16 +329,21 @@ namespace MiniEditor
         }
         public void Move(Point vector)
         {
-            C.X += vector.X;
-            C.Y += vector.Y;
+            Point temp = new Point { X = vector.X - C.X, Y = vector.Y - C.Y };
+            C.X = vector.X;
+            C.Y = vector.Y;
+            C2.X += temp.X;
+            C2.Y += temp.Y;
         }
         public bool Contain(Point p)
         {
-            return R > Math.Sqrt((p.X - C.X) * (p.X - C.X) + (p.Y - C.Y) * (p.Y - C.Y));
+
+            return (((p.X - C.X) * (p.X - C.X)) / (Rx * Rx) + ((p.Y - C.Y)*(p.Y - C.Y))/(Ry*Ry)) <= 1.0;
         }
         public void Scale(double scale)
         {
-            R *= scale;
+            Rx *= scale;
+            Ry *= scale;
         }
         public string Name => "Circle";
     }

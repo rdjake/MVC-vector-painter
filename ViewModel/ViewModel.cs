@@ -68,7 +68,7 @@ namespace ViewModel
             {
                 Figures.Insert(0,fig);
                 return default;
-            });
+            }, Figures.CountChanged.Select(i => i > 0));
 
             Delete = ReactiveCommand.Create<IFigure, Unit>(
             fig =>
@@ -126,7 +126,7 @@ namespace ViewModel
                                 sw.Write(((MiniEditor.Point)figure[p]).X + "\t");
                                 sw.Write(((MiniEditor.Point)figure[p]).Y + "\t");
                             }
-                            if (figure[p].GetType().ToString() == "Brush")
+                            if (figure[p].GetType().ToString() == "MiniEditor.Brush")
                             {
                                 sw.Write(((MiniEditor.Brush)figure[p]).Line.R + "\t");
                                 sw.Write(((MiniEditor.Brush)figure[p]).Line.G + "\t");
@@ -177,12 +177,12 @@ namespace ViewModel
                             br.Line.B = BitConverter.GetBytes(Int32.Parse(figure[index+2]))[0];
                             br.Line.A = BitConverter.GetBytes(Int32.Parse(figure[index+3]))[0];
 
-                            br.Fill.R = BitConverter.GetBytes(Int32.Parse(figure[index+3]))[0];
-                            br.Fill.G = BitConverter.GetBytes(Int32.Parse(figure[index+4]))[0];
-                            br.Fill.B = BitConverter.GetBytes(Int32.Parse(figure[index+5]))[0];
-                            br.Fill.A = BitConverter.GetBytes(Int32.Parse(figure[index+6]))[0];
+                            br.Fill.R = BitConverter.GetBytes(Int32.Parse(figure[index+4]))[0];
+                            br.Fill.G = BitConverter.GetBytes(Int32.Parse(figure[index+5]))[0];
+                            br.Fill.B = BitConverter.GetBytes(Int32.Parse(figure[index+6]))[0];
+                            br.Fill.A = BitConverter.GetBytes(Int32.Parse(figure[index+7]))[0];
 
-                            br.Thickness = Double.Parse(figure[index+7]);
+                            br.Thickness = Double.Parse(figure[index+8]);
 
                             IFigure NewFigure = Create(type, Points, br);
                             Figures.Add(NewFigure);

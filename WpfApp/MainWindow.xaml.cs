@@ -52,7 +52,7 @@ namespace WpfApp
 
         private IFigure fig;
         private int figUpdated = 0;
-
+        private bool moving = false;
         public MainWindow()
         {       
             DataContext = this;
@@ -64,19 +64,27 @@ namespace WpfApp
             {
 
                 Add = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    //Random random = new Random();
-                    //var C = new MiniEditor.Point { X = random.Next(100, 600), Y = random.Next(100, 600) };
-                    //var C2 = new MiniEditor.Point { X = C.X + random.Next(-100, 100), Y = C.Y + random.Next(-100, 100) };
-                    //var fig = new MiniEditor.Circle(C, C2);
-                    //ViewModel.Add.Execute(fig).Subscribe();
-                    //DrawAll(true);
-                    //this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                    string type = fig.Name;
+                    var pars = fig.Parameters;
+                    List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
+                    foreach (var p in pars) {
+                        if (fig[p].GetType().ToString() == "MiniEditor.Point")
+                        {
+                            Points.Add(new MiniEditor.Point { X = ((MiniEditor.Point)fig[p]).X + 10, Y = ((MiniEditor.Point)fig[p]).Y + 10 });
+                        }
+                    }
+                    MiniEditor.Brush br = (MiniEditor.Brush)fig["brush"];
+
+                    IFigure NewFigure = ViewModel.Create(fig.Name, Points, br);
+                    ViewModel.Add.Execute(NewFigure).Subscribe();
+                    DrawAll(true);
+                    this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     return default;
-                }).DisposeWith(disposer);
+                }, ViewModel.Delete.CanExecute).DisposeWith(disposer);
 
                 Delete = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    var fig = ViewModel.AllFigures.FirstOrDefault();
                     ViewModel.Delete.Execute(fig).Subscribe();
+                    fig = ViewModel.AllFigures.FirstOrDefault();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     MainCanvas.Children.Clear();
                     DrawAll(false);
@@ -183,27 +191,49 @@ namespace WpfApp
         //Нажатие на левую кнопку мыши
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
-            Mousepos1 = position;
+            if (position.Y < MainCanvas.Height && position.Y > Menu.Height)
+                Mousepos1 = position;
         }
 
         //Нажатие правую кнопку мыши
-        private void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private async void Window_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
         {
 
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
+            MiniEditor.Point p = new MiniEditor.Point { X = position.X, Y = position.Y };
+            foreach (var figure in ViewModel.AllFigures)
+            {
+                if (figure.Contain(p))
+                {
+                    fig = figure;
+                    MiniEditor.Brush oldBrush = (MiniEditor.Brush)fig["brush"];
+                    MiniEditor.Brush newBrush = oldBrush;
+                    oldBrush.Line.R = 128;
+                    oldBrush.Line.G = 128;
+                    oldBrush.Line.B = 128;
+                    fig["brush"] = oldBrush;
+                    DrawAll(true);
+                    await Task.Delay(100);
+                    fig["brush"] = newBrush;
+                    DrawAll(true);
+                    break;
+                }
+            }
+            
         }
 
         //Перемещение мыши
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
-            //LeftDrag
-            if (CurrentFigureName != "Empty") {
-                if (e.LeftButton == MouseButtonState.Pressed)
+            if (position.Y < MainCanvas.Height && position.Y > Menu.Height)
+            {
+                //LeftDrag
+                if (CurrentFigureName != "Empty")
                 {
-                    
-                    if (position.Y < 700 && position.Y > 50 ) //Чтобы не залазить на панель работы с выпадающим списком
+                    if (e.LeftButton == MouseButtonState.Pressed)
                     {
                         Mousepos2 = position;
                         List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
@@ -231,27 +261,57 @@ namespace WpfApp
                         DrawAll(false);
                         ViewModel.Delete.Execute(fig).Subscribe();
                         figUpdated = 1;
+                        
+                    }
+                    else
+                    {
+                        if (figUpdated == 1)
+                        {
+                            ViewModel.Add.Execute(fig).Subscribe();
+                            DrawAll(false);
+                            figUpdated = 0;
+                        }
+                    }
+
+                    //RightDrag
+                    if (e.RightButton == MouseButtonState.Pressed)
+                    {
+
                     }
                 }
                 else
                 {
-                    if (figUpdated == 1)
+                    if (e.LeftButton == MouseButtonState.Pressed)
                     {
-                        ViewModel.Add.Execute(fig).Subscribe();
-                        DrawAll(false);
-                        figUpdated = 0;
+                        //тут режим Empty, типа перетаскивание пусть включается
+                        
+                        MiniEditor.Point p = new MiniEditor.Point { X = position.X, Y = position.Y };
+                        if (!moving)
+                        {
+                            foreach (var figure in ViewModel.AllFigures)
+                            {
+                                if (figure.Contain(p))
+                                {
+                                    fig = figure;
+                                    moving = true;
+                                    figure.Move(p);
+                                    MainCanvas.Children.Clear();
+                                    DrawAll(false);
+                                    break;
+                                }
+                            }
+                        }
+                        else 
+                        {
+                            fig.Move(p);
+                            MainCanvas.Children.Clear();
+                            DrawAll(false);
+                        }
                     }
-                }
+                    if (e.LeftButton == MouseButtonState.Released) { moving = false; }
 
-                //RightDrag
-                if (e.RightButton == MouseButtonState.Pressed)
-                {
-                   
+
                 }
-            }
-            else 
-            {
-                //тут режим Empty, типа перетаскивание пусть включается
             }
          }
 
@@ -275,11 +335,6 @@ namespace WpfApp
             Thickness = slValue.Value;
             this.Thick.Content = Thickness;
         }
-        private void SliderActive(object sender, MouseButtonEventArgs e)
-        {
-            
-        }
-
 
         private void DeteleFromList(object sender, MouseButtonEventArgs e)
         {
