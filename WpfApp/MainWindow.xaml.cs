@@ -183,8 +183,10 @@ namespace WpfApp
         //Нажатие на левую кнопку мыши
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
-            Mousepos1 = position;
+            if (position.Y < MainCanvas.Height && position.Y > Menu.Height)
+                Mousepos1 = position;
         }
 
         //Нажатие правую кнопку мыши
@@ -198,12 +200,12 @@ namespace WpfApp
         private void Window_MouseMove(object sender, MouseEventArgs e)
         {
             System.Windows.Point position = Mouse.GetPosition(MainCanvas);
-            //LeftDrag
-            if (CurrentFigureName != "Empty") {
-                if (e.LeftButton == MouseButtonState.Pressed)
+            if (position.Y < MainCanvas.Height && position.Y > Menu.Height)
+            {
+                //LeftDrag
+                if (CurrentFigureName != "Empty")
                 {
-                    
-                    if (position.Y < 700 || position.X > 0) //Чтобы не залазить на панель работы с выпадающим списком
+                    if (e.LeftButton == MouseButtonState.Pressed)
                     {
                         Mousepos2 = position;
                         List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
@@ -231,27 +233,28 @@ namespace WpfApp
                         DrawAll(false);
                         ViewModel.Delete.Execute(fig).Subscribe();
                         figUpdated = 1;
+                        
+                    }
+                    else
+                    {
+                        if (figUpdated == 1)
+                        {
+                            ViewModel.Add.Execute(fig).Subscribe();
+                            DrawAll(false);
+                            figUpdated = 0;
+                        }
+                    }
+
+                    //RightDrag
+                    if (e.RightButton == MouseButtonState.Pressed)
+                    {
+
                     }
                 }
                 else
                 {
-                    if (figUpdated == 1)
-                    {
-                        ViewModel.Add.Execute(fig).Subscribe();
-                        DrawAll(false);
-                        figUpdated = 0;
-                    }
+                    //тут режим Empty, типа перетаскивание пусть включается
                 }
-
-                //RightDrag
-                if (e.RightButton == MouseButtonState.Pressed)
-                {
-                   
-                }
-            }
-            else 
-            {
-                //тут режим Empty, типа перетаскивание пусть включается
             }
          }
 
