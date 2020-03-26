@@ -207,36 +207,33 @@ namespace WpfApp
                 {
                     if (e.LeftButton == MouseButtonState.Pressed)
                     {
+                        Mousepos2 = position;
+                        List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
+                        Points.Add(new MiniEditor.Point { X = Mousepos1.X, Y = Mousepos1.Y });
+                        Points.Add(new MiniEditor.Point { X = Mousepos2.X, Y = Mousepos2.Y });
+                        MiniEditor.Brush br;
+                        br.Line.R = CurrentBrush.Color.R;
+                        br.Line.G = CurrentBrush.Color.G;
+                        br.Line.B = CurrentBrush.Color.B;
+                        br.Line.A = CurrentBrush.Color.A;
 
-                        if (position.Y < 700 || position.X > 0) //Чтобы не залазить на панель работы с выпадающим списком
-                        {
-                            Mousepos2 = position;
-                            List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
-                            Points.Add(new MiniEditor.Point { X = Mousepos1.X, Y = Mousepos1.Y });
-                            Points.Add(new MiniEditor.Point { X = Mousepos2.X, Y = Mousepos2.Y });
-                            MiniEditor.Brush br;
-                            br.Line.R = CurrentBrush.Color.R;
-                            br.Line.G = CurrentBrush.Color.G;
-                            br.Line.B = CurrentBrush.Color.B;
-                            br.Line.A = CurrentBrush.Color.A;
+                        //СЮДА ЦВЕТ ЗАЛИВКИ ИЗ ПАЛИТРЫ
+                        br.Fill.R = CurrentBGColor.Color.R;
+                        br.Fill.G = CurrentBGColor.Color.G;
+                        br.Fill.B = CurrentBGColor.Color.B;
+                        br.Fill.A = CurrentBGColor.Color.A;
 
-                            //СЮДА ЦВЕТ ЗАЛИВКИ ИЗ ПАЛИТРЫ
-                            br.Fill.R = CurrentBGColor.Color.R;
-                            br.Fill.G = CurrentBGColor.Color.G;
-                            br.Fill.B = CurrentBGColor.Color.B;
-                            br.Fill.A = CurrentBGColor.Color.A;
+                        br.Thickness = Thickness;
+                        /*IFigure*/
+                        fig = ViewModel.Create(CurrentFigureName, Points, br);
 
-                            br.Thickness = Thickness;
-                            /*IFigure*/
-                            fig = ViewModel.Create(CurrentFigureName, Points, br);
-
-                            ViewModel.Add.Execute(fig).Subscribe();
-                            this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
-                            MainCanvas.Children.Clear();
-                            DrawAll(false);
-                            ViewModel.Delete.Execute(fig).Subscribe();
-                            figUpdated = 1;
-                        }
+                        ViewModel.Add.Execute(fig).Subscribe();
+                        this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
+                        MainCanvas.Children.Clear();
+                        DrawAll(false);
+                        ViewModel.Delete.Execute(fig).Subscribe();
+                        figUpdated = 1;
+                        
                     }
                     else
                     {
