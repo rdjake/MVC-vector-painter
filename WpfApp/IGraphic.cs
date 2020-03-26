@@ -81,14 +81,14 @@ public class BuildFigure : IGraphic
  
         double radius = (C[1].X - C[0].X);
         double radius2 = (C[1].Y - C[0].Y);
-        rectangle.Width = 2 * Math.Abs(radius);
-        rectangle.Height = 2 * Math.Abs(radius2);
+        rectangle.Width = Math.Abs(radius);
+        rectangle.Height = Math.Abs(radius2);
 
         canvas.Children.Add(rectangle);
         double Left, Top;
-        if (radius > 0) Left = C[0].X - radius;
+        if (radius > 0) Left = C[0].X;
         else Left = C[1].X;
-        if (radius2 > 0) Top = C[0].Y - radius2;
+        if (radius2 > 0) Top = C[0].Y;
         else Top = C[1].Y;
         Canvas.SetLeft(rectangle, Left);
         Canvas.SetTop(rectangle, Top);
@@ -107,7 +107,7 @@ public class BuildFigure : IGraphic
         double radius = (C[1].X - C[0].X);
         double radius2 = (C[1].Y - C[0].Y);
         myEllipse.Width = 2 * Math.Abs(radius);
-        myEllipse.Height = 2 * Math.Abs(radius2);
+        myEllipse.Height = 2 * Math.Abs(radius2); 
 
         canvas.Children.Add(myEllipse);
         double Left, Top;
