@@ -203,7 +203,7 @@ namespace WpfApp
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {
                     
-                    if (position.Y < 700 || position.X > 0) //Чтобы не залазить на панель работы с выпадающим списком
+                    if (position.Y < 700 && position.Y > 50 ) //Чтобы не залазить на панель работы с выпадающим списком
                     {
                         Mousepos2 = position;
                         List<MiniEditor.Point> Points = new List<MiniEditor.Point>();
@@ -274,7 +274,10 @@ namespace WpfApp
         {
             Thickness = slValue.Value;
             this.Thick.Content = Thickness;
-            //this.NumberOfFigures.Content = Thickness;
+        }
+        private void SliderActive(object sender, MouseButtonEventArgs e)
+        {
+            
         }
 
 
