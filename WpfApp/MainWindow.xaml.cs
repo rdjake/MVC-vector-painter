@@ -83,8 +83,8 @@ namespace WpfApp
                 }, ViewModel.Delete.CanExecute).DisposeWith(disposer);
 
                 Delete = ReactiveCommand.Create<Unit, Unit>(_ => {
-                    //var fig = ViewModel.AllFigures.FirstOrDefault();
                     ViewModel.Delete.Execute(fig).Subscribe();
+                    fig = ViewModel.AllFigures.FirstOrDefault();
                     this.NumberOfFigures.Content = ViewModel.AllFigures.Count();
                     MainCanvas.Children.Clear();
                     DrawAll(false);
@@ -334,9 +334,7 @@ namespace WpfApp
         {
             Thickness = slValue.Value;
             this.Thick.Content = Thickness;
-            //this.NumberOfFigures.Content = Thickness;
         }
-
 
         private void DeteleFromList(object sender, MouseButtonEventArgs e)
         {
