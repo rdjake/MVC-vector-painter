@@ -1,4 +1,4 @@
-﻿using ReactiveUI;
+using ReactiveUI;
 using System;
 using DynamicData;
 using MiniEditor;
@@ -12,6 +12,7 @@ using System.Reactive.Linq;
 using System.IO;
 using System.Diagnostics;
 using Prism.Commands;
+using System.Text;
 
 namespace ViewModel
 {
@@ -33,16 +34,16 @@ namespace ViewModel
         {
             return importClass.AvailableFigures.First(f => f.Metadata.Name == type).Value.NumberOfPoints;
         }
-        public IFigure Create(string type, IEnumerable<Point> points)
+        public IFigure Create(string type, IEnumerable<Point> points, Brush brush)
         {
-            return importClass.AvailableFigures.First(f => f.Metadata.Name == type).Value.Create(points);
+            return importClass.AvailableFigures.First(f => f.Metadata.Name == type).Value.Create(points, brush);
         }
 
         public ReactiveCommand<IFigure, Unit> Add { get; }
         public ReactiveCommand<IFigure, Unit> Delete { get; }
         public ReactiveCommand<IGraphic, Unit> Draw { get; }
         public ReactiveCommand<IGraphic, Unit> SaveAll { get; }
-        public ReactiveCommand<IGraphic, Unit> LoadAll { get; }
+        public ReactiveCommand<string, Unit> LoadAll { get; }
         static ViewModel()
         {
             System.Reflection.Assembly[] assemblies = { typeof(Point).Assembly };
@@ -60,9 +61,8 @@ namespace ViewModel
 
         public ViewModel()
         {
-
-
             Figures.Connect().Bind(out allFigures).Subscribe();
+
             Add = ReactiveCommand.Create<IFigure, Unit>(
             fig =>
             {
@@ -126,6 +126,20 @@ namespace ViewModel
                                 sw.Write(((MiniEditor.Point)figure[p]).X + "\t");
                                 sw.Write(((MiniEditor.Point)figure[p]).Y + "\t");
                             }
+                            if (figure[p].GetType().ToString() == "Brush")
+                            {
+                                sw.Write(((MiniEditor.Brush)figure[p]).Line.R + "\t");
+                                sw.Write(((MiniEditor.Brush)figure[p]).Line.G + "\t");
+                                sw.Write(((MiniEditor.Brush)figure[p]).Line.B + "\t");
+                                sw.Write(((MiniEditor.Brush)figure[p]).Line.A + "\t");
+
+                                sw.Write(((MiniEditor.Brush)figure[p]).Fill.R + "\t");
+                                sw.Write(((MiniEditor.Brush)figure[p]).Fill.G + "\t");
+                                sw.Write(((MiniEditor.Brush)figure[p]).Fill.B + "\t");
+                                sw.Write(((MiniEditor.Brush)figure[p]).Fill.A + "\t");
+
+                                sw.Write(((MiniEditor.Brush)figure[p]).Thickness + "\t");
+                            }
                         }
                         sw.Write("\n");
                     }
@@ -135,15 +149,13 @@ namespace ViewModel
             }, Figures.CountChanged.Select(i => i > 0));
 
             //пока что загружает последнее сохранение
-            LoadAll = ReactiveCommand.Create<IGraphic, Unit>(_ =>
+            LoadAll = ReactiveCommand.Create<string, Unit>(file =>
             {
-                string path, pathList = Directory.GetCurrentDirectory() + @"\SaveList.txt";
+                string pathList = Directory.GetCurrentDirectory() + @"\SaveList.txt";
                 if (!File.Exists(pathList)) error = "Нет сохранений";
                 else
                 {
-                    string LastSave = File.ReadLines(pathList).Last();
-                    path = Directory.GetCurrentDirectory() + @"\" + LastSave;
-                    using (StreamReader sw = new StreamReader(path))
+                    using (StreamReader sw = new StreamReader(file))
                     {
                         int count = Int32.Parse(sw.ReadLine()); //количество фигур
                         for (int i = 0; i < count; i++)
@@ -151,15 +163,28 @@ namespace ViewModel
                             string[] figure = sw.ReadLine().Split("\t");
                             figure = figure.Take(figure.Count() - 1).ToArray();
                             string type = figure[0];
-                            int param = NumberOfParameters(type); //количетсво параметров (встроеное)
+                            int param = NumberOfParameters(type); //только количество точек
                             int index = 1;
                             List<Point> Points = new List<Point>(); //считаем, что параметры только точки
                             for (int j = 0; j < param; j++)
                             {
-                                Points.Add(new Point { X = Int32.Parse(figure[index]), Y = Int32.Parse(figure[index + 1]) });
+                                Points.Add(new Point { X = Double.Parse(figure[index]), Y = Double.Parse(figure[index + 1]) });
                                 index += 2;
                             }
-                            IFigure NewFigure = Create(type, Points);
+                            Brush br;
+                            br.Line.R = BitConverter.GetBytes(Int32.Parse(figure[index]))[0];
+                            br.Line.G = BitConverter.GetBytes(Int32.Parse(figure[index+1]))[0];
+                            br.Line.B = BitConverter.GetBytes(Int32.Parse(figure[index+2]))[0];
+                            br.Line.A = BitConverter.GetBytes(Int32.Parse(figure[index+3]))[0];
+
+                            br.Fill.R = BitConverter.GetBytes(Int32.Parse(figure[index+3]))[0];
+                            br.Fill.G = BitConverter.GetBytes(Int32.Parse(figure[index+4]))[0];
+                            br.Fill.B = BitConverter.GetBytes(Int32.Parse(figure[index+5]))[0];
+                            br.Fill.A = BitConverter.GetBytes(Int32.Parse(figure[index+6]))[0];
+
+                            br.Thickness = Double.Parse(figure[index+7]);
+
+                            IFigure NewFigure = Create(type, Points, br);
                             Figures.Add(NewFigure);
                         }
                         sw.Close();
